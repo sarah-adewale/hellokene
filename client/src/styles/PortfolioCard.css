@@ -1,0 +1,585 @@
+/* Theme-specific styles */
+[data-theme='light'] {
+    --bg-color: #fcfcfc;
+    --text-color: #0B0A0F;
+    --secondary-text: #232327;
+    --tertiary-text: #9D9D9F;
+    --card-bg: #F5F5F5;
+    --card-bg-hover: ##FCFCFC;
+    --portfolio-card-border: #E7E7E7;
+    --portfolio-card-border-hover:#9D9D9F;
+    --portfolio-card-button-bg: #FCFCFC;
+    --portfolio-card-button-bg-hover: #0B0A0F;
+    --portfolio-card-button-color: #232327;
+    --portfolio-card-button-color-hover: #FCFCFC;
+    --portfolio-card-button-border: #9D9D9F;
+    --portfolio-card-button-box-shadow: -1px -1px 8px rgba(255, 255, 255, 0.3), 1px 1px 8px rgba(255, 255, 255, 0.3);
+    --portfolio-card-cat-bg: #E7E7E7;
+    --grid-card-info-bg: rgba(231, 231, 231, 0.6);
+  }
+  
+  [data-theme='dark'] {
+    --bg-color: #0B0A0F;
+    --text-color: #FCFCFC;
+    --secondary-text: #E7E7E7;
+    --tertiary-text: #6D6C6F;
+    --card-bg: #232327;
+    --card-bg-hover: #0B0A0F;
+    --portfolio-card-border: #232327;
+    --portfolio-card-border-hover: #6D6C6F;
+    --portfolio-card-button-bg: #0B0A0F;
+    --portfolio-card-button-bg-hover: #FCFCFC;
+    --portfolio-card-button-color: #9D9D9F;
+    --portfolio-card-button-color-hover: #0B0A0F;
+    --portfolio-card-button-border: #9D9D9F;
+    --portfolio-card-button-box-shadow: -1px -1px 8px rgba(255, 255, 255, 0.3), 1px 1px 8px rgba(255, 255, 255, 0.3);
+    --portfolio-card-cat-bg: #232327;
+    --grid-card-info-bg: rgba(11, 10, 15, 0.8);
+  }
+
+/* Base card styles */
+.portfolio-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover background colors for different projects */
+  .hover-bg-pivo {
+    background-color: var(--card-bg-hover);
+  }
+  
+  .hover-bg-portfolio {
+    background-color: var(--card-bg-hover);
+  }
+  
+  .hover-bg-gidigan {
+    background-color: var(--card-bg-hover);
+  }
+  
+  .hover-bg-liberterra {
+    background-color: var(--card-bg-hover);
+  }
+  
+  .hover-bg-betweysure {
+    background-color: var(--card-bg-hover);
+  }
+  
+  .hover-bg-default {
+    background-color: var(--card-bg-hover);
+  }
+  
+  /* ===== GRID VIEW STYLES ===== */
+  .grid-card {
+    position: relative;
+    border: 1px solid var(--portfolio-card-border);
+    /* width: 548px; */
+    height: 215px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    gap: 8px;
+    border-width: 1px;
+
+  }
+  
+  .card-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+
+  }
+  
+  .grid-card.hovered .card-bg-image {
+    transform: scale(1.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--grid-card-info-bg);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    
+  }
+  
+  .grid-card.hovered .card-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .card-overlay-content {
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .card-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+  }
+  
+  .card-subtitle {
+    font-size: 16px;
+    color: var(--secondary-text);
+    margin-bottom: 16px;
+  }
+  
+  .card-categories {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .category-badge {
+    padding: 6px 12px;
+    font-size: 12px;
+    color: var(--text-color);
+    background-color: var(--card-bg);
+    border-radius: 100px;
+    display: inline-block;
+  }
+
+  .case-study-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 16px;
+    color: var(--bg-color);
+    background-color: var(--text-color);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .arrow-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 8px;
+  }
+
+
+  .card-info-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    padding-top: 20px;
+    background-color: var(--grid-card-info-bg);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+  }
+
+  .grid-card.hovered .card-info-bar {
+    opacity: 0;
+  }
+
+  .card-info-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  
+  /* ===== LIST VIEW STYLES ===== */
+  .list-card {
+    position: relative;
+    height: 220px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    border: 1px solid var(--portfolio-card-border);
+    margin-bottom: 30px;
+
+  }
+  
+  .list-card.hovered {
+    border: 1px solid var(--portfolio-card-border-hover);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .list-card-content {
+    display: flex;
+    height: 100%;
+    position: relative;
+  }
+  
+  .list-card-image {
+    width: 261px;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  
+  .list-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    /* border: 1px solid red; */
+  }
+  
+  .list-card.hovered .list-card-image img {
+    transform: scale(1.05);
+  }
+  
+  .list-card-details {
+    flex: 1;
+    width: 67%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+  }
+  
+  .list-card-header {
+    margin-bottom: 16px;
+    width: 70%;
+  }
+  
+  .list-card-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--secondary-text);
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+  }
+  
+  .list-card.hovered .list-card-title {
+    color: var(--text-color);
+  }
+  
+  .list-card-subtitle {
+    font-size: 16px;
+    color: var(--tertiary-text);
+    transition: color 0.3s ease;
+  }
+  
+  .list-card.hovered .list-card-subtitle {
+    color: var(--secondary-text);
+  }
+  
+  .list-card-meta {
+    /* display: flex; */
+    /* margin-bottom: 16px; */
+
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+  }
+  
+  .read-time {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+  }
+  
+  .read-time-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--tertiary-text);
+    transition: color 0.3s ease;
+  }
+  
+  .list-card.hovered .read-time-icon {
+    color: var(--secondary-text);
+  }
+  
+  .read-time-text {
+    margin-left: 6px;
+    font-size: 14px;
+    color: var(--secondary-text);
+    transition: color 0.3s ease;
+  }
+  
+  .list-card.hovered .read-time-text {
+    color: var(--text-color);
+  }
+  
+  .list-card-categories {
+    display: flex;
+    gap: 12px;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+  
+  .primary-category, .secondary-category {
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    background-color: var(--portfolio-card-cat-bg);
+  }
+  
+  /* .primary-category {
+    background-color: var(--bg-color);
+    
+  } */
+  
+  /* .list-card.hovered .primary-category {
+    border-color: var(--secondary-text);
+    background-color: transparent;
+  }
+   */
+  .list-card.hovered .secondary-category {
+    border-color: var(--secondary-text);
+    background-color: transparent;
+  }
+  
+  .category-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--tertiary-text);
+    transition: color 0.3s ease;
+  }
+  
+  .list-card.hovered .category-icon {
+    color: var(--secondary-text);
+  }
+  
+  .category-text {
+    margin-left: 6px;
+    font-size: 12px;
+    color: var(--tertiary-text);
+    transition: color 0.3s ease;
+  }
+  
+  .list-card-button {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    gap: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: var(--portfolio-card-button-bg);
+    color: var(--portfolio-card-button-color);
+    /* margin: 0 auto; */
+    width: 197px;
+    height: 48px;
+    /* box-shadow: var(--portfolio-card-button-box-shadow); */
+    border: 1px solid var(--portfolio-card-border);
+
+}
+  
+  .list-card.hovered .list-card-button {
+    background-color: var(--portfolio-card-button-bg-hover);
+    color: var(--portfolio-card-button-color-hover);
+    border-color: var(--portfolio-card-button-border);
+  }
+  
+  .button-arrow-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    transition: color 0.3s ease;
+  }
+  
+  .list-card.hovered .button-arrow-icon {
+    color: var(--bg-color);
+  }
+
+  /* Add these styles to your PortfolioCard.css file */
+
+/* Project icon styles */
+.project-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  margin-bottom: 8px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
+.list-card-header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.list-card-header .project-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+  .list-card-header .project-icon {
+    position: static;
+    transform: none;
+    margin-bottom: 12px;
+  }
+  
+  .list-card-header {
+    padding-top: 12px;
+  }
+}
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .grid-card {
+      height: 300px;
+    }
+    
+    .list-card {
+      height: auto;
+     
+    }
+    
+    .list-card-content {
+      flex-direction: column;
+      
+    }
+    
+    .list-card-image {
+      width: 100%;
+      height: 200px;
+    }
+    
+    .list-card-details {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .list-card-meta {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  /* Mobile-specific styles for PortfolioCard.css */
+@media (max-width: 768px) {
+  /* Grid card adjustments */
+  .grid-card {
+    height: auto;
+    max-width: 100%;
+  }
+  
+  /* List card adjustments - this is our focus */
+  .list-card {
+    height: auto;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .list-card-content {
+    flex-direction: column;
+  }
+  
+  .list-card-image {
+    width: 100%;
+    height: 240px; /* Adjust as needed to match design */
+  }
+  
+  .list-card-details {
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    height: auto;
+    min-height: 200px;
+  }
+  
+  .list-card-header {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  
+  .list-card-title {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  
+  .list-card-subtitle {
+    font-size: 14px;
+  }
+  
+  /* Fix categories position in mobile */
+  .list-card-categories {
+    position: static;
+    display: flex;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .primary-category, .secondary-category {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  /* Fix read time position in mobile */
+  .list-card-meta {
+    position: static;
+    display: flex;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  
+  .read-time {
+    margin-right: 0;
+  }
+  
+  /* Fix button position in mobile */
+  .list-card-button {
+    position: static;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 12px 16px;
+    justify-content: center;
+  }
+  
+  /* Adjust hover effects for touch devices */
+  .list-card.hovered .list-card-image img {
+    transform: none; /* Disable hover animation on mobile */
+  }
+  
+  /* Improve card hierarchy on mobile */
+  .list-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Add a little space between elements */
+  .list-card-meta, .list-card-categories {
+    margin-bottom: 16px;
+  }
+}

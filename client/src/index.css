@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    @apply bg-[#0B0A0F] font-lexend text-text-primary;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-lexend;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply flex items-center justify-center px-4 py-3 rounded-md transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-text-primary text-dark-bg;
+  }
+  
+  .btn-outline {
+    @apply border border-text-tertiary text-text-tertiary hover:border-text-primary hover:text-text-primary;
+  }
+  
+  .card {
+    @apply rounded-2xl border border-[#CFCCCC] overflow-hidden transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply border-[#E4F8E4] shadow-md;
+  }
+  
+  .section-container {
+    @apply px-4 md:px-8 lg:px-48 xl:px-52 2xl:px-60;
+  }
+  
+  .nav-link {
+    @apply text-base md:text-xl font-medium hover:text-text-primary transition-colors duration-200;
+  }
+  
+  .nav-link.active {
+    @apply text-text-primary;
+  }
+}
+
+/* For the live button animation */
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 3px green;
+  }
+  50% {
+    box-shadow: 0 0 20px green;
+  }
+  100% {
+    box-shadow: 0 0 3px green;
+  }
+}
+
+.live-btn {
+  animation: glowing 1500ms infinite;
+  border-radius: 100%;
+  background-color: green;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+/* For project list/grid view toggle */
+.projects.list-view {
+  @apply flex flex-col gap-6;
+}
+
+.projects:not(.list-view) {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-5;
+}
