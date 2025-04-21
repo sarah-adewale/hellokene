@@ -10,8 +10,9 @@
     "install-server": "cd server && npm install",
     "install-client": "cd client && npm install",
     "install-all": "npm install && npm run install-server && npm run install-client",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run install-client && npm run build"
+    "build": "cd client && npm install @craco/craco && npm run build",
+    "heroku-postbuild": "npm run install-client && npm run build",
+     "render-build": "npm run install-client && cd client && npm install @craco/craco && npm run build"
   },
   "keywords": [
     "react",
