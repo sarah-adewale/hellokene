@@ -12,6 +12,11 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
+if (!process.env.NODE_ENV) {
+  console.warn('NODE_ENV not set, defaulting to development');
+  process.env.NODE_ENV = 'development';
+}
+
 const app = express();
 
 // Parse allowed origins from environment variable
@@ -47,9 +52,13 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // API routes
-// app.use('/api', apiRoutes);
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'API is working' });
+app.use('/api', apiRoutes);
+// app.get('/api/test', (req, res) => {
+//   res.json({ message: 'API is working' });
+// });
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
 });
 
 // Handle React routing in production, return the React app
