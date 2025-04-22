@@ -56,6 +56,8 @@ app.use('/api', apiRoutes);
 // app.get('/api/test', (req, res) => {
 //   res.json({ message: 'API is working' });
 // });
+
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
