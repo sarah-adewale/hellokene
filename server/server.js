@@ -6,7 +6,11 @@ const path = require('path');
 const apiRoutes = require('./routes/api');
 
 // Load environment variables
-dotenv.config({ path: '../config/.env' });
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: '../config/.env' });
+} else {
+  dotenv.config();
+}
 
 const app = express();
 
@@ -43,7 +47,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // API routes
-app.use('/api', apiRoutes);
+// app.use('/api', apiRoutes);
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'API is working' });
+});
 
 // Handle React routing in production, return the React app
 if (process.env.NODE_ENV === 'production') {
