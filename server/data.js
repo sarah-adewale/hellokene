@@ -4,7 +4,7 @@
 const portfolioProjects = [
     {
       id: 'pivo',
-      title: 'Pivo',
+      title: 'Pivo: Scaling Customer Onboarding',
       subtitle: 'A finance platform, providing credit and business tools to supply chain SMEs.',
       description: 'Designed a mobile banking experience that helps SMEs manage their finances easily.',
       category: ['Fintech'],
@@ -52,7 +52,7 @@ const portfolioProjects = [
       hoverImageUrl: '/images/new-liberterra-img-hover.svg',
       gridImageUrl: '/images/liberterra-grid.svg',
       readTime: '7 min read',
-      caseStudyUrl: '/portfolio/liberterra',
+      projectUrl: 'https://www.behance.net/gallery/111156945/LiberTerra',
       highlighted: false,
       growthDesign: false,
       productDesign: true,
@@ -62,26 +62,26 @@ const portfolioProjects = [
         color: '#84CC16'
       }
     },
-    {
-      id: 'betweysure',
-      title: 'Betweysure',
-      subtitle: 'Betweysure is a football forecast & prediction platform for punters and gamblers',
-      description: 'A platform for sports betting analytics and insights.',
-      category: ['Sports Analytics'],
-      imageUrl: '/images/new-betweysure-img.svg',
-      hoverImageUrl: '/images/new-betweysure-img-hover.svg',
-      gridImageUrl: '/images/betweysure-grid.svg',
-      readTime: '5 min read',
-      projectUrl: 'https://pivo.app',
-      highlighted: false,
-      growthDesign: false,
-      productDesign: true,
-      platforms: ["webapp"],
-      icon: {
-        name: 'ChartBar',
-        color: '#F59E0B'
-      }
-    },
+    // {
+    //   id: 'betweysure',
+    //   title: 'Betweysure',
+    //   subtitle: 'Betweysure is a football forecast & prediction platform for punters and gamblers',
+    //   description: 'A platform for sports betting analytics and insights.',
+    //   category: ['Sports Analytics'],
+    //   imageUrl: '/images/new-betweysure-img.svg',
+    //   hoverImageUrl: '/images/new-betweysure-img-hover.svg',
+    //   gridImageUrl: '/images/betweysure-grid.svg',
+    //   readTime: '5 min read',
+    //   projectUrl: 'https://pivo.app',
+    //   highlighted: false,
+    //   growthDesign: false,
+    //   productDesign: true,
+    //   platforms: ["webapp"],
+    //   icon: {
+    //     name: 'ChartBar',
+    //     color: '#F59E0B'
+    //   }
+    // },
     {
       id: 'laundrybasket',
       title: 'Laundry Basket',
@@ -92,7 +92,7 @@ const portfolioProjects = [
       hoverImageUrl: '/images/laundry-basket-hover.svg',
       gridImageUrl: '/images/laundry-basket-grid.svg',
       readTime: '5 min read',
-      projectUrl: 'https://pivo.app',
+      projectUrl: 'https://laundrysquared.onrender.com/',
       requiresCredentials: true,
       highlighted: true,
       growthDesign: false,
@@ -113,7 +113,7 @@ const portfolioProjects = [
       hoverImageUrl: '/images/gidigan-hover.svg',
       gridImageUrl: '/images/gidigan-grid.svg',
       readTime: '6 min read',
-      caseStudyUrl: '/portfolio/gidigan',
+      projectUrl: 'https://gidigan.netlify.app/',
       highlighted: false,
       growthDesign: false,
       productDesign: true,
@@ -133,7 +133,7 @@ const portfolioProjects = [
       hoverImageUrl: '/images/smart-pathways-hover.svg',
       gridImageUrl: '/images/smart-pathways-grid.svg',
       readTime: '5 min read',
-      projectUrl: 'https://pivo.app',
+      projectUrl: 'https://smart-pathways.netlify.app/',
       highlighted: false,
       growthDesign: false,
       productDesign: true,

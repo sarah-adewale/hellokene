@@ -15,7 +15,7 @@ const Conclusion = ({ project }) => {
     setModalImage(null);
   };
   // Only show specific content for the Pivo project
-  if (project.id !== 'pivo') {
+  if (project.id !== 'pivo' && project.id !== 'portfolio') {
     return (
       <section className="case-study-section challenge">
         <h2>The Conclusion</h2>
@@ -26,11 +26,35 @@ const Conclusion = ({ project }) => {
 
   return (
     <>
-        <div className='case-study-conclusion'>
-            <h2 className='conclusion-title'>Conclusion</h2>
-            <p className='conclusion-content'>This case study highlights our journey to transform the onboarding experience through user-centric design and collaborative problem-solving. By simplifying the process and enhancing transparency, we not only improved customer satisfaction but also built a stronger foundation for future growth.</p>
-            <p className='conclusion-content secondary-content'>For a deeper dive into the technical specifics of the KYC manager tool, explore the detailed case study <Link to="#">here. </Link></p>
-        </div>
+    {project.id === "pivo" && (
+      <div className='case-study-conclusion'>
+        <h2 className='conclusion-title'>Conclusion</h2>
+        <p className='conclusion-content'>This case study highlights our journey to transform the onboarding experience through user-centric design and collaborative problem-solving. By simplifying the process and enhancing transparency, we not only improved customer satisfaction but also built a stronger foundation for future growth.</p>
+        <p className='conclusion-content secondary-content'>For a deeper dive into the technical specifics of the KYC manager tool, explore the detailed case study <Link to="#">here. </Link></p>
+      </div>
+    )}
+    {project.id === "portfolio" && (
+      <>
+      <div className='impact-section'>
+        <p className='research-section-title'>Impact and conclusion</p>
+        <p className='research-findings-secondary-text'>The final session with my testers was met with positive reactions. They all expressed an increased appreciation for my skills citing</p>
+        <ol>
+          <li>the improved design style</li>
+          <li>simplified navigation</li>
+          <li>fun interactions</li>
+        </ol>
+      </div>
+      <div className='impact-section impact-section-2'>
+        <p className='research-section-title'>Next Steps</p>
+        <p className='research-findings-secondary-text'>Following it’s launch, I will</p>
+        <ol>
+          <li>track site visits against job leads to determine if the improved design has any improved impact on my ability to attract work</li>
+          <li>continue to collect feedback from the public on areas of improvement</li>
+        </ol>
+      </div>
+      </>
+    )}
+        
     </>
   );
 };

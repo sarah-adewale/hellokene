@@ -16,7 +16,7 @@ const Solution = ({ project }) => {
     };
   
   // Only show specific content for the Pivo project
-  if (project.id !== 'pivo') {
+  if (project.id !== 'pivo' && project.id !== 'portfolio') {
     return (
       <section className="case-study-section solution">
         <h2>The Solution</h2>
@@ -26,7 +26,9 @@ const Solution = ({ project }) => {
   }
 
   return (
-    <section className="case-study-section solution">
+    <>
+    {project.id === 'pivo' && (
+      <section className="case-study-section solution">
       <h2 className="solution-title">The Solution: Enhancing Flexibility and Clarity</h2>
       
       <div className="solution-intro">
@@ -361,6 +363,186 @@ const Solution = ({ project }) => {
         onClose={closeImageModal}
       />
     </section>
+    )}
+    {project.id === 'portfolio' && (
+      <>
+        <div className='ideation-section'>
+          <p className='research-section-title'>Ideation and Architecture</p>
+          <p className='research-findings-secondary-text'>Armed with a healthy understanding of my users, I set out to establish an information architecture that accounts for as many needs and points points as possible.</p>
+          <div className='user-stories-section'>
+            <p className='research-findings-title'>User Stories</p>
+            <div>
+              {theme === "dark" ? (
+                <img src="/images/user-stories-table.svg" alt="" />
+              ) : (
+                <img src="/images/user-stories-table-white.svg" alt="" />
+              )}
+            </div>
+          
+            
+            {/* mobile */}
+            <div className=''>
+              {theme === "dark" ? (
+                <img src="/images/user-stories-table.svg" alt="" />
+              ) : (
+                <img src="/images/user-stories-table-white.svg" alt="" />
+              )}
+            </div>
+           
+          </div>
+          <div className='sitemap-section'>
+            <p className='research-findings-title'>Sitemap</p>
+            {/* <img src="/images/site-map-img.svg" alt="" /> */}
+            <div className="tiered-system-diagram">
+            <img 
+            src={theme === 'dark' 
+                ? "/images/site-map-img.svg"
+                : "/images/site-map-img.svg"
+            } 
+            alt={`${project.title}`} 
+            className="onboarding-image"
+            onClick={() => openImageModal(theme === 'dark' ? "/images/site-map-img.svg" : "/images/site-map-img.svg", "Tiered onboarding user interface")}
+            />
+            <div className="tiered-system-image">
+              <div 
+                className="zoom-indicator"
+                onClick={() => openImageModal(theme === 'dark' ? "/images/site-map-img.svg" : "/images/site-map-img.svg", "Tiered onboarding user interface")}
+
+              >
+                {theme === 'dark' ? (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 3H13V5.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 6.5L13 3" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5.5 13H3V10.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 9.5L3 13" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13 10.5V13H10.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 9.5L13 13" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 5.5V3H5.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 6.5L3 3" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 3H13V5.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 6.5L13 3" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5.5 13H3V10.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 9.5L3 13" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13 10.5V13H10.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 9.5L13 13" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 5.5V3H5.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 6.5L3 3" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )}
+
+                <span>Tap to enlarge</span>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div className='wireframes-section'>
+            <p className='research-section-title'>Lo-fi Wireframes</p>
+            <p className='research-findings-secondary-text'>Design began with me sketching and designing wireframes to accommodate all the required pages and actions. In my first drafts for the homepage, the primary job was to ensure I could capture as much readable information as possible on the home page, specifically above the fold.</p>
+            {/* <img src="/images/wireframes-image.svg" alt="" /> */}
+            <div className="tiered-system-diagram">
+            <img 
+            src={theme === 'dark' 
+                ? "/images/wireframes-image.svg"
+                : "/images/wireframes-image.svg"
+            } 
+            alt={`${project.title}`} 
+            className="onboarding-image"
+            onClick={() => openImageModal(theme === 'dark' ? "/images/wireframes-image.svg" : "/images/wireframes-image.svg", "Tiered onboarding user interface")}
+            />
+            <div className="tiered-system-image">
+              <div 
+                className="zoom-indicator"
+                onClick={() => openImageModal(theme === 'dark' ? "/images/wireframes-image.svg" : "/images/wireframes-image.svg", "Tiered onboarding user interface")}
+
+              >
+                {theme === 'dark' ? (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 3H13V5.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 6.5L13 3" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5.5 13H3V10.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 9.5L3 13" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13 10.5V13H10.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 9.5L13 13" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 5.5V3H5.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 6.5L3 3" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 3H13V5.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 6.5L13 3" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5.5 13H3V10.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 9.5L3 13" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13 10.5V13H10.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 9.5L13 13" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 5.5V3H5.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 6.5L3 3" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )}
+
+                <span>Tap to enlarge</span>
+              </div>
+            </div>
+          </div>
+            <p className='research-findings-secondary-text'>...explored mobile responsiveness, focusing efforts on a simple navigation menu</p>
+            {/* <img src="/images/wireframes2.svg" alt="" /> */}
+            <div className="tiered-system-diagram">
+            <img 
+            src={theme === 'dark' 
+                ? "/images/wireframes2.svg"
+                : "/images/wireframes2.svg"
+            } 
+            alt={`${project.title}`} 
+            className="onboarding-image"
+            onClick={() => openImageModal(theme === 'dark' ? "/images/wireframes2.svg" : "/images/wireframes2.svg", "Tiered onboarding user interface")}
+            />
+            <div className="tiered-system-image">
+              <div 
+                className="zoom-indicator"
+                onClick={() => openImageModal(theme === 'dark' ? "/images/wireframes2.svg" : "/images/wireframes2.svg", "Tiered onboarding user interface")}
+
+              >
+                {theme === 'dark' ? (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 3H13V5.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 6.5L13 3" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5.5 13H3V10.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 9.5L3 13" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13 10.5V13H10.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 9.5L13 13" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 5.5V3H5.5" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 6.5L3 3" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 3H13V5.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 6.5L13 3" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5.5 13H3V10.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 9.5L3 13" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13 10.5V13H10.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9.5 9.5L13 13" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 5.5V3H5.5" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M6.5 6.5L3 3" stroke="#232327" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )}
+
+                <span>Tap to enlarge</span>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <ImageModal 
+        isOpen={modalImage !== null}
+        imageUrl={modalImage?.url}
+        altText={modalImage?.alt}
+        onClose={closeImageModal}
+      />
+      </>
+    )}
+    </>
   );
 };
 

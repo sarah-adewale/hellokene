@@ -16,7 +16,7 @@ const Results = ({ project }) => {
   };
 
   // Only show specific content for the Pivo project
-  if (project.id !== 'pivo') {
+  if (project.id !== 'pivo' && project.id !== 'portfolio') {
     return (
       <section className="case-study-section results">
         <h2>Results</h2>
@@ -26,7 +26,9 @@ const Results = ({ project }) => {
   }
 
   return (
-    <section className="case-study-section results">
+    <>
+    {project.id === 'pivo' && (
+      <section className="case-study-section results">
       <h2 className="results-title">Results: Quantifiable Improvements</h2>
       
       <div className="results-intro">
@@ -59,6 +61,7 @@ const Results = ({ project }) => {
             <div className="tiered-system-image">
               <div 
                 className="zoom-indicator"
+                
                 // onClick={() => openImageModal("/images/bar-chart-img.svg", "Tiered onboarding user interface")}
                 onClick={() => openImageModal(theme === 'dark' ? "/images/bar-chart-img.svg" : "/images/bar-chart-img-white.svg", "Tiered onboarding user interface")}
               >
@@ -181,7 +184,114 @@ const Results = ({ project }) => {
         onClose={closeImageModal}
       />
     </section>
+    )}
+    
+    {project.id === 'portfolio' && (
+      <>
+      <div className='style-guide-section'>
+        {theme === 'dark' ? (
+          <img src="/images/style-guide-section-img.svg" alt="" />
+        ): (
+          <img src="/images/style-guide-section-img-white.svg" alt="" />
+        )}
+        
+
+      </div>
+      {/* mobile */}
+
+      <div className='style-guide-section-mobile'>
+        {theme === 'dark' ? (
+          <img src="/images/style-guide-section-img-mobile.svg" alt="" />
+        ): (
+          <img src="/images/style-guide-section-img-mobile-white.svg" alt="" />
+        )}
+        
+
+      </div>
+      <div className='prototype-section'>
+        <p className='research-section-title'>Hi-Fidelity Prototype</p>
+        <p className='research-findings-secondary-text'>You’re using it. Below I’ve highlighted major design decisions that shaped what you see now. </p>
+        <p className='prototype-heading-text prototype-number'>#1</p>
+        <p className='prototype-heading-text'>Single Page Orientation</p>
+        <p className='research-findings-secondary-text'>All the information that exists on the site is modelled for a single page view, with</p>
+        <ol>
+          <li className='research-findings-secondary-text'>A sub-navigation filter based on project type</li>
+          <li className='research-findings-secondary-text'>Limiting on-site redirects to only individual case studies.</li>
+        </ol>
+        <p className='research-findings-secondary-text'>This addresses one of the major concerns of having to traverse multiple pages to get a sense of my skills and experience.</p>
+        <div className='portfolio-screens-img'>
+          <img src="/images/portfolio-screens-img.svg" alt="" />
+        </div>
+        {/* mobile */}
+        <div className='portfolio-screens-img-mobile'>
+          <img src="/images/portfolio-screens-img-mobile.svg" alt="" />
+        </div>
+      </div>
+      <div >
+        <div className='interaction-hero-section'>
+          <div className='hero-section-text-area'>
+            <p className='prototype-heading-text prototype-number'>#2</p>
+            <p className='research-findings-secondary-text'>Interactive Hero Section</p>
+            <ul>
+              <li>
+              An interactive click-based ‘About’ section embedded in the copy on the page.
+              </li>
+              <li>
+              Floating tools that light up on hover and offer more insight into my level of expertise with them 
+              </li>
+            </ul>
+            <p className='research-findings-secondary-text'>This encourages a more fun  and less information dense experience for readers. </p>
+          </div>
+          <div className='image-screens-img-desktop'>
+           <img src="/images/hero-section-screen-img.svg" alt="" />
+          </div>
+
+          {/* mobile */}
+          <div className='image-screens-img-mobile'>
+            <img src="/images/hero-screens-img-mobile.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className='interaction-hero-section'>
+         
+            <img src="/images/hero-screens-img.svg" alt="" />
+
+        
+          <div className='hero-section-text-area'>
+            
+            <p className='prototype-heading-text prototype-number'>#3</p>
+            <p className='research-findings-secondary-text'>Bottom Navigation</p>
+            <ul>
+              <li>
+              Taking a cue from Fitt’s Law, I decided to implement a bottom navigation menu. 
+              </li>
+              <li>
+              In addition, I designed the items in a bottom-up orientation 
+              </li>
+            </ul>
+            <p className='research-findings-secondary-text'>This improves usability for mobile users by placing touch targets in areas of an interface that allow them to be easily acquired.</p>
+          </div>
+          
+        </div>
+      </div>
+      <div className='hero-section-forth'>
+        <p className='prototype-heading-text prototype-number'>#4</p>
+        <p className='research-findings-secondary-text'>Light & Dark Mode</p>
+        <p className='research-findings-secondary-text research-findings-secondary-text-2'>This improves accessibility for users depending on environmental lighting and visual impairments or preferences</p>
+        <div className='mobile-screens-hero-desktop'>
+          <img src="/images/portfolio-mobile-screens-hero.svg" alt="" className='mobile-screens-hero-img'/>
+        </div>
+        {/* mobile */}
+        <div className='mobile-screens-hero-mobile'>
+          <img src="/images/portfolio-mobile-screens-hero-mobile.svg" alt="" className='mobile-screens-hero-img'/>
+        </div>
+      </div>
+    </>
+    )}
+    </>
   );
+  
 };
 
 export default Results;
