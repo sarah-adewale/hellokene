@@ -342,7 +342,7 @@
   }
   
   .pain-points-intro {
-    font-size: 20px !important;
+    font-size: 16px !important;
     font-weight: 500;
     color: var(--text-color) !important;
   }
@@ -380,7 +380,7 @@
 
   .pain-point-content h3 {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 16px;
     color: var(--text-color);
   }
@@ -401,24 +401,13 @@
     margin-bottom: 16px;
   }
   
-  .impact-tag.churn {
-    /* background-color: rgba(239, 68, 68, 0.1); */
+  .impact-tag.churn, .impact-tag.trust, .impact-tag.frustration, .impact-tag.confusion {
     color: var(--impact-tag-red);
-    
+    font-size: 24px;
+    padding: 0;
   }
-  
-  .impact-tag.trust {
-    /* background-color: rgba(245, 158, 11, 0.1); */
-    color: var(--impact-tag-red);
-  }
-  
-  .impact-tag.frustration {
-    /* background-color: rgba(124, 58, 237, 0.1); */
-    color: var(--impact-tag-yellow);
-  }
-  
-  .impact-tag.confusion {
-    /* background-color: rgba(14, 165, 233, 0.1); */
+
+  .impact-tag.frustration, .impact-tag.confusion {
     color: var(--impact-tag-yellow);
   }
   
@@ -585,15 +574,7 @@
 .zoom-indicator-btn-text{
   color: #0B0A0F;
 }
-  /* Outcomes display */
-  .solution-outcomes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* gap: 10px; */
-    /* margin-bottom: 32px; */
-    border-radius: 12px;
-    padding: 0 24px;
-  }
+
   
   .set-out-text{
     /* width: 370.67px; */
@@ -882,19 +863,19 @@
 
   .results-list-strong{
     font-weight: 600;
-    font-size: 18px;
+    font-size: 15px;
   }
   
   .results-list li::before {
     content: "•";
     position: absolute;
     left: 0;
-    color: var(--text-color);
+    color: var(--secondary-text);
     font-weight: bold;
   }
   
   .results-list li strong {
-    color: var(--text-color);
+    color: var(--secondary-text);
     font-weight: 600;
   }
   
@@ -925,7 +906,7 @@
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 8px;
-    color: var(--text-color);
+    color: var(--secondary-text);
   }
   
   .enhancement-desc {
@@ -959,12 +940,6 @@
     color: var(--secondary-text);
     margin-bottom: 32px;
   }
-  
-  /* Light mode adjustments */
-  [data-theme='light'] .results-chart,
-  [data-theme='light'] .process-flow-diagram {
-    background-color: #FCFCFC;
-  }
 
   /* Add to your CaseStudy.css */
 
@@ -977,7 +952,7 @@
   }
   
   .case-study-footer-content {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 24px 32px;
     display: flex;
@@ -987,34 +962,10 @@
   }
   
   .thank-you-text {
-    font-size: 24px;
+    font-size: 20px;
+    text-align: center;
     font-weight: 500;
     color: var(--tertiary-text);
-  }
-  
-  .next-case-study-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--secondary-text);
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  
-  .next-case-study-link:hover {
-    opacity: 0.9;
-    transform: translateX(4px);
-  }
-  
-  .next-case-study-link svg {
-    transition: transform 0.3s ease;
-    color: var(--dim-tertiary-text);
-  }
-  
-  .next-case-study-link:hover svg {
-    transform: translateX(4px);
   }
 
   /* conclusion */
@@ -1531,6 +1482,221 @@ flex-grow: 0;
 .image-screens-img-desktop, .mobile-screens-hero-desktop{
   display: block;
 }
+
+.table-container img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+/* Add these CSS rules to your CaseStudy.css file */
+
+/* Case study footer navigation styles */
+.case-study-footer {
+  margin-top: 80px;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+.case-study-footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thank-you-text {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--tertiary-text);
+  text-align: center;
+  flex: 1;
+}
+
+/* Previous Case Study Link (Left) */
+.prev-case-study-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--secondary-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.prev-case-study-link:hover {
+  opacity: 0.9;
+  transform: translateX(-4px);
+}
+
+.prev-case-study-link svg {
+  transition: transform 0.3s ease;
+  color: var(--tertiary-text);
+}
+
+.prev-case-study-link:hover svg {
+  transform: translateX(-4px);
+}
+
+/* Next Case Study Link (Right) */
+.next-case-study-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--secondary-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.next-case-study-link:hover {
+  opacity: 0.9;
+  transform: translateX(4px);
+}
+
+.next-case-study-link svg {
+  transition: transform 0.3s ease;
+  color: var(--tertiary-text);
+}
+
+.next-case-study-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* Mobile-specific updates for case study navigation */
+@media (max-width: 768px) {
+  .case-study-footer {
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+  
+  .case-study-footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px;
+    width: 100%;
+  }
+  
+  /* Hide the text and only show icons on mobile */
+  .prev-case-study-link span,
+  .next-case-study-link span {
+    display: none;
+  }
+  
+  /* Hide thank you text on mobile */
+  .thank-you-text {
+    display: none;
+  }
+  
+  /* Create floating action button style for both navigation buttons */
+  .prev-case-study-link,
+  .next-case-study-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: var(--bg-color);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    padding: 0;
+  }
+  
+  .prev-case-study-link:hover,
+  .next-case-study-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Keep the directional hover animations */
+  .prev-case-study-link:hover svg {
+    transform: translateX(-2px);
+  }
+  
+  .next-case-study-link:hover svg {
+    transform: translateX(2px);
+  }
+  
+  /* Ensure SVG icons size properly */
+  .prev-case-study-link svg,
+  .next-case-study-link svg {
+    width: 28px;
+    height: 28px;
+  }
+
+}
+
+/* Only apply horizontal scrolling styles on mobile */
+@media (max-width: 768px) {
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: thin; /* Firefox */
+    margin-bottom: 12px; /* Space for scrollbar */
+    padding-bottom: 8px; /* So scrollbar is visible */
+  }
+  
+  .table-container img {
+    width: auto; /* Let the image retain its natural width */
+    max-width: none; /* Override the max-width constraint */
+    min-width: 150%; /* Ensure image is wider than container to enable scrolling */
+  }
+  
+  /* Customize scrollbar for webkit browsers (Chrome, Safari, newer Edge) */
+  .table-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .table-container::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 10px;
+  }
+  
+  .table-container::-webkit-scrollbar-thumb {
+    background: var(--tertiary-text);
+    border-radius: 10px;
+  }
+  
+  .table-container::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-text);
+  }
+  
+  /* Add subtle indicator that the table is scrollable */
+  .table-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 8px; /* Adjust to match padding-bottom */
+    width: 20px;
+    background: linear-gradient(to right, transparent, var(--bg-color, rgba(11, 10, 15, 0.3)));
+    pointer-events: none; /* Allows scrolling through the gradient */
+  }
+}
+
+/* Desktop view - override the mobile styles */
+@media (min-width: 769px) {
+  .table-container {
+    overflow-x: visible;
+  }
+  
+  .table-container img {
+    width: auto; /* Use image's natural width */
+    max-width: 100%; /* Don't exceed container width */
+    min-width: auto; /* Reset min-width */
+  }
+  
+  .table-container::after {
+    display: none; /* Hide scroll indicator on desktop */
+  }
+}
 @media (max-width: 768px) {
   .portfolio-features {
     display: flex;
@@ -1746,10 +1912,6 @@ flex-grow: 0;
       width: 100%;
     }
     
-    .solution-outcomes {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
     
     .document-arrow {
       transform: rotate(90deg);

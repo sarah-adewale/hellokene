@@ -8,7 +8,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import './index.css';
 import './styles/custom.css'
 import CaseStudyPage from './pages/CaseStudyPage';
-
+import ScrollToTop from './components/ScrollToTop';
 
 // import CaseStudyPage from './pages/CaseStudyPage';
 // import NotFoundPage from './pages/NotFoundPage';
@@ -17,6 +17,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
+      <ScrollToTop />
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-1">

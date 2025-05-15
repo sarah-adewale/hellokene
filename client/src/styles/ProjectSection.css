@@ -44,7 +44,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     position: relative;
   }
   
@@ -74,7 +74,7 @@
     gap: 8px;
     padding: 12px 20px;
     border-radius: 100px;
-    font-size: 19px;
+    font-size: 25px;
     font-weight: 500;
     white-space: nowrap;
     transition: all 0.3s ease;

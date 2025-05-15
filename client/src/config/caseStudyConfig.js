@@ -5,28 +5,36 @@ const caseStudyConfig = {
       showTeam: true,
       showTimeline: true,
       showNextProject: 'portfolio',
-      nextProjectTitle: 'Gidigan'
+      nextProjectTitle: 'Portfolio',
+      showPreviousProject: 'gidigan',
+      previousProjectTitle: 'Gidigan'
     },
     'portfolio': {
       sections: ['Overview', 'Challenge', 'Solution', 'Results','Conclusion'],
       showTeam: true,
       showTimeline: false,
       showNextProject: 'liberterra',
-      nextProjectTitle: 'Gidigan'
+      nextProjectTitle: 'Gidigan',
+      showPreviousProject: 'pivo',
+      previousProjectTitle: 'Pivo'
     },
     'liberterra': {
       sections: ['Overview', 'Challenge', 'Solution', 'Results','Conclusion'],
       showTeam: false,
       showTimeline: true,
       showNextProject: 'gidigan',
-      nextProjectTitle: 'Gidigan'
+      nextProjectTitle: 'Gidigan',
+      showPreviousProject: 'portfolio',
+      previousProjectTitle: 'Portfolio'
     },
     'gidigan': {
       sections: ['Overview', 'Challenge', 'Solution', 'Results'],
       showTeam: true,
       showTimeline: false,
       showNextProject: 'portfolio',
-      nextProjectTitle: 'Gidigan'
+      nextProjectTitle: 'Portfolio',
+      showPreviousProject: 'pivo',
+      previousProjectTitle: 'pivo'
     },
   };
   

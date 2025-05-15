@@ -292,6 +292,7 @@ const PortfolioCard = ({ project, viewMode = 'list' }) => {
           {/* Read time info */}
           <div className="list-card-meta">
             <div className="read-time">
+              
               <svg 
                 className="read-time-icon" 
                 fill="none" 

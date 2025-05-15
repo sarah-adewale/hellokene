@@ -365,8 +365,9 @@
   
   .category-text {
     margin-left: 6px;
+    font-weight: 400;
     font-size: 12px;
-    color: var(--tertiary-text);
+    color: var(--text-color);
     transition: color 0.3s ease;
   }
   

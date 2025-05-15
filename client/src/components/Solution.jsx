@@ -1,4 +1,3 @@
-// src/components/case-study/Solution.jsx
 import React, { useState } from 'react';
 import ImageModal from '../components/ImageModal';
 import { useTheme } from '../context/ThemeContext';
@@ -15,7 +14,6 @@ const Solution = ({ project }) => {
       setModalImage(null);
     };
   
-  // Only show specific content for the Pivo project
   if (project.id !== 'pivo' && project.id !== 'portfolio') {
     return (
       <section className="case-study-section solution">
@@ -92,20 +90,12 @@ const Solution = ({ project }) => {
             </div>
           </div>
           
+          {/* <div className="solution-outcomes">
+            <img src="/images/tiered-table.svg" alt="" />
+          </div> */}
           <div className="solution-outcomes">
-            <div className="outcome-column">
-              <h4 className='set-out-text'>We set out to</h4>
-              <p>Collaborate with the Legal team, and reassess the necessity of each document.</p>
-            </div>
-            
-            <div className="outcome-column">
-              <h4 className='set-out-text'>This helped us</h4>
-              <p className='solution-subtitle'>Establish a tiered system, to allow customers access business incrementally based on their level of document clearance.</p>
-            </div>
-            
-            <div className="outcome-column highlight">
-              <h4>Which led to</h4>
-              <p className='solution-subtitle'>Reduced initial burden, letting users progress at their own pace and access the platform in stages.</p>
+            <div className="table-container">
+              <img src="/images/tiered-table.svg" alt="Tiered onboarding system table" />
             </div>
           </div>
           
@@ -170,27 +160,10 @@ const Solution = ({ project }) => {
           </div>
           
           <div className="solution-outcomes">
-            <div className="outcome-column">
-              <h4 className='set-out-text'>We introduced</h4>
-              <p>User-friendly descriptions</p>
-              <p>In-line Simple Instructions</p>
+            <div className="table-container">
+              <img src="/images/enhanced-readbility-table.svg" alt="" />
             </div>
             
-            <div className="outcome-column">
-              <h4 className='set-out-text'>So that we could</h4>
-                <p className='solution-subtitle'>Add new, jargon-free explanations for each required document.</p>
-                <p className='solution-subtitle'>Display samples for each required document at the point of upload.</p>
-              
-            </div>
-            
-            <div className="outcome-column highlight">
-              <h4 className='set-out-text'>Which led to</h4>
-              
-                <p className='solution-subtitle'>Customers finding it easier to understand and gather the necessary documents.</p>
-                <p className='solution-subtitle'>Reduced confusion and a sped-up document submission process.</p>
-            
-              
-            </div>
           </div>
           
           <div className="solution-results">
@@ -252,24 +225,14 @@ const Solution = ({ project }) => {
             </div>
           </div>
           
+          {/* <div className="solution-outcomes">
+            <img src="/images/tiered-table.svg" alt="" />
+          </div> */}
           <div className="solution-outcomes">
-            <div className="outcome-column">
-              <h4 className='set-out-text'>We introduced</h4>
-              <p>Clear fee breakdown</p>
-              <p>Tiered Payments</p>
+            <div className="table-container">
+            <img src="/images/tiered-table.svg" alt="" />
             </div>
             
-            <div className="outcome-column">
-              <h4 className='set-out-text'>So that we could</h4>
-              <p className='solution-subtitle'>Clearly explain the purpose of each fee at the start of the onboarding process.</p>
-              <p className='solution-subtitle'>Users made payments progressively as they completed each stage of onboarding.</p>
-            </div>
-            
-            <div className="outcome-column highlight">
-              <h4>Which led to</h4>
-              <p className='solution-subtitle'>Customers making informed decisions and proceeding with confidence.</p>
-              <p className='solution-subtitle'>Mitigated initial financial barrier and encouraged users to continue engaging with sign-up.</p>
-            </div>
           </div>
           <div className="solution-results">
             <p>The best user interfaces don't make users stop to figure things out. Our approach to simplifying document descriptions and providing sample documents embraced this philosophy, making the process as intuitive as possible.</p>
@@ -330,24 +293,14 @@ const Solution = ({ project }) => {
             </div>
           </div>
           
+          {/* <div className="solution-outcomes">
+            <img src="/images/kyc-table.svg" alt="" />
+          </div> */}
           <div className="solution-outcomes">
-            <div className="outcome-column">
-              <h4 className='set-out-text'>We introduced</h4>
-              <p>KYC Management Portal (Admin app)</p>
-              <p>Tiered Payments</p>
+            <div className="table-container">
+            <img src="/images/kyc-table.svg" alt="" />
             </div>
             
-            <div className="outcome-column">
-              <h4 className='set-out-text'>So that we could</h4>
-              <p className='solution-subtitle'>Aid relevant staff track and interact with onboarding applications.</p>
-              <p className='solution-subtitle'>Users made payments progressively as they completed each stage of onboarding.</p>
-            </div>
-            
-            <div className="outcome-column highlight">
-              <h4>Which led to</h4>
-              <p className='solution-subtitle'>This tool empowered account managers to resolve issues independently, reducing the need for engineering support.</p>
-              <p className='solution-subtitle'>This approach mitigated the initial financial barrier and encouraged users to continue through the process.</p>
-            </div>
           </div>
           <div className="solution-results">
             <p>Admins can now directly progress applications by tracking each customer’s application state, query issues for customers or members of staff to address, and directly upload additional documents received via other mediums on behalf of customers.</p>

@@ -47,8 +47,8 @@ const Header = () => {
           <Link to="/" className="logo-link">
             <img 
             src={theme === 'dark' 
-                ? "/images/kene-logo-imp.png"
-                : "/images/kene-logo-dark.png"
+                ? "/images/kene-logo-dark.svg"
+                : "/images/kene-logo-imp.svg"
             } 
             alt="Kene Logo" 
             className="kene-logo-img"
