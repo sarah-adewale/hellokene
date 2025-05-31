@@ -43,9 +43,6 @@
   flex-direction: column;
   padding: 0 20px;
   margin-bottom: 40px;
-  /* border: 1px solid red; */
-  /* margin-top: 10px; */
-
 }
 
 @media (min-width: 768px) {
@@ -72,30 +69,47 @@
 
 .hero-content {
   width: 100%;
-  /* border: 1px solid red; */
-  height: 450px;
+  /* Remove fixed height to allow dynamic content sizing */
+  min-height: auto;
 }
 
 @media (min-width: 768px) {
   .hero-content {
     width: 50%;
     max-width: 600px;
+    height: 450px; /* Keep fixed height only on desktop */
   }
 }
 
 .hero-heading {
   font-weight: 500;
-  line-height: 58px;
-  margin-bottom: 42px;
+  line-height: 1.3;
+  margin-bottom: 24px; /* Reduced from 42px */
   color: var(--text-color);
-
+  /* Add smooth transition for content changes */
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 767px) {
   .hero-heading {
     text-align: center;
-    font-size: 28px;
+    font-size: 24px; /* Reduced from 28px */
+    line-height: 1.3;
+    margin-bottom: 16px; /* Reduced spacing */
+    padding: 0 10px; /* Add padding to prevent text touching edges */
+  }
+  
+  /* Specific styling for different content types on mobile */
+  .hero-heading.experience {
+    font-size: 20px; /* Smaller for longer text */
     line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  
+  .hero-heading.skills {
+    font-size: 20px; /* Smaller for longer text */
+    line-height: 1.4;
+    margin-bottom: 12px;
   }
 }
 
@@ -104,10 +118,28 @@
   line-height: 36px;
 }
 
+@media (max-width: 767px) {
+  .hero-content > .experience, .hero-content > .skills {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}
+
 .experience-second-section{
   font-size: 16px;
   line-height: 24px;
   color: var(--tertiary-text);
+  margin-top: 16px;
+}
+
+@media (max-width: 767px) {
+  .experience-second-section {
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+    margin-top: 12px;
+    padding: 0 10px;
+  }
 }
 
 .pivo-seed-link{
@@ -124,9 +156,21 @@
   flex-grow: 0;
 }
 
+@media (max-width: 767px) {
+  .pivo-seed-link {
+    font-size: 14px;
+  }
+}
+
 .pivo-seed-year{
   font-size: 14px;
   color: var(--tertiary-text);
+}
+
+@media (max-width: 767px) {
+  .pivo-seed-year {
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -162,46 +206,49 @@
   font-size: 16px;
 }
 
-/* Mobile buttons styling */
+/* Mobile buttons styling - FIXED */
 .mobile-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
-  margin-bottom: 40px;
+  margin-top: 20px; /* Reduced from 30px */
+  margin-bottom: 20px; /* Reduced from 40px */
 }
 
 .mobile-text {
-  font-size: 18px;
+  font-size: 16px; /* Reduced from 18px */
   color: var(--tertiary-text);
-  margin-bottom: 16px;
+  margin-bottom: 12px; /* Reduced from 16px */
   text-align: center;
 }
 
 .mobile-button-container {
   display: flex;
-  gap: 16px;
+  gap: 12px; /* Reduced from 16px */
   justify-content: center;
+  flex-wrap: wrap; /* Allow wrapping if needed */
+  margin-top: 30px;
 }
 
 .mobile-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px; /* Reduced from 8px */
   background-color: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: 50px;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 10px 20px; /* Reduced from 12px 24px */
+  font-size: 14px; /* Reduced from 16px */
   color: var(--tertiary-text);
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .mobile-button svg {
-  width: 16px;
-  height: 16px;
+  width: 14px; /* Reduced from 16px */
+  height: 14px;
 }
 
 .mobile-button.active {
@@ -244,8 +291,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-top: 30px; */
   display: none;
+  margin-top: 20px; /* Reduced spacing */
 }
 
 @media (min-width: 768px) {
@@ -391,7 +438,6 @@
   background-color: #2C2F42
 }
 
-
 /* Position the skill icons properly around the profile image */
 .ae-icon {
   top: -10px;
@@ -416,7 +462,7 @@
 @media (min-width: 768px) {
   .ae-icon {
     top: -10px;
-    left: 10px;
+    left: 30px;
   }
   
   .ai-icon {
@@ -426,12 +472,12 @@
   
   .figma-icon {
     bottom: 50px;
-    left: -35px;
+    left: -20px;
   }
   
   .ps-icon {
     bottom: 20px;
-    right: 20px;
+    right: 10px;
   }
 }
 
@@ -555,11 +601,11 @@
 
 @media (max-width: 767px) {
   .profile-container {
-    margin-top: 40px;
+    margin-top: 20px; /* Reduced from 40px */
   }
   
   .status-container {
-    margin-top: 20px;
+    margin-top: 15px; /* Reduced from 20px */
     align-items: center;
   }
 

@@ -49,6 +49,17 @@ const HomePage = () => {
       };
     }
   }, [isMobile]);
+
+  // Helper function to get heading class based on active tab
+  const getHeadingClass = () => {
+    let baseClass = "hero-heading";
+    if (activeTab === 'experience') {
+      baseClass += " experience";
+    } else if (activeTab === 'skills') {
+      baseClass += " skills";
+    }
+    return baseClass;
+  };
   
   return (
     <div className="home-container">
@@ -57,7 +68,7 @@ const HomePage = () => {
         {/* Left Column - Text */}
         <div className="hero-content">
           {activeTab === 'bio' && (
-            <h1 className="hero-heading" style={{fontSize: '32px'}}>
+            <h1 className={getHeadingClass()} style={{fontSize: isMobile ? '24px' : '32px'}}>
               Hello, I'm Kene.<br />
               I design digital products that help businesses grow—and keep their users around.
             </h1>
@@ -65,16 +76,18 @@ const HomePage = () => {
           
           {activeTab === 'experience' && (
             <>
-            <h1 className="hero-heading experience">
-            Since 2020, I've worked closely with founding teams across real estate, sports analytics, creator tools, venture capital, and supply chain finance.I've helped shape products from zero to scale—mapping journeys, refining flows, and making things work for the people who use them.
-            </h1>
-            <p className='experience-second-section'>See article: <span className='pivo-seed-link'> Pivo raises $2 million seed round . </span> <span className='pivo-seed-year'> Aug 28, 2022</span></p>
+              <h1 className={getHeadingClass()}>
+                Since 2020, I've worked closely with founding teams across real estate, sports analytics, creator tools, venture capital, and supply chain finance. I've helped shape products from zero to scale—mapping journeys, refining flows, and making things work for the people who use them.
+              </h1>
+              <p className='experience-second-section'>
+                See article: <span className='pivo-seed-link'>Pivo raises $2 million seed round</span> <span className='pivo-seed-year'>Aug 28, 2022</span>
+              </p>
             </>
           )}
           
           {activeTab === 'skills' && (
-            <h1 className="hero-heading skills">
-              I'm skilled at crafting onboarding flows, building scalable design systems, and iterating engaging UIs. I simplify complex dashboards, run usability tests, and collaborate across teams to drive growth. Hover on the tools to see how I make it happen 👉🏾
+            <h1 className={getHeadingClass()}>
+              I'm skilled at crafting onboarding flows, building scalable design systems, and iterating engaging UIs. I simplify complex dashboards, run usability tests, and collaborate across teams to drive growth. {!isMobile && 'Hover on the tools to see how I make it happen 👉🏾'}
             </h1>
           )}
           

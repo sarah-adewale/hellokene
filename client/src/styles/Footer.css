@@ -29,7 +29,7 @@
 
 .footer-container {
   color: var(--text-color);
-  padding: 250px 10px 0 10px;
+  padding-top: 70px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -124,23 +124,37 @@
   z-index: 1;
 }
 
-/* Hover effects for the first icon */
-.footer-icon-wrapper:nth-child(1):hover {
-  z-index: 2;
-}
+/* Desktop hover effects - only apply on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+  /* Hover effects for the first icon */
+  .footer-icon-wrapper:nth-child(1):hover {
+    z-index: 2;
+  }
 
-.footer-icon-wrapper:nth-child(1):hover ~ .footer-icon-wrapper:nth-child(2),
-.footer-icon-wrapper:nth-child(1):hover ~ .footer-icon-wrapper:nth-child(3) {
-  transform: translateX(120px);
-}
+  .footer-icon-wrapper:nth-child(1):hover ~ .footer-icon-wrapper:nth-child(2),
+  .footer-icon-wrapper:nth-child(1):hover ~ .footer-icon-wrapper:nth-child(3) {
+    transform: translateX(120px);
+  }
 
-/* Hover effects for the second icon */
-.footer-icon-wrapper:nth-child(2):hover {
-  z-index: 2;
-}
+  /* Hover effects for the second icon */
+  .footer-icon-wrapper:nth-child(2):hover {
+    z-index: 2;
+  }
 
-.footer-icon-wrapper:nth-child(2):hover ~ .footer-icon-wrapper:nth-child(3) {
-  transform: translateX(120px);
+  .footer-icon-wrapper:nth-child(2):hover ~ .footer-icon-wrapper:nth-child(3) {
+    transform: translateX(120px);
+  }
+
+  /* Show hover text on hover - desktop only */
+  .footer-icon-wrapper:hover .footer-hover-text {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Icon color change on hover - desktop only */
+  .footer-icon:hover {
+    color: var(--text-color);
+  }
 }
 
 .footer-icon-wrapper:nth-child(1) {
@@ -173,12 +187,6 @@
   pointer-events: none; /* Ensure it doesn't interfere with hover */
 }
 
-/* Show hover text on hover */
-.footer-icon-wrapper:hover .footer-hover-text {
-  opacity: 1;
-  transform: translateX(0);
-}
-
 /* Icon styles */
 .footer-icon {
   display: flex;
@@ -188,15 +196,10 @@
   transition: color 0.3s ease;
 }
 
-.footer-icon:hover {
-  color: var(--text-color);
-}
-
 /* Attribution styles */
 .footer-attribution > p {
   font-size: 16px;
   color: var(--tertiary-text);
-  
 }
 
 .footer-attribution{
@@ -212,8 +215,11 @@
   margin-left: 5px;
 }
 
-.footer-link:hover {
-  color: var(--text-color);
+/* Desktop hover effect for footer link */
+@media (hover: hover) and (pointer: fine) {
+  .footer-link:hover {
+    color: var(--text-color);
+  }
 }
 
 /* Media queries for responsiveness */
@@ -223,9 +229,23 @@
     font-size: 28px;
   }
     
-
-  .footer-hover-text {
+  .footer-text {
     font-size: 16px;
+  }
+  
+  /* Disable all hover effects on mobile */
+  .footer-icon-wrapper:nth-child(1):hover ~ .footer-icon-wrapper:nth-child(2),
+  .footer-icon-wrapper:nth-child(1):hover ~ .footer-icon-wrapper:nth-child(3) {
+    transform: translateX(0); /* Reset transform on mobile */
+  }
+  
+  .footer-icon-wrapper:nth-child(2):hover ~ .footer-icon-wrapper:nth-child(3) {
+    transform: translateX(0); /* Reset transform on mobile */
+  }
+  
+  /* Hide hover text on mobile */
+  .footer-hover-text {
+    display: none;
   }
   
   .footer-icon-wrapper:nth-child(1),
@@ -233,6 +253,14 @@
     margin-right: 20px;
   }
 
+  .footer-container{
+    width: 100%;
+  }
+
+  .footer-container::before{
+    width: 100%;
+    background: var(--footer-bg-mobile);
+  }
 }
   
 @media (max-width: 480px) {
@@ -245,22 +273,22 @@
     font-size: 14px;
   }
     
-  /* .footer-hover-text {
-    font-size: 14px;
-    left: 50px;
-  } */
+  .footer-hover-text {
+    display: none; /* Ensure it's hidden on small mobile too */
+  }
   
-  /* .footer-icon-wrapper:nth-child(1):hover ~ .footer-icon-wrapper:nth-child(2),
+  /* Reset any hover transforms on small mobile */
+  .footer-icon-wrapper:nth-child(1):hover ~ .footer-icon-wrapper:nth-child(2),
   .footer-icon-wrapper:nth-child(1):hover ~ .footer-icon-wrapper:nth-child(3) {
-    transform: translateX(100px);
+    transform: translateX(0);
   }
   
   .footer-icon-wrapper:nth-child(2):hover ~ .footer-icon-wrapper:nth-child(3) {
-    transform: translateX(100px);
-  } */
+    transform: translateX(0);
+  }
   
-  /* .footer-icon-wrapper:nth-child(1),
+  .footer-icon-wrapper:nth-child(1),
   .footer-icon-wrapper:nth-child(2) {
     margin-right: 15px;
-  } */
+  }
 }
