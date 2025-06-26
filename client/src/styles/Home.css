@@ -30,25 +30,22 @@
 }
 
 * {
-  /* Enable hardware acceleration for better performance */
-  /* transform: translate3d(0, 0, 0); */
   backface-visibility: hidden;
 }
 
 
-/* Optimize animations and transitions */
+
 .hero-heading,
 .mobile-button,
 .skill-icon,
 .profile-image,
 .profile-image-hover,
 .skill-tooltip {
-  /* Use transform3d to enable hardware acceleration */
   transform: translate3d(0, 0, 0);
   will-change: auto;
 }
 
-/* Optimize hover states to only affect necessary properties */
+
 .skill-icon:hover {
   will-change: transform;
 }
@@ -58,9 +55,9 @@
   will-change: opacity;
 }
 
-/* Reduce layout thrashing by using transforms instead of changing layout properties */
+
 .skill-tooltip {
-  /* Use transform instead of changing position */
+
   transform: translate3d(0, 0, 0) scale(0.8);
   opacity: 0;
   visibility: hidden;
@@ -159,13 +156,13 @@ html {
 }
 
 /* Optimize text rendering */
-.hero-heading,
+/* .hero-heading,
 .key-prompt,
 .mobile-text {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 /* Prevent unnecessary repaints on scroll */
 .home-container {
