@@ -283,46 +283,97 @@ const ProjectsSection = () => {
   }, [activeCategory, projects]);
   
   // Handle mouse events for horizontal scrolling on mobile
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - tabsContainerRef.current.offsetLeft);
-    setScrollLeft(tabsContainerRef.current.scrollLeft);
-  };
+  // const handleMouseDown = (e) => {
+  //   setIsDragging(true);
+  //   setStartX(e.pageX - tabsContainerRef.current.offsetLeft);
+  //   setScrollLeft(tabsContainerRef.current.scrollLeft);
+  // };
   
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
+  // const handleMouseLeave = () => {
+  //   setIsDragging(false);
+  // };
   
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+  // const handleMouseUp = () => {
+  //   setIsDragging(false);
+  // };
   
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - tabsContainerRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // scroll-fast
-    tabsContainerRef.current.scrollLeft = scrollLeft - walk;
-  };
+  // const handleMouseMove = (e) => {
+  //   if (!isDragging) return;
+  //   e.preventDefault();
+  //   const x = e.pageX - tabsContainerRef.current.offsetLeft;
+  //   const walk = (x - startX) * 2; // scroll-fast
+  //   tabsContainerRef.current.scrollLeft = scrollLeft - walk;
+  // };
   
-  // Handle touch events for mobile
-  const handleTouchStart = (e) => {
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - tabsContainerRef.current.offsetLeft);
-    setScrollLeft(tabsContainerRef.current.scrollLeft);
-  };
+  // // Handle touch events for mobile
+  // const handleTouchStart = (e) => {
+  //   setIsDragging(true);
+  //   setStartX(e.touches[0].pageX - tabsContainerRef.current.offsetLeft);
+  //   setScrollLeft(tabsContainerRef.current.scrollLeft);
+  // };
   
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    const x = e.touches[0].pageX - tabsContainerRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    tabsContainerRef.current.scrollLeft = scrollLeft - walk;
-  };
+  // const handleTouchMove = (e) => {
+  //   if (!isDragging) return;
+  //   const x = e.touches[0].pageX - tabsContainerRef.current.offsetLeft;
+  //   const walk = (x - startX) * 2;
+  //   tabsContainerRef.current.scrollLeft = scrollLeft - walk;
+  // };
   
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
+  // const handleTouchEnd = () => {
+  //   setIsDragging(false);
+  // };
   
+  // In your ProjectSection.jsx, replace the mouse event handlers with this:
+
+// Handle mouse events for horizontal scrolling on mobile - FIXED VERSION
+const handleMouseDown = (e) => {
+  // Only enable dragging on the tabs container, not the whole page
+  if (!tabsContainerRef.current.contains(e.target)) return;
+  
+  setIsDragging(true);
+  setStartX(e.pageX - tabsContainerRef.current.offsetLeft);
+  setScrollLeft(tabsContainerRef.current.scrollLeft);
+};
+
+const handleMouseLeave = () => {
+  setIsDragging(false);
+};
+
+const handleMouseUp = () => {
+  setIsDragging(false);
+};
+
+const handleMouseMove = (e) => {
+  if (!isDragging) return;
+  
+  // REMOVED e.preventDefault() - this was blocking smooth scroll!
+  const x = e.pageX - tabsContainerRef.current.offsetLeft;
+  const walk = (x - startX) * 2;
+  tabsContainerRef.current.scrollLeft = scrollLeft - walk;
+};
+
+// Handle touch events for mobile - FIXED VERSION
+const handleTouchStart = (e) => {
+  // Only enable dragging on the tabs container
+  if (!tabsContainerRef.current.contains(e.target)) return;
+  
+  setIsDragging(true);
+  setStartX(e.touches[0].pageX - tabsContainerRef.current.offsetLeft);
+  setScrollLeft(tabsContainerRef.current.scrollLeft);
+};
+
+const handleTouchMove = (e) => {
+  if (!isDragging) return;
+  
+  // REMOVED e.preventDefault() - this was blocking smooth scroll!
+  const x = e.touches[0].pageX - tabsContainerRef.current.offsetLeft;
+  const walk = (x - startX) * 2;
+  tabsContainerRef.current.scrollLeft = scrollLeft - walk;
+};
+
+const handleTouchEnd = () => {
+  setIsDragging(false);
+};
   // Get the appropriate icon for each category
   const getCategoryIcon = (categoryId, isActive) => {
     switch(categoryId) {
