@@ -29,13 +29,183 @@
   --key-prompt-button-text: #0B0A0F
 }
 
+* {
+  /* Enable hardware acceleration for better performance */
+  /* transform: translate3d(0, 0, 0); */
+  backface-visibility: hidden;
+}
+
+
+/* Optimize animations and transitions */
+.hero-heading,
+.mobile-button,
+.skill-icon,
+.profile-image,
+.profile-image-hover,
+.skill-tooltip {
+  /* Use transform3d to enable hardware acceleration */
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+/* Optimize hover states to only affect necessary properties */
+.skill-icon:hover {
+  will-change: transform;
+}
+
+.profile-image-wrapper:hover .profile-image,
+.profile-image-wrapper:hover .profile-image-hover {
+  will-change: opacity;
+}
+
+/* Reduce layout thrashing by using transforms instead of changing layout properties */
+.skill-tooltip {
+  /* Use transform instead of changing position */
+  transform: translate3d(0, 0, 0) scale(0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.skill-icon:hover .skill-tooltip {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+}
+
+/* Optimize profile image transitions */
+.profile-image, 
+.profile-image-hover {
+  transition: opacity 0.3s ease;
+  /* Prevent layout shifts */
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Use contain for better performance on complex sections */
+.hero-section {
+  contain: layout style;
+}
+
+.profile-container {
+  contain: layout style;
+}
+
+/* Optimize animations */
+@keyframes pointRight {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* Optimize mobile button interactions */
+.mobile-button {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  /* Prevent layout shifts */
+  will-change: background-color, color, border-color;
+}
+
+/* Add smooth scrolling optimization */
+html {
+  scroll-behavior: smooth;
+}
+
+/* For webkit browsers, optimize scrolling */
+@supports (-webkit-overflow-scrolling: touch) {
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Optimize skill icon positioning for better performance */
+.skill-icon {
+  /* Use transform instead of top/left for positioning when possible */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Remove will-change after animations complete */
+.skill-icon:not(:hover) {
+  will-change: auto;
+}
+
+.profile-image-wrapper:not(:hover) .profile-image,
+.profile-image-wrapper:not(:hover) .profile-image-hover {
+  will-change: auto;
+}
+
+/* Optimize text rendering */
+.hero-heading,
+.key-prompt,
+.mobile-text {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent unnecessary repaints on scroll */
+.home-container {
+  /* Create a new stacking context */
+  isolation: isolate;
+}
+
+/* Media query optimizations */
+@media (max-width: 767px) {
+  /* Disable expensive effects on mobile for better performance */
+  .pointer-emoji {
+    animation: none;
+  }
+  
+  /* Simplify animations on mobile */
+  .skill-tooltip {
+    transition: opacity 0.2s ease;
+  }
+  
+  /* Reduce complexity of hover states on touch devices */
+  .skill-icon:hover {
+    transform: none;
+  }
+}
+
+/* Optimize for high DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
 /* Home.css */
 .home-container {
   padding-top: 100px;
   color: var(--text-color);
   font-family: 'Lexend', sans-serif;
   background-color: var(--bg-color);
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 .hero-section {

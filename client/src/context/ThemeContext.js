@@ -1,5 +1,5 @@
 // src/context/ThemeContext.js
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 const ThemeContext = createContext();
 
@@ -17,9 +17,17 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(getInitialTheme);
 
   // Update theme attribute on document when theme changes
+  // useEffect(() => {
+  //   document.documentElement.setAttribute('data-theme', theme);
+  //   localStorage.setItem('theme', theme);
+  // }, [theme]);
+
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    // Use requestAnimationFrame to ensure smooth transitions
+    requestAnimationFrame(() => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    });
   }, [theme]);
 
   // Listen for system theme changes
@@ -35,12 +43,19 @@ export const ThemeProvider = ({ children }) => {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
+  // Memoize the toggle function to prevent unnecessary re-renders
+  const toggleTheme = useCallback(() => {
+    setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark');
+  }, []);
+
+  // Memoize the context value to prevent unnecessary re-renders
+  const contextValue = useMemo(() => ({
+    theme,
+    toggleTheme
+  }), [theme, toggleTheme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   );

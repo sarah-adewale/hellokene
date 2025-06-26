@@ -8,10 +8,9 @@
 
 body {
     background-color: rgba(11, 10, 15, 1);
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 html, body {
-    
     width: 100%;
   }

@@ -1,5 +1,5 @@
 import { EnvelopeOpen, FilePdf, Sun, Moon } from '@phosphor-icons/react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import '../styles/Header.css'
@@ -10,7 +10,8 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
-  
+  const scrollTimeoutRef = useRef(null);
+
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
@@ -22,22 +23,33 @@ const Header = () => {
     
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+    // Optimized scroll handler with throttling
+    const handleScroll = useCallback(() => {
+      if (scrollTimeoutRef.current) return;
+      
+      scrollTimeoutRef.current = requestAnimationFrame(() => {
+        const shouldBeScrolled = window.scrollY > 20;
+        if (scrolled !== shouldBeScrolled) {
+          setScrolled(shouldBeScrolled);
+        }
+        scrollTimeoutRef.current = null;
+      });
+    }, [scrolled]);
+
   
   // Handle scroll event to add backdrop filter (desktop only)
   useEffect(() => {
     if (isMobile) return; // Don't apply scroll effects on mobile
     
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        cancelAnimationFrame(scrollTimeoutRef.current);
       }
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMobile]);
+  }, [isMobile, handleScroll]);
   
   // Close menu when route changes
   useEffect(() => {
@@ -176,7 +188,7 @@ const Header = () => {
               <li className="mobile-nav-item">
                 <EnvelopeOpen size={32} className="mobile-icon" />
                 <a 
-                  href="mailto:akenenna@gmail.com" 
+                  href="mailto:akenenna@gmail.com"
                   className="mobile-nav-link"
                   onClick={handleMenuClose}
                 >
