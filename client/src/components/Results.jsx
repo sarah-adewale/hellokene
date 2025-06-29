@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 
 const Results = ({ project }) => {
   const [modalImage, setModalImage] = useState(null);
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   const openImageModal = (imageUrl, altText) => {
     setModalImage({ url: imageUrl, alt: altText });
@@ -212,8 +212,8 @@ const Results = ({ project }) => {
         <p className='research-section-title'>Hi-Fidelity Prototype</p>
         <p className='research-findings-secondary-text'>You’re using it. Below I’ve highlighted major design decisions that shaped what you see now. </p>
         <p className='prototype-heading-text prototype-number'>#1</p>
-        <p className='prototype-heading-text'>Single Page Orientation</p>
-        <p className='research-findings-secondary-text'>All the information that exists on the site is modelled for a single page view, with</p>
+        <p className='prototype-heading-text '>Single Page Orientation</p>
+        <p className='research-findings-secondary-text prototype-section-secondary-text'>All the information that exists on the site is modelled for a single page view, with</p>
         <ol>
           <li className='research-findings-secondary-text'>A sub-navigation filter based on project type</li>
           <li className='research-findings-secondary-text'>Limiting on-site redirects to only individual case studies.</li>
@@ -231,7 +231,7 @@ const Results = ({ project }) => {
         <div className='interaction-hero-section'>
           <div className='hero-section-text-area'>
             <p className='prototype-heading-text prototype-number'>#2</p>
-            <p className='research-findings-secondary-text'>Interactive Hero Section</p>
+            <p className='research-section-title'>Interactive Hero Section</p>
             <ul>
               <li>
               An interactive click-based ‘About’ section embedded in the copy on the page.
@@ -261,7 +261,7 @@ const Results = ({ project }) => {
           <div className='hero-section-text-area'>
             
             <p className='prototype-heading-text prototype-number'>#3</p>
-            <p className='research-findings-secondary-text'>Bottom Navigation</p>
+            <p className='research-section-title'>Bottom Navigation</p>
             <ul>
               <li>
               Taking a cue from Fitt’s Law, I decided to implement a bottom navigation menu. 

@@ -5,7 +5,7 @@ import ImageModal from './ImageModal';
 import { Link } from 'react-router-dom';
 
 const Challenge = ({ project }) => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const [modalImage, setModalImage] = useState(null);
 
   const openImageModal = (imageUrl, altText) => {
@@ -150,7 +150,7 @@ const Challenge = ({ project }) => {
         <div>
           <p className='research-section-title'>Research & validation</p>
           <p className='research-section-text'>I began by establishing the target audience for research, setting the following criteria according to the established goals and KPIs. In addition to myself, as the primary user, an ideal 3rd party user, is someone who</p>
-          <ul>
+          <ul className='research-section-text'>
               <li>is hiring for a full-time or contract role now or in the future</li> 
               <li>sources talent for people looking to hire now or in the future</li> 
               <li>works on a team looking to hire now or in the future</li> 

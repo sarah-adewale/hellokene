@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="footer-social-icons">
           {/* Email Icon */}
           <div className="footer-icon-wrapper">
-            <Link href="mailto:akenenna@gmail.com" className="footer-icon-link">
+            <Link to="mailto:akenenna@gmail.com" className="footer-icon-link">
               <div className="footer-icon">
                 {theme === 'dark' ? (
                   <svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,7 @@ const Footer = () => {
           
           {/* OOI Icon */}
           <div className="footer-icon-wrapper">
-            <Link href="#" className="footer-icon-link">
+            <Link to="https://medium.com/@_Kenenna" className="footer-icon-link">
               <div className="footer-icon">
                 {theme === 'dark' ? (
                   <svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +64,7 @@ const Footer = () => {
 
           {/* LinkedIn Icon */}
           <div className="footer-icon-wrapper">
-            <Link href="https://linkedin.com/in/yourprofile" className="footer-icon-link">
+            <Link to="https://www.linkedin.com/in/kene-anyaegbunam/" className="footer-icon-link">
               <div className="footer-icon">
                 {theme === 'dark' ? (
                   <svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg">
