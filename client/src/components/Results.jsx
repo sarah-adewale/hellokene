@@ -255,8 +255,11 @@ const Results = ({ project }) => {
       <div>
         <div className='interaction-hero-section'>
          
-            <img src="/images/hero-screens-img.svg" alt="" />
-
+            <img className='mobile-phones-screen-image' src="/images/hero-screens-img.svg" alt="" />
+            {/* mobile */}
+            <div className='mobile-phones-screen-image-mobile'>
+              <img src="/images/heros-screens-img-mobile.svg" alt="" />
+            </div>
         
           <div className='hero-section-text-area'>
             

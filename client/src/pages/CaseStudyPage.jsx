@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import caseStudyConfig from '../config/caseStudyConfig';
+import caseStudyConfig from './caseStudyConfig';
 import SectionRegistry from '../components/case-study/SectionRegistry';
 import '../styles/CaseStudy.css';
 
@@ -10,6 +10,8 @@ const CaseStudyPage = () => {
   const [caseStudy, setCaseStudy] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [nextProjectData, setNextProjectData] = useState(null);
+  const [previousProjectData, setPreviousProjectData] = useState(null);
   const { projectId } = useParams();
   const navigate = useNavigate();
 
@@ -26,6 +28,29 @@ const CaseStudyPage = () => {
         // Get case study data from API
         const response = await axios.get(`${API_BASE_URL}/portfolio/${projectId}`);
         setCaseStudy(response.data);
+        
+        // Get config for navigation
+        const config = caseStudyConfig[projectId];
+        
+        // Fetch next and previous project data if they exist
+        if (config?.showNextProject) {
+          try {
+            const nextResponse = await axios.get(`${API_BASE_URL}/portfolio/${config.showNextProject}`);
+            setNextProjectData(nextResponse.data);
+          } catch (err) {
+            console.error('Error fetching next project:', err);
+          }
+        }
+        
+        if (config?.showPreviousProject) {
+          try {
+            const prevResponse = await axios.get(`${API_BASE_URL}/portfolio/${config.showPreviousProject}`);
+            setPreviousProjectData(prevResponse.data);
+          } catch (err) {
+            console.error('Error fetching previous project:', err);
+          }
+        }
+        
         setIsLoading(false);
       } catch (err) {
         console.error('Error fetching case study:', err);
@@ -112,34 +137,70 @@ const CaseStudyPage = () => {
           <div className="case-study-footer-content">
             {/* Previous Project Link (Left) */}
             {config.showPreviousProject && (
-              <Link 
-                to={`/portfolio/${config.showPreviousProject}`}
-                className="prev-case-study-link"
-              >
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10"/>
-                  <path d="M15.2375 11.7623L11 15.9998L15.2375 20.2373" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M21 16H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span>Read {config.previousProjectTitle || 'Previous'} Case Study</span>
-              </Link>
+              previousProjectData?.projectUrl ? (
+                <a 
+                  href={previousProjectData.projectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="prev-case-study-link"
+                >
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10"/>
+                    <path d="M15.2375 11.7623L11 15.9998L15.2375 20.2373" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M21 16H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span className="desktop-text">Read {config.previousProjectTitle || 'Previous'} Case Study</span>
+                  <span className="mobile-text">Previous</span>
+                </a>
+              ) : (
+                <Link 
+                  to={`/portfolio/${config.showPreviousProject}`}
+                  className="prev-case-study-link"
+                >
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10"/>
+                    <path d="M15.2375 11.7623L11 15.9998L15.2375 20.2373" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M21 16H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span className="desktop-text">Read {config.previousProjectTitle || 'Previous'} Case Study</span>
+                  <span className="mobile-text">Previous</span>
+                </Link>
+              )
             )}
             
             {/* Thank You Text (Center) */}
             <p className="thank-you-text">Thank you for reading.</p>
             
             {/* Next Project Link (Right) */}
-            <Link 
-              to={`/portfolio/${config.showNextProject}`}
-              className="next-case-study-link"
-            >
-              <span>Read {config.nextProjectTitle || 'Next'} Case Study</span>
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10"/>
-                <path d="M16.7625 20.2377L21 16.0002L16.7625 11.7627" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M11 16H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Link>
+            {nextProjectData?.projectUrl ? (
+              <a 
+                href={nextProjectData.projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="next-case-study-link"
+              >
+                <span className="desktop-text">Read {config.nextProjectTitle || 'Next'} Case Study</span>
+                <span className="mobile-text">Next</span>
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10"/>
+                  <path d="M16.7625 20.2377L21 16.0002L16.7625 11.7627" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M11 16H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            ) : (
+              <Link 
+                to={`/portfolio/${config.showNextProject}`}
+                className="next-case-study-link"
+              >
+                <span className="desktop-text">Read {config.nextProjectTitle || 'Next'} Case Study</span>
+                <span className="mobile-text">Next</span>
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10"/>
+                  <path d="M16.7625 20.2377L21 16.0002L16.7625 11.7627" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M11 16H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            )}
           </div>
         </div>
       )}

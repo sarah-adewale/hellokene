@@ -57,7 +57,7 @@ body.menu-open {
   right: 0;
   width: 100%;
   z-index: 40;
-  padding: 16px 150px;
+  padding: 16px 20px;
   transition: all 0.3s ease;
   background-color: transparent;
   box-sizing: border-box;
@@ -93,6 +93,7 @@ body.menu-open {
   width: auto;
   height: auto;
   max-width: 100%;
+  
 }
 
 .header-right {
@@ -100,6 +101,7 @@ body.menu-open {
   align-items: center;
   gap: 24px;
   flex-shrink: 0;
+ 
 }
 
 /* Desktop Navigation */
@@ -280,6 +282,25 @@ body.menu-open {
   border: none;
   cursor: pointer;
   margin-bottom: 24px;
+}
+
+/* Desktop responsive padding to match hero-section */
+@media (min-width: 768px) {
+  .site-header {
+    padding: 16px 48px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header {
+    padding: 16px 120px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .site-header {
+    padding: 16px 148px !important;
+  }
 }
 
 /* Mobile Styles */

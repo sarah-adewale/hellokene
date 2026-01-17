@@ -37,6 +37,8 @@
     margin: 50px auto 0 auto;
     padding: 40px 20px;
     color: var(--text-color);
+    overflow-x: hidden; /* Prevent horizontal scroll on the main container */
+    width: 100%;
   }
   
   .back-button {
@@ -472,6 +474,9 @@
     margin-top: 20px;
   }
   
+  .tiered-system-diagram-assessment-table{
+    display: block;
+  }
   .tiered-system-steps {
     width: 50%;
     display: flex;
@@ -970,6 +975,15 @@
     font-weight: 500;
     color: var(--tertiary-text);
   }
+  
+  /* Desktop text visibility */
+  .desktop-text {
+    display: inline;
+  }
+  
+  .mobile-text {
+    display: none;
+  }
 
   /* conclusion */
   .conclusion-title{
@@ -1381,7 +1395,9 @@ gap: 24px;
 flex: none;
 align-self: stretch;
 flex-grow: 0;
-
+width: 100%;
+max-width: 100%;
+overflow: hidden;
 }
 
 .sitemap-section{
@@ -1451,9 +1467,6 @@ flex-grow: 0;
 
 }
 
-.interaction-hero-section ul{
-
-}
 .hero-section-text-area{
 display: flex;
 flex-direction: column;
@@ -1515,6 +1528,9 @@ flex-grow: 0;
   display: none;
 }
 
+.tiered-system-diagram-mobile{
+  margin-top: 30px;
+}
 .image-screens-img-desktop, .mobile-screens-hero-desktop{
   display: block;
 }
@@ -1605,24 +1621,52 @@ flex-grow: 0;
   transform: translateX(4px);
 }
 
+.user-stories-table{
+  display: block;
+}
+
+.user-stories-table-mobile{
+  display: none;
+}
+
+.mobile-phones-screen-image{
+  display: block;
+}
+
+.mobile-phones-screen-image-mobile{
+  display: none;
+}
 /* Mobile-specific updates for case study navigation */
 @media (max-width: 768px) {
   .case-study-footer {
     margin-top: 60px;
     margin-bottom: 30px;
+    width: 100% !important;
   }
   
   .case-study-footer-content {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 16px;
-    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 6px 0px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    max-width: none !important;
+    margin: 0 !important;
+    /* border: 1px solid red; */
   }
   
-  /* Hide the text and only show icons on mobile */
-  .prev-case-study-link span,
-  .next-case-study-link span {
+  /* Hide desktop text and show mobile text */
+  .desktop-text {
     display: none;
+  }
+  
+  .mobile-text {
+    display: inline;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
   }
   
   /* Hide thank you text on mobile */
@@ -1630,34 +1674,62 @@ flex-grow: 0;
     display: none;
   }
   
-  /* Create floating action button style for both navigation buttons */
-  .prev-case-study-link,
-  .next-case-study-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    background-color: var(--bg-color);
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-    padding: 0;
+  /* Override desktop styles completely for mobile */
+  .case-study-footer-content .prev-case-study-link,
+  .case-study-footer-content .next-case-study-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 18px !important;
+    padding: 12px 16px !important;
+    background-color: transparent !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    color: var(--text-color) !important;
+    flex-shrink: 0 !important;
+    width: auto !important;
+    max-width: fit-content !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    transform: none !important;
+    opacity: 1 !important;
+    line-height: 1 !important;
   }
   
-  .prev-case-study-link:hover,
-  .next-case-study-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  .case-study-footer-content .prev-case-study-link:hover,
+  .case-study-footer-content .next-case-study-link:hover {
+    background-color: var(--card-bg) !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
   
-  /* Keep the directional hover animations */
-  .prev-case-study-link:hover svg {
-    transform: translateX(-2px);
+  /* Adjust SVG size for mobile */
+  .case-study-footer-content .prev-case-study-link svg,
+  .case-study-footer-content .next-case-study-link svg {
+    width: 24px !important;
+    height: 24px !important;
+    transition: transform 0.2s ease !important;
+    vertical-align: middle !important;
+    display: block !important;
   }
   
-  .next-case-study-link:hover svg {
-    transform: translateX(2px);
+  /* Ensure text spans are properly aligned */
+  .case-study-footer-content .prev-case-study-link .mobile-text,
+  .case-study-footer-content .next-case-study-link .mobile-text {
+    line-height: 24px !important;
+    vertical-align: middle !important;
+    display: inline-block !important;
+    margin-top: 10px !important;
+  }
+  
+  /* Keep the directional hover animations but more subtle */
+  .case-study-footer-content .prev-case-study-link:hover svg {
+    transform: translateX(-2px) !important;
+  }
+  
+  .case-study-footer-content .next-case-study-link:hover svg {
+    transform: translateX(2px) !important;
   }
   
   /* Ensure SVG icons size properly */
@@ -1667,16 +1739,30 @@ flex-grow: 0;
     height: 28px;
   }
 
+  .mobile-phones-screen-image{
+    display: none;
+  }
+  
+  .mobile-phones-screen-image-mobile{
+    display: block;
+  }
+
 }
 
 /* Only apply horizontal scrolling styles on mobile */
 @media (max-width: 768px) {
   .table-container {
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     scrollbar-width: thin; /* Firefox */
     margin-bottom: 12px; /* Space for scrollbar */
     padding-bottom: 8px; /* So scrollbar is visible */
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    /* Prevent the container from affecting the page's horizontal scroll */
+    contain: layout style;
   }
   
   .table-container img {
@@ -1715,6 +1801,17 @@ flex-grow: 0;
     background: linear-gradient(to right, transparent, var(--bg-color, rgba(11, 10, 15, 0.3)));
     pointer-events: none; /* Allows scrolling through the gradient */
   }
+
+  .tiered-system-diagram-assessment-table{
+    display: none;
+  }
+  .mobile-phones-screen-image{
+    display: none;
+  }
+  
+  .mobile-phones-screen-image-mobile{
+    display: block;
+  }
 }
 
 /* Desktop view - override the mobile styles */
@@ -1731,6 +1828,14 @@ flex-grow: 0;
   
   .table-container::after {
     display: none; /* Hide scroll indicator on desktop */
+  }
+
+  .mobile-phones-screen-image{
+    display: none;
+  }
+  
+  .mobile-phones-screen-image-mobile{
+    display: block;
   }
 }
 @media (max-width: 768px) {
@@ -1774,10 +1879,16 @@ flex-grow: 0;
     gap: 30px;
   }
 
-  .tiered-system-diagram{
+  .user-stories-table{
     display: none;
   }
 
+  .user-stories-table-mobile{
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
   .tiered-system-diagram-mobile, .style-guide-section-mobile, .portfolio-screens-img-mobile{
     display: block;
   }

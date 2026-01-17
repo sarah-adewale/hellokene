@@ -7,7 +7,7 @@ import { useTheme } from '../context/ThemeContext';
 const CredentialPopup = ({ isOpen, onClose, credentials, projectUrl }) => {
     const [emailCopied, setEmailCopied] = useState(false);
     const [passwordCopied, setPasswordCopied] = useState(false);
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
 
     if (!isOpen) return null;
   

@@ -15,6 +15,7 @@ const Challenge = ({ project }) => {
   const closeImageModal = () => {
     setModalImage(null);
   };
+  
   // Only show specific content for the Pivo project
   if (project.id !== 'pivo' && project.id !== 'portfolio') {
     return (
@@ -287,7 +288,7 @@ const Challenge = ({ project }) => {
       <div className='design-assessment-section'>
         <p className='research-section-title'>Existing design assessment</p>
         <p className='research-findings-secondary-text'>As with every re-design, it was important to highlight the aspects of the existing design that worked, those that required improvement and those that didn’t work. Along with my own heuristic evaluation, I ran another user testing session with my contributors to map out these points and distribute them in the figure below</p>
-        <div className='tiered-system-diagram'>
+        <div className='tiered-system-diagram tiered-system-diagram-assessment-table'>
           {theme === "dark" ? (
             <img src="/images/assessment-table.svg" alt="" />
           ):(
@@ -296,7 +297,7 @@ const Challenge = ({ project }) => {
           
         </div>
         {/* mobile */}
-        <div className='tiered-system-diagram-mobile'>
+        <div className='tiered-system-diagram-mobile '>
           {theme === "dark" ? (
             <img src="/images/assessment-table-mobile.svg" alt="" />
           ):(

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import '../styles/Footer.css';
 const Footer = () => {
@@ -8,8 +7,8 @@ const Footer = () => {
     <footer className="footer-container">
       <div className="footer-content">
         <h2 className="footer-text">Building something? </h2>
-        <h2 className="footer-subheading">Let’s talk about <br></br>
-        how design can help.</h2>
+        <h2 className="footer-subheading">Let me know <br></br>
+        how I can help.</h2>
         
         {/* <p className="footer-text">
           I'd love to hear about your next big idea.
@@ -18,7 +17,7 @@ const Footer = () => {
         <div className="footer-social-icons">
           {/* Email Icon */}
           <div className="footer-icon-wrapper">
-            <Link to="mailto:akenenna@gmail.com" className="footer-icon-link">
+            <a href="mailto:akenenna@gmail.com" className="footer-icon-link" target="_blank" rel="noopener noreferrer">
               <div className="footer-icon">
                 {theme === 'dark' ? (
                   <svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,12 +36,12 @@ const Footer = () => {
                 )}
               </div>
               <span className="footer-hover-text">Send an email</span>
-            </Link>
+            </a>
           </div>
           
           {/* OOI Icon */}
           <div className="footer-icon-wrapper">
-            <Link to="https://medium.com/@_Kenenna" className="footer-icon-link">
+            <a href="https://medium.com/@_Kenenna" className="footer-icon-link" target='_blank' rel="noopener noreferrer">
               <div className="footer-icon">
                 {theme === 'dark' ? (
                   <svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,12 +58,12 @@ const Footer = () => {
                 )}
               </div>
               <span className="footer-hover-text">Read my articles</span>
-            </Link>
+            </a>
           </div>
 
           {/* LinkedIn Icon */}
           <div className="footer-icon-wrapper">
-            <Link to="https://www.linkedin.com/in/kene-anyaegbunam/" className="footer-icon-link">
+            <a href="https://www.linkedin.com/in/kene-anyaegbunam/" className="footer-icon-link" target='_blank' rel="noopener noreferrer">
               <div className="footer-icon">
                 {theme === 'dark' ? (
                   <svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,21 +84,21 @@ const Footer = () => {
                 )}
               </div>
               <span className="footer-hover-text">Connect on LinkedIn</span>
-            </Link>
+            </a>
           </div>
         </div>
         
         <div className="footer-attribution">
           <p>
             &copy; {new Date().getFullYear()} Designed by Me | Developed by
-            <Link 
-              to="https://sarah-adewale.netlify.app/" 
+            <a 
+              href="https://sarah-adewale.netlify.app/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="footer-link"
             >
               Sarah
-            </Link>
+            </a>
           </p>
         </div>
       </div>

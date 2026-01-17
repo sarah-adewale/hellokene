@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage';
 import PortfolioPage from './pages/PortfolioPage';
 import { ThemeProvider } from './context/ThemeContext';
 import './index.css';
-import './styles/custom.css'
+import './styles/custom.css';
 import CaseStudyPage from './pages/CaseStudyPage';
 import ScrollToTop from './components/ScrollToTop';
 

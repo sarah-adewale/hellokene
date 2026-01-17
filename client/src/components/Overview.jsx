@@ -1,7 +1,7 @@
 import { useTheme } from "../context/ThemeContext";
 
 const Overview = ({ project }) => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
     return(
     <>
 

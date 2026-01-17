@@ -206,6 +206,8 @@ const PortfolioCard = ({ project, viewMode = 'list' }) => {
           <img 
             src={isHovered && !isMobile ? project.hoverImageUrl : project.imageUrl} 
             alt={project.title}
+            loading="lazy"
+            decoding="async"
           />
         </div>
         

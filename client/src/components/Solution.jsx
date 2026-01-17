@@ -4,7 +4,7 @@ import { useTheme } from '../context/ThemeContext';
 
 const Solution = ({ project }) => {
     const [modalImage, setModalImage] = useState(null);
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
 
     const openImageModal = (imageUrl, altText) => {
       setModalImage({ url: imageUrl, alt: altText });
@@ -300,7 +300,7 @@ const Solution = ({ project }) => {
             <div className="table-container">
             <img src="/images/kyc-table.svg" alt="" />
             </div>
-            
+
           </div>
           <div className="solution-results">
             <p>Admins can now directly progress applications by tracking each customer’s application state, query issues for customers or members of staff to address, and directly upload additional documents received via other mediums on behalf of customers.</p>
@@ -324,7 +324,7 @@ const Solution = ({ project }) => {
           <p className='research-findings-secondary-text'>Armed with a healthy understanding of my users, I set out to establish an information architecture that accounts for as many needs and points points as possible.</p>
           <div className='user-stories-section'>
             <p className='research-findings-title'>User Stories</p>
-            <div>
+            <div className='user-stories-table'>
               {theme === "dark" ? (
                 <img src="/images/user-stories-table.svg" alt="" />
               ) : (
@@ -334,14 +334,15 @@ const Solution = ({ project }) => {
           
             
             {/* mobile */}
-            <div className=''>
-              {theme === "dark" ? (
-                <img src="/images/user-stories-table.svg" alt="" />
-              ) : (
-                <img src="/images/user-stories-table-white.svg" alt="" />
-              )}
+            <div className='user-stories-table-mobile'>
+              <div className='table-container'>
+                {theme === "dark" ? (
+                  <img src="/images/user-stories-table.svg" alt="" />
+                ) : (
+                  <img src="/images/user-stories-table-white.svg" alt="" />
+                )}
+              </div>
             </div>
-           
           </div>
           <div className='sitemap-section'>
             <p className='research-findings-title'>Sitemap</p>

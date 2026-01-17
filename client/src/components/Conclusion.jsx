@@ -1,19 +1,18 @@
 // src/components/case-study/Challenge.jsx
-import React, { useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Conclusion = ({ project }) => {
-  const { theme, toggleTheme } = useTheme();
-  const [modalImage, setModalImage] = useState(null);
+  // const { theme, toggleTheme } = useTheme();
+  // const [modalImage, setModalImage] = useState(null);
 
-  const openImageModal = (imageUrl, altText) => {
-    setModalImage({ url: imageUrl, alt: altText });
-  };
+  // const openImageModal = (imageUrl, altText) => {
+  //   setModalImage({ url: imageUrl, alt: altText });
+  // };
 
-  const closeImageModal = () => {
-    setModalImage(null);
-  };
+  // const closeImageModal = () => {
+  //   setModalImage(null);
+  // };
   // Only show specific content for the Pivo project
   if (project.id !== 'pivo' && project.id !== 'portfolio') {
     return (

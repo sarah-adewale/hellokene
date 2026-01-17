@@ -92,7 +92,7 @@ const portfolioProjects = [
       hoverImageUrl: '/images/laundry-basket-hover.svg',
       gridImageUrl: '/images/laundry-basket-grid.svg',
       readTime: '--',
-      projectUrl: 'https://laundrysquared.onrender.com/',
+      projectUrl: 'https://laundry-squared.netlify.app/',
       requiresCredentials: true,
       highlighted: true,
       growthDesign: false,
