@@ -14,7 +14,7 @@ const Conclusion = ({ project }) => {
   //   setModalImage(null);
   // };
   // Only show specific content for the Pivo project
-  if (project.id !== 'pivo' && project.id !== 'portfolio') {
+  if (project.id !== 'pivo' && project.id !== 'portfolio' && project.id !== 'nutch') {
     return (
       <section className="case-study-section challenge">
         <h2>The Conclusion</h2>
@@ -53,7 +53,67 @@ const Conclusion = ({ project }) => {
       </div>
       </>
     )}
-        
+    {project.id === 'nutch' && (
+      <section className="case-study-section nutch-section nutch-conclusion">
+        <h2 className="nutch-h">AI-First Product Development</h2>
+        <div className="nutch-text-group">
+          <p className="nutch-text">AI wasn't just part of the product. It became part of my design process.</p>
+          <p className="nutch-text">Throughout the project I used AI to accelerate:</p>
+        </div>
+        <div className="nutch-tags">
+          {['Competitive analysis', 'Product strategy', 'Product Requirements Documents', 'Information Architecture', 'UX Writing', 'Design System documentation', 'Design critique', 'Backend planning', 'Website messaging', 'Developer hand-off documentation'].map((tag) => (
+            <span key={tag} className="nutch-tag">{tag}</span>
+          ))}
+        </div>
+        <div className="nutch-text-group">
+          <p className="nutch-text">Every output was reviewed, challenged, ranked, and validated before becoming part of the product.</p>
+          <p className="nutch-text">The objective wasn't to replace design thinking. It was to remove repetitive work so more time could be spent solving meaningful problems.</p>
+        </div>
+
+        <h2 className="nutch-h">Building the Foundation</h2>
+        <p className="nutch-text">Beyond designing the interface, I established the systems required to move the product into development. Deliverables included:</p>
+        <div className="nutch-tags">
+          {['Product positioning', 'Brand identity', 'Design system foundations', 'Typography and token strategy', 'Product Requirements Document', 'Backend developer handoff', 'Frontend planning', 'Website strategy', 'Live documentation in Notion'].map((tag) => (
+            <span key={tag} className="nutch-tag">{tag}</span>
+          ))}
+        </div>
+        <p className="nutch-text">This creates a shared source of truth across product, design, and engineering.</p>
+
+        <h2 className="nutch-h">Cross-Functional Collaboration</h2>
+        <p className="nutch-text">Because I led both product and design, my role extended beyond interface design. I worked across:</p>
+        <div className="nutch-tags">
+          {['Product Strategy', 'UX', 'Brand', 'Design Systems', 'Developer Documentation', 'Engineering Collaboration', 'Marketing Website', 'Launch Planning'].map((tag) => (
+            <span key={tag} className="nutch-tag">{tag}</span>
+          ))}
+        </div>
+        <p className="nutch-text">The goal was to ensure every decision—from positioning to implementation—aligned around the same product vision.</p>
+
+        <h2 className="nutch-h">Looking ahead</h2>
+        <div className="nutch-text-group">
+          <p className="nutch-text">The prototype represents the beginning, not the finish line.</p>
+          <p className="nutch-text">If Nutch were moving into production today, my focus would shift from designing the experience to measuring it.</p>
+          <p className="nutch-text">Key success metrics would include:</p>
+        </div>
+        <div className="nutch-tags">
+          {['Activation rate', 'Prompt completion rate', 'Conversation revisit rate', 'File reuse', 'Model preference', 'Time-to-answer', 'Retention', 'Daily active users'].map((tag) => (
+            <span key={tag} className="nutch-tag">{tag}</span>
+          ))}
+        </div>
+        <p className="nutch-text">These metrics would inform future iterations and product decisions.</p>
+
+        <h2 className="nutch-h">Reflection</h2>
+        <div className="nutch-text-group">
+          <p className="nutch-text">Building Nutch changed how I think about AI products.</p>
+          <p className="nutch-text">The biggest lesson wasn't learning how to design AI interfaces.</p>
+          <p className="nutch-text">It was learning that the best AI experiences don't ask users to change how they work.</p>
+          <p className="nutch-text">They quietly improve the workflows that are already there.</p>
+          <p className="nutch-text">Instead of building another destination for AI, Nutch became an exploration into bringing AI to the place where work already happens.</p>
+          <p className="nutch-text">Excited to put it in your hands in the coming months.</p>
+          <p className="nutch-text">Till the next one 🥂</p>
+        </div>
+      </section>
+    )}
+
     </>
   );
 };

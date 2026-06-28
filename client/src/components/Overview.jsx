@@ -10,7 +10,7 @@ const Overview = ({ project }) => {
       {/* Case Study Header */}
       <div className="case-study-header">
         <h1>{project.title}</h1>
-        <p className="subtitle">{project.description} </p>
+        <p className={`subtitle ${project.id === 'nutch' ? 'nutch-subtitle' : ''}`}>{project.description} </p>
         
         {/* Category Tags */}
         <div className="category-tags">
@@ -35,6 +35,13 @@ const Overview = ({ project }) => {
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 15H2C1.73478 15 1.48043 14.8946 1.29289 14.7071C1.10536 14.5196 1 14.2652 1 14V8C1 7.73478 1.10536 7.48043 1.29289 7.29289C1.48043 7.10536 1.73478 7 2 7H5C5.26522 7 5.51957 7.10536 5.70711 7.29289C5.89464 7.48043 6 7.73478 6 8V14C6 14.2652 5.89464 14.5196 5.70711 14.7071C5.51957 14.8946 5.26522 15 5 15ZM2 8V14H5V8H2Z" fill="currentColor"/>
                 <path d="M14 2H3C2.73478 2 2.48043 2.10536 2.29289 2.29289C2.10536 2.48043 2 2.73478 2 3V6H3V3H14V10H7V11H8V13H7V14H11.5V13H9V11H14C14.2652 11 14.5196 10.8946 14.7071 10.7071C14.8946 10.5196 15 10.2652 15 10V3C15 2.73478 14.8946 2.48043 14.7071 2.29289C14.5196 2.10536 14.2652 2 14 2Z" fill="currentColor"/>
+                </svg>
+              </div>
+            )}
+            {project.platforms?.includes('extension') && (
+              <div className="platform-icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.5002 11.8125C3.38417 11.8125 3.27289 11.7664 3.19084 11.6843C3.10879 11.6023 3.0627 11.491 3.0627 11.375V9.0398C2.82268 9.15429 2.55667 9.20334 2.2916 9.18198C2.06716 9.16549 1.84912 9.09974 1.65298 8.98939C1.45685 8.87904 1.28744 8.72681 1.15683 8.54355C1.02622 8.36028 0.937614 8.15048 0.897312 7.92907C0.857011 7.70766 0.866008 7.48009 0.923663 7.26256C0.981318 7.04502 1.08621 6.84287 1.23088 6.67049C1.37556 6.4981 1.55645 6.35973 1.76068 6.26521C1.96491 6.17069 2.18747 6.12235 2.41251 6.12363C2.63756 6.12491 2.85955 6.17577 3.0627 6.27261V3.93745C3.0627 3.82142 3.10879 3.71014 3.19084 3.62809C3.27289 3.54605 3.38417 3.49995 3.5002 3.49995H6.0541C5.93961 3.25994 5.89056 2.99393 5.91192 2.72886C5.92841 2.50442 5.99417 2.28637 6.10451 2.09024C6.21486 1.8941 6.36709 1.7247 6.55035 1.59409C6.73362 1.46348 6.94342 1.37487 7.16483 1.33457C7.38624 1.29427 7.61381 1.30326 7.83134 1.36092C8.04888 1.41857 8.25103 1.52347 8.42342 1.66814C8.5958 1.81281 8.73417 1.9937 8.82869 2.19794C8.92321 2.40217 8.97156 2.62473 8.97028 2.84977C8.969 3.07481 8.91813 3.29681 8.82129 3.49995H11.3752C11.4912 3.49995 11.6025 3.54605 11.6846 3.62809C11.7666 3.71014 11.8127 3.82142 11.8127 3.93745V6.27261C11.5727 6.15811 11.3067 6.10906 11.0416 6.13042C10.8172 6.14691 10.5991 6.21267 10.403 6.32302C10.2068 6.43337 10.0374 6.58559 9.90683 6.76886C9.77622 6.95213 9.68761 7.16193 9.64731 7.38334C9.60701 7.60474 9.61601 7.83231 9.67366 8.04985C9.73132 8.26739 9.83621 8.46954 9.98088 8.64192C10.1256 8.8143 10.3064 8.95268 10.5107 9.0472C10.7149 9.14172 10.9375 9.19006 11.1625 9.18878C11.3876 9.1875 11.6096 9.13663 11.8127 9.0398V11.375C11.8127 11.491 11.7666 11.6023 11.6846 11.6843C11.6025 11.7664 11.4912 11.8125 11.3752 11.8125H3.5002Z" stroke="currentColor" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
             )}
@@ -83,6 +90,7 @@ const Overview = ({ project }) => {
       </div>
 
       {/* Onboarding Process Visual */}
+      {project.id !== 'nutch' && (
       <div className="onboarding-process">
         {project.id === 'pivo' && (
 
@@ -107,6 +115,28 @@ const Overview = ({ project }) => {
           />
         )}
       </div>
+      )}
+
+      {/* Nutch overview intro + banner */}
+      {project.id === 'nutch' && (
+        <>
+          <div className="overview-text nutch-overview-text">
+            <p>I bet you're tired of hearing "Artificial Intelligence is changing how people work."</p>
+            <p>Ironically, using AI still feels surprisingly manual. Every interaction begins with the same routine:</p>
+            <p className="nutch-mono">Find the right tab → Copy → Paste → Explain context → Wait → Repeat.</p>
+            <p>The tools are powerful. The workflow isn't.</p>
+            <p>I wanted to explore what happens if AI becomes part of the browser instead of another destination. That question became Nutch.</p>
+          </div>
+
+          <div className="nutch-banner">
+            <img
+              src="/images/nutch-banner.svg"
+              alt="Nutch"
+              className="nutch-banner-img"
+            />
+          </div>
+        </>
+      )}
 
       {/* Overview Text */}
       <div className="overview-text">

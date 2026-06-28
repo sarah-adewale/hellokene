@@ -1,6 +1,26 @@
 // Portfolio data embedded directly for Vercel serverless function
 const portfolioProjects = [
   {
+    id: 'nutch',
+    title: 'Building Nutch',
+    subtitle: 'Designing an AI-native workflow from first principles.',
+    description: 'Designing an AI-native workflow from first principles.',
+    category: ['AI'],
+    imageUrl: '/images/nutch.svg',
+    hoverImageUrl: '/images/nutch-hover.svg',
+    gridImageUrl: '/images/nutch-grid.svg',
+    readTime: '5 min read',
+    caseStudyUrl: '/portfolio/nutch',
+    highlighted: true,
+    growthDesign: false,
+    productDesign: true,
+    platforms: ["extension"],
+    icon: {
+      name: 'Website',
+      color: '#9D9D9F'
+    }
+  },
+  {
     id: 'pivo',
     title: 'Pivo: Scaling Customer Onboarding',
     subtitle: 'A finance platform, providing credit and business tools to supply chain SMEs.',

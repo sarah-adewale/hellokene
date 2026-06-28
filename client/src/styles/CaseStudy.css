@@ -2125,5 +2125,615 @@ flex-grow: 0;
     .case-study-section p {
       font-size: 16px;
     }
-    
+
   }
+
+/* ============================================================
+   Nutch case study — scoped styles
+   ============================================================ */
+.nutch-section {
+  max-width: 1200px;
+  margin-bottom: 40px;
+  color: var(--text-color);
+  font-weight: 300;
+}
+
+/* nutch case study subtitle — match the 20px body scale */
+.case-study-header .nutch-subtitle {
+  font-size: 20px;
+}
+
+.nutch-h {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 56px 0 20px;
+  color: var(--tertiary-text);
+}
+
+.nutch-section > .nutch-h:first-child {
+  margin-top: 0;
+}
+
+.nutch-text-group {
+  margin-bottom: 32px;
+}
+
+.nutch-section .nutch-text {
+  font-size: 20px;
+  line-height: 1.7;
+  color: var(--secondary-text);
+  margin: 0 0 18px;
+}
+
+.nutch-section .nutch-mono {
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+/* "I explored a few interesting products" + overlapping product icons */
+.nutch-explore-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 0 0 18px;
+}
+
+.nutch-explore-row .nutch-text {
+  margin: 0;
+}
+
+.nutch-product-stack {
+  display: flex;
+  align-items: center;
+}
+
+.nutch-product-stack svg {
+  margin-left: -16px;
+  flex-shrink: 0;
+}
+
+/* light-mode product icons: light circle + light separation ring */
+[data-theme='light'] .nutch-icon-bg {
+  fill: #E7E7E7;
+}
+
+[data-theme='light'] .nutch-icon-ring,
+[data-theme='light'] .nutch-icon-line {
+  stroke: #FCFCFC;
+}
+
+.nutch-product-stack svg:first-child {
+  margin-left: 0;
+}
+
+/* labeled, hoverable product icon (tooltip shows the product name) */
+.nutch-product-item {
+  position: relative;
+  display: inline-flex;
+  margin-left: -16px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  transition: margin 0.2s ease, padding 0.2s ease, background 0.2s ease;
+}
+
+.nutch-product-stack .nutch-product-item:first-child {
+  margin-left: 0;
+}
+
+.nutch-product-item svg {
+  display: block;
+  margin-left: 0;
+}
+
+/* on hover the icon sits in its own padded box, pushing neighbours aside */
+.nutch-product-item:hover {
+  z-index: 3;
+  margin-left: 4px;
+  padding: 0 4px;
+}
+
+.nutch-product-stack .nutch-product-item:first-child:hover {
+  margin-left: 0;
+}
+
+.nutch-product-item:hover + .nutch-product-item {
+  margin-left: 4px;
+}
+
+.nutch-product-item::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #11161D;
+  color: #FCFCFC;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 4;
+}
+
+.nutch-product-item:hover::after {
+  opacity: 1;
+}
+
+/* circular photo avatars used in the people stack */
+.nutch-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #0B0A0F;
+  background: #232327;
+  margin-left: -16px;
+  flex-shrink: 0;
+}
+
+[data-theme='light'] .nutch-avatar {
+  border-color: #FCFCFC;
+  background: transparent;
+}
+
+.nutch-product-stack .nutch-avatar:first-child {
+  margin-left: 0;
+}
+
+/* people avatars — hover lifts into a padded box + name/role tooltip */
+.nutch-avatar-item {
+  position: relative;
+  display: inline-flex;
+  margin-left: -16px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  transition: margin 0.2s ease, padding 0.2s ease;
+}
+
+.nutch-product-stack .nutch-avatar-item:first-child {
+  margin-left: 0;
+}
+
+.nutch-avatar-item .nutch-avatar {
+  margin-left: 0;
+}
+
+.nutch-avatar-item:hover {
+  z-index: 3;
+  margin-left: 4px;
+  padding: 0 4px;
+}
+
+.nutch-product-stack .nutch-avatar-item:first-child:hover {
+  margin-left: 0;
+}
+
+.nutch-avatar-item:hover + .nutch-avatar-item {
+  margin-left: 4px;
+}
+
+.nutch-avatar-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #11161D;
+  color: var(--tertiary-text);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 4;
+}
+
+.nutch-avatar-tip strong {
+  color: #FCFCFC;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.nutch-avatar-item:hover .nutch-avatar-tip {
+  opacity: 1;
+}
+
+.nutch-section .nutch-question {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--tertiary-text);
+  margin: 8px 0 24px;
+}
+
+.nutch-section .nutch-question--strike {
+  font-size: 32px;
+  text-decoration: line-through;
+  color: var(--tertiary-text);
+}
+
+.nutch-section .nutch-question--cursor {
+  font-size: 32px;
+  color: var(--secondary-text);
+}
+
+.nutch-section .nutch-question--cursor::before {
+  content: "|";
+  margin-right: 8px;
+  font-style: normal;
+  color: var(--secondary-text);
+}
+
+.nutch-section .nutch-emphasis {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-color);
+  margin: 28px 0;
+}
+
+.nutch-section .nutch-emphasis--cursor {
+  font-size: 32px;
+}
+
+.nutch-section .nutch-emphasis--cursor::before {
+  content: "|";
+  margin-right: 8px;
+  font-style: normal;
+}
+
+.nutch-section .nutch-emphasis-light {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--secondary-text);
+  margin: 40px 0 0;
+}
+
+/* Nutch overview (hero) intro paragraphs */
+.nutch-overview-text p {
+  font-size: 20px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Nutch banner (overview hero) — the SVG supplies its own rounded corners */
+.nutch-banner {
+  margin: 40px 0 48px;
+}
+
+.nutch-banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Challenge screenshots */
+.nutch-screens {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 8px 0 64px;
+}
+
+.nutch-screen-card {
+  background: #11161D;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nutch-screen-caption {
+  font-size: 18px;
+  line-height: 1.4;
+  color: #FCFCFC;
+  margin: 0;
+}
+
+.nutch-screen-media {
+  flex: 1;
+  min-height: 200px;
+  border-radius: 10px;
+  background: #1C2530;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #5C6B7A;
+}
+
+.nutch-screen-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Card grids (themes, principles, design decisions) */
+.nutch-card-grid {
+  display: grid;
+  gap: 0;
+  margin: 8px 0 24px;
+}
+
+.nutch-card-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.nutch-card-grid--bordered {
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.nutch-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* keep outer border clean on bordered grids */
+.nutch-card-grid--bordered .nutch-card:nth-child(3n) {
+  border-right: none;
+}
+
+.nutch-card-grid:not(.nutch-card-grid--bordered) .nutch-card {
+  border: none;
+  padding: 24px 24px 24px 0;
+}
+
+.nutch-card-icon {
+  color: var(--text-color);
+  margin-bottom: 4px;
+}
+
+.nutch-card-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--text-color);
+  margin-bottom: 6px;
+}
+
+.nutch-card-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.nutch-card-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--secondary-text);
+  margin: 0;
+}
+
+/* "Three themes" grid — image icons, single bordered row */
+.nutch-themes {
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.nutch-themes .nutch-card {
+  border-bottom: none;
+  padding: 32px;
+  gap: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+}
+
+.nutch-card-img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.nutch-themes .nutch-card-title {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+.nutch-themes .nutch-card-text {
+  font-size: 18px;
+  color: var(--tertiary-text);
+}
+
+/* Product principles — border wraps only the filled cells (L-shaped) */
+.nutch-card-grid.nutch-principles .nutch-card {
+  border: 1px solid var(--border-color);
+  margin: 0 -1px -1px 0;
+  padding: 28px;
+  min-height: 300px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nutch-principles .nutch-card-title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 0 0 12px;
+}
+
+.nutch-principles .nutch-card-text {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--tertiary-text);
+}
+
+/* rounded outer corners of the 7-card / 3-column layout */
+.nutch-card-grid.nutch-principles .nutch-card:nth-child(1) { border-top-left-radius: 16px; }
+.nutch-card-grid.nutch-principles .nutch-card:nth-child(3) { border-top-right-radius: 16px; }
+.nutch-card-grid.nutch-principles .nutch-card:nth-child(6) { border-bottom-right-radius: 16px; }
+.nutch-card-grid.nutch-principles .nutch-card:nth-child(7) { border-bottom-left-radius: 16px; }
+
+/* Designing for AI — bordered 3x2 grid, icon on top */
+.nutch-card-grid.nutch-decisions .nutch-card {
+  border: 1px solid var(--border-color);
+  margin: 0 -1px -1px 0;
+  padding: 28px;
+  min-height: 300px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nutch-decision-icon {
+  color: var(--text-color);
+  display: flex;
+}
+
+.nutch-decision-text {
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--secondary-text);
+  margin: 0;
+}
+
+.nutch-card-grid.nutch-decisions .nutch-card:nth-child(1) { border-top-left-radius: 16px; }
+.nutch-card-grid.nutch-decisions .nutch-card:nth-child(3) { border-top-right-radius: 16px; }
+.nutch-card-grid.nutch-decisions .nutch-card:nth-child(4) { border-bottom-left-radius: 16px; }
+.nutch-card-grid.nutch-decisions .nutch-card:nth-child(6) { border-bottom-right-radius: 16px; }
+
+/* Feature blocks (image + text) */
+.nutch-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin: 48px 0;
+}
+
+.nutch-feature-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.nutch-feature--reverse .nutch-feature-media {
+  order: 2;
+}
+
+.nutch-feature-media {
+  min-height: 280px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--tertiary-text);
+}
+
+.nutch-feature-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--secondary-text);
+  margin: 0 0 16px;
+}
+
+.nutch-section .nutch-feature-text {
+  font-size: 20px;
+  line-height: 1.7;
+  color: var(--tertiary-text);
+  margin: 0 0 16px;
+}
+
+/* Tag pills */
+.nutch-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 4px 0 28px;
+}
+
+.nutch-tag {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .nutch-screens {
+    grid-template-columns: 1fr;
+  }
+  .nutch-card-grid--3 {
+    grid-template-columns: 1fr;
+  }
+  .nutch-card-grid--bordered .nutch-card:nth-child(3n) {
+    border-right: 1px solid var(--border-color);
+  }
+  .nutch-card-grid--bordered .nutch-card:last-child {
+    border-bottom: none;
+  }
+  .nutch-themes .nutch-card {
+    min-height: 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .nutch-themes .nutch-card:last-child {
+    border-bottom: none;
+  }
+  .nutch-card-grid.nutch-principles .nutch-card {
+    min-height: 0;
+  }
+  .nutch-card-grid.nutch-principles .nutch-card:nth-child(3),
+  .nutch-card-grid.nutch-principles .nutch-card:nth-child(6),
+  .nutch-card-grid.nutch-principles .nutch-card:nth-child(7) {
+    border-radius: 0;
+  }
+  .nutch-card-grid.nutch-principles .nutch-card:first-child {
+    border-radius: 16px 16px 0 0;
+  }
+  .nutch-card-grid.nutch-principles .nutch-card:last-child {
+    border-radius: 0 0 16px 16px;
+  }
+  .nutch-card-grid.nutch-decisions .nutch-card {
+    min-height: 0;
+  }
+  .nutch-card-grid.nutch-decisions .nutch-card:nth-child(3),
+  .nutch-card-grid.nutch-decisions .nutch-card:nth-child(4),
+  .nutch-card-grid.nutch-decisions .nutch-card:nth-child(6) {
+    border-radius: 0;
+  }
+  .nutch-card-grid.nutch-decisions .nutch-card:first-child {
+    border-radius: 16px 16px 0 0;
+  }
+  .nutch-card-grid.nutch-decisions .nutch-card:last-child {
+    border-radius: 0 0 16px 16px;
+  }
+  .nutch-feature {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .nutch-feature--reverse .nutch-feature-media {
+    order: 0;
+  }
+  .nutch-question,
+  .nutch-emphasis {
+    font-size: 18px;
+  }
+  .nutch-banner-logo {
+    font-size: 32px;
+  }
+}

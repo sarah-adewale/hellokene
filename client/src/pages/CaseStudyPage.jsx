@@ -15,9 +15,7 @@ const CaseStudyPage = () => {
   const { projectId } = useParams();
   const navigate = useNavigate();
 
-  const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? '/api' 
-  : 'http://localhost:3001/api';
+  const API_BASE_URL = '/api';
 
   useEffect(() => {
     const fetchCaseStudy = async () => {

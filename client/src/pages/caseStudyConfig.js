@@ -1,5 +1,12 @@
 // src/config/caseStudyConfig.js
 const caseStudyConfig = {
+    'nutch': {
+      sections: ['Overview', 'Challenge', 'Results', 'Conclusion'],
+      showTeam: true,
+      showTimeline: true,
+      showNextProject: 'pivo',
+      nextProjectTitle: 'Pivo',
+    },
     'pivo': {
       sections: ['Overview', 'Challenge', 'Solution', 'Results','Conclusion'],
       showTeam: true,

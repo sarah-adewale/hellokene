@@ -8,7 +8,7 @@ const ProjectsSection = () => {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('apps');
   const [viewMode, setViewMode] = useState('list'); // 'list' or 'grid'
   const tabsContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -16,16 +16,12 @@ const ProjectsSection = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [enlargedIllustration, setEnlargedIllustration] = useState(null);
   
-  // API base URL - will be different in development vs production
-  const API_BASE_URL = process.env.NODE_ENV === 'production' 
-    ? '/api' 
-    : 'http://localhost:3001/api';
+  const API_BASE_URL = '/api';
   
   // Categories for the tabs
   const categories = [
-    { id: 'all', label: 'Highlighted Works', icon: 'all-icon' },
-    { id: 'growth', label: 'Growth Design', icon: 'growth-icon' },
-    { id: 'product', label: 'Product Design', icon: 'product-icon' },
+    { id: 'apps', label: 'Apps', icon: 'apps-icon' },
+    { id: 'websites', label: 'Websites', icon: 'websites-icon' },
     { id: 'illustrations', label: 'Illustrations', icon: 'illustrations-icon' },
   ];
   
@@ -40,8 +36,7 @@ const ProjectsSection = () => {
         const projectsData = response.data;
         
         setProjects(projectsData);
-        // Initially filter for highlighted projects
-        setFilteredProjects(projectsData.filter(project => project.highlighted));
+        setFilteredProjects(projectsData.filter(project => !project.isIllustration && !project.isWebsite));
         setIsLoading(false);
       } catch (err) {
         console.error('Error fetching projects:', err);
@@ -62,6 +57,26 @@ const ProjectsSection = () => {
     console.warn('Using fallback local data due to API error');
     // Your existing dummy data as fallback
         const dummyProjects = [
+      {
+        id: 'nutch',
+        title: 'Building Nutch',
+        subtitle: 'Designing an AI-native workflow from first principles.',
+        description: 'Designing an AI-native workflow from first principles.',
+        category: ['AI', 'Browser App'],
+        imageUrl: '/images/nutch.svg',
+        hoverImageUrl: '/images/nutch-hover.svg',
+        gridImageUrl: '/images/nutch-grid.svg',
+        readTime: '5 min read',
+        caseStudyUrl: '/portfolio/nutch',
+        highlighted: true,
+        growthDesign: false,
+        productDesign: true,
+        platforms: ["extension"],
+        icon: {
+          name: 'Website',
+          color: '#9D9D9F'
+        }
+      },
       {
         id: 'pivo',
         title: 'Pivo',
@@ -95,6 +110,8 @@ const ProjectsSection = () => {
         highlighted: true,
         growthDesign: true,
         productDesign: false,
+        isWebsite: true,
+        figmaUrl: 'YOUR_FIGMA_URL_HERE',
         icon: {
           name: 'Globe',
           color: '#10B981'
@@ -114,6 +131,8 @@ const ProjectsSection = () => {
         highlighted: false,
         growthDesign: false,
         productDesign: true,
+        isWebsite: true,
+        figmaUrl: 'YOUR_FIGMA_URL_HERE',
         icon: {
           name: 'LeafyGreen',
           color: '#84CC16'
@@ -172,35 +191,52 @@ const ProjectsSection = () => {
         highlighted: false,
         growthDesign: false,
         productDesign: true,
+        isWebsite: true,
+        figmaUrl: 'YOUR_FIGMA_URL_HERE',
         icon: {
           name: 'Website',
           color: '#9D9D9F'
         }
       },
       {
-        id: 'smartpathways',
+        id: 'tradevu',
+        title: 'Tradevu Website',
+        category: ['Business Portfolio'],
+        imageUrl: '/images/tradevu-website-1.png',
+        mobileImageUrl: '/images/tradevu-mobile.svg',
+        isWebsite: true,
+        projectUrl: 'https://www.tradevu.co',
+      },
+      {
+        id: 'smartpathways-website',
         title: 'Smart Pathways',
-        subtitle: 'Guidance and support services for students & professionals migrating to Canada',
-        description: 'A platform for sports betting analytics and insights.',
-        category: ['Website', 'Business Portfolio'],
-        imageUrl: '/images/smart-pathways.svg',
-        hoverImageUrl: '/images/smart-pathways-hover.svg',
-        gridImageUrl: '/images/smart-pathways-grid.svg',
-        readTime: '5 min read',
-        projectUrl: 'https://pivo.app',
-        highlighted: false,
-        growthDesign: false,
-        productDesign: true,
-        icon: {
-          name: 'ChartBar',
-          color: '#F59E0B'
-        }
+        category: ['Business Portfolio'],
+        imageUrl: '/images/smartpathways.png',
+        mobileImageUrl: '/images/smart-mobile.svg',
+        isWebsite: true,
+        projectUrl: 'https://smart-pathways.netlify.app/',
+      },
+      {
+        id: 'agri-youth',
+        title: 'Agri Youth',
+        category: ['Website'],
+        imageUrl: '/images/agri-youth.png',
+        mobileImageUrl: '/images/AT-mobile.svg',
+        isWebsite: true,
+      },
+      {
+        id: 'african-technopreneurs',
+        title: 'African Technopreneurs',
+        category: ['Website'],
+        imageUrl: '/images/african-tech.png',
+        mobileImageUrl: '/images/AT2-mobile.svg',
+        isWebsite: true,
+        projectUrl: 'https://www.africantechno.com/',
       },
       {
         id: 'illustration1',
-        title: 'Nature Series',
-        subtitle: 'Digital illustrations',
-        imageUrl: '/images/rick-illustration.svg',
+        title: 'Rick Sanchez',
+        imageUrl: '/images/rick-sanchez.svg',
         isIllustration: true,
         highlighted: false,
         growthDesign: false,
@@ -208,9 +244,8 @@ const ProjectsSection = () => {
       },
       {
         id: 'illustration2',
-        title: 'Tech Icons',
-        subtitle: 'Icon set design',
-        imageUrl: '/images/floating-light-illustration.svg',
+        title: 'smoking kills',
+        imageUrl: '/images/smoking-kills1.svg',
         isIllustration: true,
         highlighted: false,
         growthDesign: false,
@@ -218,8 +253,7 @@ const ProjectsSection = () => {
       },
       {
         id: 'illustration3',
-        title: 'Tech Icons',
-        subtitle: 'Icon set design',
+        title: 'document parsing',
         imageUrl: '/images/keanu-illustration.svg',
         isIllustration: true,
         highlighted: false,
@@ -228,8 +262,7 @@ const ProjectsSection = () => {
       },
       {
         id: 'illustration4',
-        title: 'Tech Icons',
-        subtitle: 'Icon set design',
+        title: 'platform access',
         imageUrl: '/images/finance-illustration.svg',
         isIllustration: true,
         highlighted: false,
@@ -237,19 +270,27 @@ const ProjectsSection = () => {
         productDesign: false
       },
       {
-        id: 'illustration5',
-        title: 'Tech Icons',
-        subtitle: 'Icon set design',
-        imageUrl: '/images/illustration2.svg',
+        id: 'pedros-cat',
+        title: "Pedro's cat",
+        imageUrl: '/images/cat.png',
         isIllustration: true,
         highlighted: false,
         growthDesign: false,
         productDesign: false
-      },{
-        id: 'illustration6',
-        title: 'Tech Icons',
-        subtitle: 'Icon set design',
-        imageUrl: '/images/illustration2.svg',
+      },
+      {
+        id: 'akame',
+        title: 'akame',
+        imageUrl: '/images/akame 1.svg',
+        isIllustration: true,
+        highlighted: false,
+        growthDesign: false,
+        productDesign: false
+      },
+      {
+        id: 'access-asset',
+        title: 'access asset',
+        imageUrl: '/images/hand.svg',
         isIllustration: true,
         highlighted: false,
         growthDesign: false,
@@ -259,71 +300,23 @@ const ProjectsSection = () => {
     ];
     
     setProjects(dummyProjects);
-    setFilteredProjects(dummyProjects.filter(project => project.highlighted));
+    setFilteredProjects(dummyProjects.filter(project => !project.isIllustration && !project.isWebsite));
   };
   
   // Filter projects when category changes
   useEffect(() => {
-    if (activeCategory === 'all') {
-      setFilteredProjects(projects.filter(project => project.highlighted));
-      setViewMode('list'); // Reset to list view for highlighted works
-    } else if (activeCategory === 'growth') {
-      const filtered = projects.filter(project => project.growthDesign);
-      setFilteredProjects(filtered);
-      setViewMode('list'); // Reset to list view for growth design
-    } else if (activeCategory === 'product') {
-      const filtered = projects.filter(project => project.productDesign);
-      setFilteredProjects(filtered);
-      setViewMode('list'); // Reset to list view for product design
+    if (activeCategory === 'apps') {
+      setFilteredProjects(projects.filter(project => !project.isIllustration && !project.isWebsite));
+      setViewMode('list');
+    } else if (activeCategory === 'websites') {
+      setFilteredProjects(projects.filter(project => project.isWebsite));
+      setViewMode('websites');
     } else if (activeCategory === 'illustrations') {
-      const filtered = projects.filter(project => project.isIllustration);
-      setFilteredProjects(filtered);
-      setViewMode('masonry'); // Set to masonry view for illustrations
+      setFilteredProjects(projects.filter(project => project.isIllustration));
+      setViewMode('masonry');
     }
   }, [activeCategory, projects]);
-  
-  // Handle mouse events for horizontal scrolling on mobile
-  // const handleMouseDown = (e) => {
-  //   setIsDragging(true);
-  //   setStartX(e.pageX - tabsContainerRef.current.offsetLeft);
-  //   setScrollLeft(tabsContainerRef.current.scrollLeft);
-  // };
-  
-  // const handleMouseLeave = () => {
-  //   setIsDragging(false);
-  // };
-  
-  // const handleMouseUp = () => {
-  //   setIsDragging(false);
-  // };
-  
-  // const handleMouseMove = (e) => {
-  //   if (!isDragging) return;
-  //   e.preventDefault();
-  //   const x = e.pageX - tabsContainerRef.current.offsetLeft;
-  //   const walk = (x - startX) * 2; // scroll-fast
-  //   tabsContainerRef.current.scrollLeft = scrollLeft - walk;
-  // };
-  
-  // // Handle touch events for mobile
-  // const handleTouchStart = (e) => {
-  //   setIsDragging(true);
-  //   setStartX(e.touches[0].pageX - tabsContainerRef.current.offsetLeft);
-  //   setScrollLeft(tabsContainerRef.current.scrollLeft);
-  // };
-  
-  // const handleTouchMove = (e) => {
-  //   if (!isDragging) return;
-  //   const x = e.touches[0].pageX - tabsContainerRef.current.offsetLeft;
-  //   const walk = (x - startX) * 2;
-  //   tabsContainerRef.current.scrollLeft = scrollLeft - walk;
-  // };
-  
-  // const handleTouchEnd = () => {
-  //   setIsDragging(false);
-  // };
-  
-  // In your ProjectSection.jsx, replace the mouse event handlers with this:
+
 
 // Handle mouse events for horizontal scrolling on mobile - FIXED VERSION
 const handleMouseDown = (e) => {
@@ -377,22 +370,12 @@ const handleTouchEnd = () => {
   // Get the appropriate icon for each category
   const getCategoryIcon = (categoryId, isActive) => {
     switch(categoryId) {
-      case 'all':
-        return (
-          <p className='emoji-icon'>🌟</p>
-        );
-      case 'growth':
-        return (
-          <p className='emoji-icon'>🪴</p>
-        );
-      case 'product':
-        return (
-          <p className='emoji-icon'>💎</p>
-        );
+      case 'apps':
+        return <p className='emoji-icon'>📦</p>; 
+      case 'websites':
+        return <p className='emoji-icon'>🖥️</p>; 
       case 'illustrations':
-        return (
-          <p className='emoji-icon'>🎨</p>
-        );
+        return <p className='emoji-icon'>🎨</p>;
       default:
         return null;
     }
@@ -424,6 +407,38 @@ useEffect(() => {
     window.removeEventListener('keydown', handleKeyDown);
   };
 }, [enlargedIllustration]);
+
+const renderWebsites = () => {
+  return (
+    <div className="websites-grid">
+      {filteredProjects.map((site) => (
+        <div key={site.id} className="website-card">
+          <picture>
+            {site.mobileImageUrl && (
+              <source media="(max-width: 767px)" srcSet={site.mobileImageUrl} />
+            )}
+            <img src={site.imageUrl} alt={site.title} className="website-card-img" />
+          </picture>
+          <a
+            href={site.projectUrl || undefined}
+            target={site.projectUrl ? '_blank' : undefined}
+            rel={site.projectUrl ? 'noopener noreferrer' : undefined}
+            className="view-prototype-btn"
+            onClick={(e) => { if (!site.projectUrl) e.preventDefault(); e.stopPropagation(); }}
+          >
+            Open website
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 4.5H19.5V9" stroke="#FCFCFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M14.25 9.75L19.5 4.5" stroke="#FCFCFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 19.5H4.5V15" stroke="#FCFCFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9.75 14.25L4.5 19.5" stroke="#FCFCFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const renderIllustrations = () => {
   return (
@@ -498,8 +513,8 @@ const renderIllustrations = () => {
           ))}
         </div>
         
-        {/* View mode toggle - hide for illustrations */}
-        {activeCategory !== 'illustrations' && (
+        {/* View mode toggle - hide for websites and illustrations */}
+        {activeCategory !== 'illustrations' && activeCategory !== 'websites' && (
           <div className="view-mode-toggle">
             <button 
               className={`toggle-button ${viewMode === 'list' ? 'active' : ''}`}
@@ -586,8 +601,9 @@ const renderIllustrations = () => {
           <p>No projects in this category yet.</p>
         </div>
       ) : activeCategory === 'illustrations' ? (
-        // Render illustrations masonry layout
         renderIllustrations()
+      ) : activeCategory === 'websites' ? (
+        renderWebsites()
       ) : (
         // Render regular projects list/grid view
         <div 

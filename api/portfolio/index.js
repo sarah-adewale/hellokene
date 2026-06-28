@@ -1,6 +1,26 @@
 // Portfolio data embedded directly for Vercel serverless function
 const portfolioProjects = [
   {
+    id: 'nutch',
+    title: 'Building Nutch',
+    subtitle: 'Designing an AI-native workflow from first principles.',
+    description: 'Designing an AI-native workflow from first principles.',
+    category: ['AI'],
+    imageUrl: '/images/nutch.svg',
+    hoverImageUrl: '/images/nutch-hover.svg',
+    gridImageUrl: '/images/nutch-grid.svg',
+    readTime: '5 min read',
+    caseStudyUrl: '/portfolio/nutch',
+    highlighted: true,
+    growthDesign: false,
+    productDesign: true,
+    platforms: ["extension"],
+    icon: {
+      name: 'Website',
+      color: '#9D9D9F'
+    }
+  },
+  {
     id: 'pivo',
     title: 'Pivo: Scaling Customer Onboarding',
     subtitle: 'A finance platform, providing credit and business tools to supply chain SMEs.',
@@ -122,9 +142,44 @@ const portfolioProjects = [
     }
   },
   {
+    id: 'tradevu',
+    title: 'Tradevu Website',
+    category: ['Business Portfolio'],
+    imageUrl: '/images/tradevu-website-1.png',
+    mobileImageUrl: '/images/tradevu-mobile.svg',
+    isWebsite: true,
+    projectUrl: 'https://www.tradevu.co',
+  },
+  {
+    id: 'smartpathways-website',
+    title: 'Smart Pathways',
+    category: ['Business Portfolio'],
+    imageUrl: '/images/smartpathways.png',
+    mobileImageUrl: '/images/smart-mobile.svg',
+    isWebsite: true,
+    projectUrl: 'https://smart-pathways.netlify.app/',
+  },
+  {
+    id: 'agri-youth',
+    title: 'Agri Youth',
+    category: ['Website'],
+    imageUrl: '/images/agri-youth.png',
+    mobileImageUrl: '/images/AT-mobile.svg',
+    isWebsite: true,
+  },
+  {
+    id: 'african-technopreneurs',
+    title: 'African Technopreneurs',
+    category: ['Website'],
+    imageUrl: '/images/african-tech.png',
+    mobileImageUrl: '/images/AT2-mobile.svg',
+    isWebsite: true,
+    projectUrl: 'https://www.africantechno.com/',
+  },
+  {
     id: 'illustration1',
-    title: 'Nature Series',
-    imageUrl: '/images/rick-illustration.svg',
+    title: 'Rick Sanchez',
+    imageUrl: '/images/rick-sanchez.svg',
     isIllustration: true,
     highlighted: false,
     growthDesign: false,
@@ -132,8 +187,8 @@ const portfolioProjects = [
   },
   {
     id: 'illustration2',
-    title: 'Tech Icons',
-    imageUrl: '/images/keanu-illustration.svg',
+    title: 'smoking kills',
+    imageUrl: '/images/smoking-kills1.svg',
     isIllustration: true,
     highlighted: false,
     growthDesign: false,
@@ -141,7 +196,7 @@ const portfolioProjects = [
   },
   {
     id: 'illustration3',
-    title: 'Abstract Art',
+    title: 'document parsing',
     imageUrl: '/images/floating-light-illustration.svg',
     isIllustration: true,
     highlighted: false,
@@ -150,7 +205,7 @@ const portfolioProjects = [
   },
   {
     id: 'illustration4',
-    title: 'UI Components',
+    title: 'platform access',
     imageUrl: '/images/finance-illustration.svg',
     isIllustration: true,
     highlighted: false,
@@ -158,18 +213,27 @@ const portfolioProjects = [
     productDesign: false
   },
   {
-    id: 'illustration5',
-    title: 'Branding Elements',
-    imageUrl: '/images/illustration2.svg',
+    id: 'pedros-cat',
+    title: "Pedro's cat",
+    imageUrl: '/images/cat.png',
     isIllustration: true,
     highlighted: false,
     growthDesign: false,
     productDesign: false
   },
   {
-    id: 'illustration6',
-    title: 'Infographics',
-    imageUrl: '/images/illustration2.svg',
+    id: 'akame',
+    title: 'akame',
+    imageUrl: '/images/akame 1.svg',
+    isIllustration: true,
+    highlighted: false,
+    growthDesign: false,
+    productDesign: false
+  },
+  {
+    id: 'access-asset',
+    title: 'access asset',
+    imageUrl: '/images/hand.svg',
     isIllustration: true,
     highlighted: false,
     growthDesign: false,

@@ -35,25 +35,29 @@ function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 p-3 rounded-full bg-black dark:bg-white text-white dark:text-black shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
-      }`}
       aria-label="Scroll to top"
+      style={{
+        position: 'fixed',
+        bottom: '32px',
+        right: '32px',
+        zIndex: 50,
+        opacity: isVisible ? 1 : 0,
+        pointerEvents: isVisible ? 'auto' : 'none',
+        transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
+        transition: 'opacity 0.3s ease, transform 0.3s ease',
+        background: 'transparent',
+        border: 'none',
+        cursor: 'pointer',
+      }}
     >
-      <svg
-        className="w-5 h-5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M5 10l7-7m0 0l7 7m-7-7v18"
-        />
-      </svg>
+
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42Z" stroke="#FCFCFC" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M17.6436 22.8563L23.9998 16.5L30.3561 22.8563" stroke="#FCFCFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24 31.5V16.5" stroke="#FCFCFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+
     </button>
   );
 }

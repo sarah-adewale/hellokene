@@ -8,6 +8,7 @@ const HomePage = () => {
   const [hoverIcon, setHoverIcon] = useState(null);
   const [activeIcon, setActiveIcon] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [showRealPhoto, setShowRealPhoto] = useState(false);
   const { theme } = useTheme();
 
   // Check if device is mobile
@@ -112,6 +113,21 @@ const companyLogoSrc = useMemo(() => {
         <section className="hero-section">
           {/* Left Column - Text */}
           <div className="hero-content">
+            {isMobile && (
+              <button
+                type="button"
+                className="mobile-hero-avatar"
+                onClick={() => setShowRealPhoto((prev) => !prev)}
+                aria-label="Tap to toggle profile photo"
+              >
+                <img
+                  src={showRealPhoto ? './images/profile-image.png' : './images/profile-image-hover.svg'}
+                  alt="Kene"
+                  loading="eager"
+                  decoding="async"
+                />
+              </button>
+            )}
             {activeTab === 'bio' && (
               <h1 className={headingClass} style={{fontSize: isMobile ? '24px' : '32px'}}>
                 Hello, I'm Kene.<br />

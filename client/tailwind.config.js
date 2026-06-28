@@ -16,7 +16,8 @@ module.exports = {
         'text-disabled': '#6D6C6F',
       },
       fontFamily: {
-        'lexend': ['Lexend', 'sans-serif'],
+        'sans': ['Albert Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'albert': ['Albert Sans', 'sans-serif'],
       },
     },
   },

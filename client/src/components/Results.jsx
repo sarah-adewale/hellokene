@@ -16,7 +16,7 @@ const Results = ({ project }) => {
   };
 
   // Only show specific content for the Pivo project
-  if (project.id !== 'pivo' && project.id !== 'portfolio') {
+  if (project.id !== 'pivo' && project.id !== 'portfolio' && project.id !== 'nutch') {
     return (
       <section className="case-study-section results">
         <h2>Results</h2>
@@ -292,9 +292,131 @@ const Results = ({ project }) => {
       </div>
     </>
     )}
+    {project.id === 'nutch' && (
+      <section className="case-study-section nutch-section">
+        <h2 className="nutch-h">Product principles</h2>
+        <p className="nutch-text">To craft designing around features, I established seven product principles that guided every decision. Rather than acting as broad statements, these became design constraints.</p>
+
+        <div className="nutch-card-grid nutch-card-grid--3 nutch-principles">
+          <div className="nutch-card"><h3 className="nutch-card-title">Be Clear, Not Clever</h3><p className="nutch-card-text">Interfaces should communicate instantly, not impress.</p></div>
+          <div className="nutch-card"><h3 className="nutch-card-title">Extend, Don't Interrupt</h3><p className="nutch-card-text">Nutch should feel like another browser capability—not another application.</p></div>
+          <div className="nutch-card"><h3 className="nutch-card-title">Speak the User's Language</h3><p className="nutch-card-text">Prompts should sound like natural questions, not prompt engineering</p></div>
+          <div className="nutch-card"><h3 className="nutch-card-title">Feel Precise, Not Robotic</h3><p className="nutch-card-text">Interactions should feel accurate, responsive, and human.</p></div>
+          <div className="nutch-card"><h3 className="nutch-card-title">Show What You're Doing (and Why)</h3><p className="nutch-card-text">Users should always understand what the system is processing.</p></div>
+          <div className="nutch-card"><h3 className="nutch-card-title">Hide the Depth Until It's Needed</h3><p className="nutch-card-text">Start simple.<br />Reveal power progressively.</p></div>
+          <div className="nutch-card"><h3 className="nutch-card-title">Work With the Web, Not Against It</h3><p className="nutch-card-text">Respect the browser instead of replacing it.</p></div>
+        </div>
+
+        <h2 className="nutch-h">Principles to product</h2>
+        <p className="nutch-text">Every major feature exists because it solved a workflow problem.</p>
+
+        <div className="nutch-feature">
+          <img src={theme === 'light' ? "/images/sidebar-light1.svg" : "/images/sidebar-img.svg"} alt="" className="nutch-feature-img" />
+          <div className="nutch-feature-body">
+            <h3 className="nutch-feature-title">Sidebar</h3>
+            <p className="nutch-feature-text">Rather than replacing the browser, the sidebar extends it, allowing users to work alongside the page instead of covering it.</p>
+          </div>
+        </div>
+
+        <div className="nutch-feature">
+          <img src={theme === 'light' ? "/images/selector-light2.svg" : "/images/selector-img.svg"} alt="" className="nutch-feature-img" />
+          <div className="nutch-feature-body">
+            <h3 className="nutch-feature-title">Selector</h3>
+            <p className="nutch-feature-text">The selector became Nutch's defining interaction. Instead of describing what they need, users simply point to it.</p>
+            <p className="nutch-feature-text">Whether it's a paragraph, image, chart, or block of code, Nutch understands the selected context before the conversation even begins.</p>
+          </div>
+        </div>
+
+        <div className="nutch-feature">
+          <img src={theme === 'light' ? "/images/model-light.svg" : "/images/model-img.svg"} alt="" className="nutch-feature-img" />
+          <div className="nutch-feature-body">
+            <h3 className="nutch-feature-title">Modal Flexibility</h3>
+            <p className="nutch-feature-text">Different models excel at different tasks.</p>
+            <p className="nutch-feature-text">Instead of locking users into a single provider, Nutch supports multiple models and allows users to connect accounts they already use.</p>
+          </div>
+        </div>
+
+        <div className="nutch-feature">
+          <img src={theme === 'light' ? "/images/conversation-light.svg" : "/images/conversations-img.svg"} alt="" className="nutch-feature-img" />
+          <div className="nutch-feature-body">
+            <h3 className="nutch-feature-title">Conversations as knowledge</h3>
+            <p className="nutch-feature-text">AI conversations often become reference material.</p>
+            <p className="nutch-feature-text">Rather than treating them as temporary chats, Nutch stores conversations and generated files so users can easily revisit previous work.</p>
+          </div>
+        </div>
+
+        <h2 className="nutch-h">Designing for AI</h2>
+        <div className="nutch-text-group">
+          <p className="nutch-text">Nutch wasn't simply designed with AI. It was designed for AI. That meant thinking beyond interfaces and considering how AI should behave inside an existing workflow.</p>
+          <p className="nutch-text">Design decisions included:</p>
+        </div>
+
+        <div className="nutch-card-grid nutch-card-grid--3 nutch-decisions">
+          <div className="nutch-card">
+            <div className="nutch-decision-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 20h9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="nutch-decision-text">Editable prompts<br />instead of hidden automation</p>
+          </div>
+          <div className="nutch-card">
+            <div className="nutch-decision-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3.5" y="5" width="17" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M11 9H8V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13 15H16V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="nutch-decision-text">Context-first interactions<br />instead of blank input fields</p>
+          </div>
+          <div className="nutch-card">
+            <div className="nutch-decision-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 7h9M11 12h9M11 17h9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M3.5 6.5l1.5 1.5L8 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3.5 16.5l1.5 1.5L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="nutch-decision-text">Transparent<br />model selection</p>
+          </div>
+          <div className="nutch-card">
+            <div className="nutch-decision-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3l9 5-9 5-9-5 9-5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 13l9 5 9-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="nutch-decision-text">Progressive disclosure<br />of advanced capabilities</p>
+          </div>
+          <div className="nutch-card">
+            <div className="nutch-decision-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M9 5v14" stroke="currentColor" strokeWidth="1.5"/>
+              </svg>
+            </div>
+            <p className="nutch-decision-text">Organized chat history<br />and generated files</p>
+          </div>
+          <div className="nutch-card">
+            <div className="nutch-decision-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 3l-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M18.5 5.5l2 2-3 3-2-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M15.5 8.5l-5.09 5.09a5 5 0 1 1-1.999-1.999L13.5 6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="nutch-decision-text">Bring Your Own Key (BYOK)<br />to support users' existing AI subscriptions while reducing platform dependency</p>
+          </div>
+        </div>
+
+        <p className="nutch-emphasis-light">Every decision balanced user experience, technical feasibility, and long-term scalability.</p>
+      </section>
+    )}
     </>
   );
-  
+
 };
 
 export default Results;

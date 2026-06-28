@@ -200,7 +200,7 @@ html {
 .home-container {
   padding-top: 100px;
   color: var(--text-color);
-  font-family: 'Lexend', sans-serif;
+  font-family: 'Albert Sans', sans-serif;
   background-color: var(--bg-color);
   /* min-height: 100vh; */
 }
@@ -238,6 +238,29 @@ html {
   width: 100%;
   /* Remove fixed height to allow dynamic content sizing */
   min-height: auto;
+}
+
+/* Mobile-only profile avatar above the hero text (tap to toggle photo) */
+.mobile-hero-avatar {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-hero-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
 
 @media (min-width: 768px) {

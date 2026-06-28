@@ -3,6 +3,24 @@
 
 const portfolioProjects = [
     {
+      id: 'nutch',
+      title: 'Building Nutch',
+      subtitle: 'Designing an AI-native workflow from first principles.',
+      description: 'Designing an AI-native workflow from first principles.',
+      category: ['AI'],
+      imageUrl: '/images/nutch.svg',
+      hoverImageUrl: '/images/nutch-hover.svg',
+      gridImageUrl: '/images/nutch-grid.svg',
+      readTime: '5 min read',
+      caseStudyUrl: '/portfolio/nutch',
+      isWebsite: false,
+      platforms: ["extension"],
+      icon: {
+        name: 'Website',
+        color: '#9D9D9F'
+      }
+    },
+    {
       id: 'pivo',
       title: 'Pivo: Scaling Customer Onboarding',
       subtitle: 'A finance platform, providing credit and business tools to supply chain SMEs.',
@@ -13,9 +31,7 @@ const portfolioProjects = [
       gridImageUrl: '/images/new-pivo-grid-img.svg',
       readTime: '10 min read',
       caseStudyUrl: '/portfolio/pivo',
-      highlighted: true,
-      growthDesign: true,
-      productDesign: false,
+      isWebsite: false,
       platforms: ["webapp", "android", "ios"],
       icon: {
         name: 'Website',
@@ -32,10 +48,9 @@ const portfolioProjects = [
       hoverImageUrl: '/images/new-portfolio-img-hover.svg',
       gridImageUrl: '/images/new-portfolio-grid-img.svg',
       readTime: '4 min read',
-      caseStudyUrl: '/portfolio/portfolio', // Internal link to case study
-      highlighted: true,
-      growthDesign: true,
-      productDesign: false,
+      caseStudyUrl: '/portfolio/portfolio',
+      isWebsite: false,
+      figmaUrl: 'YOUR_FIGMA_URL_HERE',
       platforms: ["webapp"],
       icon: {
         name: 'Globe',
@@ -53,35 +68,15 @@ const portfolioProjects = [
       gridImageUrl: '/images/liberterra-grid.svg',
       readTime: '7 min read',
       projectUrl: 'https://www.behance.net/gallery/111156945/LiberTerra',
-      highlighted: false,
-      growthDesign: false,
-      productDesign: true,
+      isWebsite: false,
+      figmaUrl: 'YOUR_FIGMA_URL_HERE',
       platforms: ["webapp"],
       icon: {
         name: 'LeafyGreen',
         color: '#84CC16'
       }
     },
-    // {
-    //   id: 'betweysure',
-    //   title: 'Betweysure',
-    //   subtitle: 'Betweysure is a football forecast & prediction platform for punters and gamblers',
-    //   description: 'A platform for sports betting analytics and insights.',
-    //   category: ['Sports Analytics'],
-    //   imageUrl: '/images/new-betweysure-img.svg',
-    //   hoverImageUrl: '/images/new-betweysure-img-hover.svg',
-    //   gridImageUrl: '/images/betweysure-grid.svg',
-    //   readTime: '5 min read',
-    //   projectUrl: 'https://pivo.app',
-    //   highlighted: false,
-    //   growthDesign: false,
-    //   productDesign: true,
-    //   platforms: ["webapp"],
-    //   icon: {
-    //     name: 'ChartBar',
-    //     color: '#F59E0B'
-    //   }
-    // },
+
     {
       id: 'laundrybasket',
       title: 'Laundry Basket',
@@ -94,9 +89,7 @@ const portfolioProjects = [
       readTime: '--',
       projectUrl: 'https://laundry-squared.netlify.app/',
       requiresCredentials: true,
-      highlighted: true,
-      growthDesign: false,
-      productDesign: true,
+      isWebsite: false,
       platforms: ["webapp"],
       icon: {
         name: 'ChartBar',
@@ -114,9 +107,8 @@ const portfolioProjects = [
       gridImageUrl: '/images/gidigan-grid.svg',
       readTime: '--',
       projectUrl: 'https://gidigan.netlify.app/',
-      highlighted: false,
-      growthDesign: false,
-      productDesign: true,
+      isWebsite: false,
+      figmaUrl: 'YOUR_FIGMA_URL_HERE',
       platforms: ["webapp"],
       icon: {
         name: 'Website',
@@ -124,29 +116,44 @@ const portfolioProjects = [
       }
     },
     {
+      id: 'tradevu',
+      title: 'Tradevu Website',
+      category: ['Business Portfolio'],
+      imageUrl: '/images/tradevu-website-1.png',
+      mobileImageUrl: '/images/tradevu-mobile.svg',
+      isWebsite: true,
+      projectUrl: 'https://www.tradevu.co',
+    },
+    {
       id: 'smartpathways',
       title: 'Smart Pathways',
-      subtitle: 'Guidance and support services for students & professionals migrating to Canada',
-      description: 'A platform for sports betting analytics and insights.',
       category: ['Business Portfolio'],
-      imageUrl: '/images/smart-pathways.svg',
-      hoverImageUrl: '/images/smart-pathways-hover.svg',
-      gridImageUrl: '/images/smart-pathways-grid.svg',
-      readTime: '5 min read',
+      imageUrl: '/images/smartpathways.png',
+      mobileImageUrl: '/images/smart-mobile.svg',
+      isWebsite: true,
       projectUrl: 'https://smart-pathways.netlify.app/',
-      highlighted: false,
-      growthDesign: false,
-      productDesign: true,
-      platforms: ["webapp"],
-      icon: {
-        name: 'ChartBar',
-        color: '#F59E0B'
-      }
+    },
+    {
+      id: 'agri-youth',
+      title: 'Agri Youth',
+      category: ['Website'],
+      imageUrl: '/images/agri-youth.png',
+      mobileImageUrl: '/images/AT-mobile.svg',
+      isWebsite: true,
+    },
+    {
+      id: 'african-technopreneurs',
+      title: 'African Technopreneurs',
+      category: ['Website'],
+      imageUrl: '/images/african-tech.png',
+      mobileImageUrl: '/images/AT2-mobile.svg',
+      isWebsite: true,
+      projectUrl: 'https://www.africantechno.com/',
     },
     {
       id: 'illustration1',
-      title: 'Nature Series',
-      imageUrl: '/images/rick-illustration.svg',
+      title: 'Rick Sanchez',
+      imageUrl: '/images/rick-sanchez.svg',
       isIllustration: true,
       highlighted: false,
       growthDesign: false,
@@ -154,8 +161,8 @@ const portfolioProjects = [
     },
     {
       id: 'illustration2',
-      title: 'Tech Icons',
-      imageUrl: '/images/keanu-illustration.svg',
+      title: 'smoking kills',
+      imageUrl: '/images/smoking-kills1.svg',
       isIllustration: true,
       highlighted: false,
       growthDesign: false,
@@ -163,7 +170,7 @@ const portfolioProjects = [
     },
     {
       id: 'illustration3',
-      title: 'Abstract Art',
+      title: 'document parsing',
       imageUrl: '/images/floating-light-illustration.svg',
       isIllustration: true,
       highlighted: false,
@@ -172,7 +179,7 @@ const portfolioProjects = [
     },
     {
       id: 'illustration4',
-      title: 'UI Components',
+      title: 'platform access',
       imageUrl: '/images/finance-illustration.svg',
       isIllustration: true,
       highlighted: false,
@@ -180,18 +187,27 @@ const portfolioProjects = [
       productDesign: false
     },
     {
-      id: 'illustration5',
-      title: 'Branding Elements',
-      imageUrl: '/images/illustration2.svg',
+      id: 'pedros-cat',
+      title: "Pedro's cat",
+      imageUrl: '/images/cat.png',
       isIllustration: true,
       highlighted: false,
       growthDesign: false,
       productDesign: false
     },
     {
-      id: 'illustration6',
-      title: 'Infographics',
-      imageUrl: '/images/illustration2.svg',
+      id: 'akame',
+      title: 'akame',
+      imageUrl: '/images/akame 1.svg',
+      isIllustration: true,
+      highlighted: false,
+      growthDesign: false,
+      productDesign: false
+    },
+    {
+      id: 'access-asset',
+      title: 'access asset',
+      imageUrl: '/images/hand.svg',
       isIllustration: true,
       highlighted: false,
       growthDesign: false,

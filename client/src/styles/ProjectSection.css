@@ -36,7 +36,7 @@
 .projects-section {
     padding: 30px 150px;
     color: var(--text-color);
-    font-family: 'Lexend', sans-serif;
+    font-family: 'Albert Sans', sans-serif;
   }
 
   /* Projects controls (tabs and view toggle) */
@@ -417,6 +417,80 @@
     color: var(--tertiary-text);
     font-size: 18px;
   }
+
+/* ── Websites tab ── */
+.websites-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.website-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: default;
+  width: 100%;
+}
+
+.website-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.website-card:hover .website-card-img {
+  transform: scale(1.01);
+}
+
+
+.view-prototype-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(252, 252, 252, 0.6);
+  border-radius: 4000px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 500;
+  color: #FCFCFC;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.website-card:hover .view-prototype-btn {
+  opacity: 1;
+}
+
+/* Mobile: always-visible "Open website" button, centered at the bottom */
+@media (max-width: 767px) {
+  .view-prototype-btn {
+    opacity: 1;
+    top: auto;
+    right: auto;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 28px;
+    font-size: 16px;
+    gap: 10px;
+  }
+}
+
+
 
   .card-info-bar{
     display: flex;
