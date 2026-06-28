@@ -70,10 +70,11 @@
   visibility: visible;
 }
 
-/* Optimize image rendering */
+/* Render images with the browser's default high-quality smoothing.
+   (crisp-edges / optimize-contrast made scaled images, even SVGs
+   rasterized in compositing layers, look pixelated — esp. on mobile.) */
 img {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: optimize-contrast;
+  image-rendering: auto;
 }
 
 /* Optimize profile image transitions */
@@ -188,11 +189,11 @@ html {
   }
 }
 
-/* Optimize for high DPI displays */
+/* High-DPI / retina (mobile) displays: keep the default high-quality
+   scaling so images stay crisp instead of pixelated. */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   img {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    image-rendering: auto;
   }
 }
 
