@@ -29,11 +29,10 @@
   --key-prompt-button-text: #0B0A0F
 }
 
-* {
-  backface-visibility: hidden;
-}
-
-
+/* NOTE: a global `* { backface-visibility: hidden }` was removed here.
+   Promoting every element to its own GPU layer caused the browser to
+   rasterize content (including images) at low resolution, which made
+   images look pixelated on high-DPI / mobile screens. */
 
 .hero-heading,
 .mobile-button,
@@ -41,7 +40,6 @@
 .profile-image,
 .profile-image-hover,
 .skill-tooltip {
-  transform: translate3d(0, 0, 0);
   will-change: auto;
 }
 
