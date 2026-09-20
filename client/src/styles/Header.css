@@ -18,6 +18,10 @@
   --tool-hover: #F5F5F5;
   --badge-color: #666666;
   --badge-border: #DDDDDD;
+  --toggle-track: #EEEEEE;
+  --toggle-chip: #FFFFFF;
+  --toggle-icon-active: #0B0A0F;
+  --toggle-icon-inactive: #9D9D9F;
 }
 
 [data-theme='dark'] {
@@ -37,6 +41,10 @@
   --tool-hover: rgba(255, 255, 255, 0.05);
   --badge-color: #9D9D9F;
   --badge-border: #3C3B3F;
+  --toggle-track: #232327;
+  --toggle-chip: #3C3B3F;
+  --toggle-icon-active: #FCFCFC;
+  --toggle-icon-inactive: #6D6C6F;
 }
 
 /* Base body styles */
@@ -104,10 +112,10 @@ body.menu-open {
 }
 
 .kene-logo-img {
+  height: 56px;
   width: auto;
-  height: auto;
   max-width: 100%;
-  
+  border-radius: 50%;
 }
 
 .header-right {
@@ -164,23 +172,42 @@ body.menu-open {
   width: 100%;
 }
 
-/* Theme Toggle */
-.sun-circle {
+/* Theme Toggle - segmented moon / sun pill */
+.theme-toggle {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  background: var(--toggle-bg);
-  border-radius: 100%;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  gap: 4px;
+  padding: 4px;
+  background: var(--toggle-track);
+  border-radius: 999px;
   flex-shrink: 0;
 }
 
-.sun-circle:hover {
-  opacity: 0.9;
+.theme-toggle-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 100%;
+  background: var(--toggle-chip);
+  color: var(--toggle-icon-inactive);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* The active half sits flush with the track; the inactive half keeps a
+   raised chip so it reads as the thing you can press. */
+.theme-toggle-option.is-active {
+  background: transparent;
+  color: var(--toggle-icon-active);
+  cursor: default;
+}
+
+.theme-toggle-option:not(.is-active):hover {
+  color: var(--toggle-icon-active);
 }
 
 /* Hamburger menu - hidden on desktop */
@@ -285,16 +312,7 @@ body.menu-open {
   text-decoration: none;
 }
 
-.mobile-theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 49px;
-  height: 49px;
-  background: var(--toggle-bg);
-  border-radius: 100%;
-  border: none;
-  cursor: pointer;
+.theme-toggle--mobile {
   margin-bottom: 24px;
 }
 
@@ -352,7 +370,7 @@ body.menu-open {
   }
 
   .kene-logo-img {
-    height: 32px;
+    height: 44px;
     width: auto;
   }
 
@@ -366,7 +384,7 @@ body.menu-open {
     display: none;
   }
 
-  .sun-circle {
+  .theme-toggle--header {
     display: none;
   }
 
@@ -434,6 +452,11 @@ body.menu-open {
    so neither this rule nor .nav-link:hover:after can render an underline. */
 .tools-trigger::after {
   display: none;
+}
+
+.tools-trigger-emoji {
+  font-size: 18px;
+  line-height: 1;
 }
 
 .tools-caret {

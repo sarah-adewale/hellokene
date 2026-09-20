@@ -1,4 +1,4 @@
-import { EnvelopeOpen, FilePdf, Sun, Moon, CaretDown } from '@phosphor-icons/react';
+import { CaretDown } from '@phosphor-icons/react';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
@@ -83,6 +83,53 @@ const NutchAIIcon = () => (
   </svg>
 );
 
+const TEXT_FX_URL = 'https://www.figma.com/community/plugin/1607414274813196918';
+
+const MoonIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M18.6226 13.1142C17.2728 13.4927 15.8466 13.5051 14.4904 13.1501C13.1342 12.7951 11.897 12.0856 10.9057 11.0943C9.91444 10.103 9.20489 8.8658 8.84992 7.50962C8.49495 6.15345 8.50735 4.72723 8.88586 3.37744C7.55509 3.74784 6.34458 4.46044 5.37492 5.44427C4.40526 6.42809 3.71028 7.6488 3.35921 8.9848C3.00814 10.3208 3.01323 11.7255 3.37398 13.0589C3.73472 14.3923 4.43853 15.608 5.4153 16.5847C6.39206 17.5615 7.6077 18.2653 8.94112 18.626C10.2745 18.9868 11.6792 18.9919 13.0152 18.6408C14.3512 18.2897 15.5719 17.5948 16.5558 16.6251C17.5396 15.6554 18.2522 14.4449 18.6226 13.1142Z" fill="currentColor"/>
+  </svg>
+);
+
+const SunIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M11 16.1562C13.8477 16.1562 16.1562 13.8477 16.1562 11C16.1562 8.15228 13.8477 5.84375 11 5.84375C8.15228 5.84375 5.84375 8.15228 5.84375 11C5.84375 13.8477 8.15228 16.1562 11 16.1562Z" fill="currentColor"/>
+    <path d="M11 3.09375V1.375" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M5.40508 5.40557L4.19336 4.19385" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3.09375 11H1.375" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M5.40508 16.5947L4.19336 17.8064" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M11 18.9062V20.625" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M16.5947 16.5947L17.8064 17.8064" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M18.9062 11H20.625" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M16.5947 5.40557L17.8064 4.19385" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+// Segmented moon / sun control. Clicking the inactive half switches theme;
+// clicking the active half is a no-op.
+const ThemeToggle = ({ theme, onSelect, className = '' }) => (
+  <div className={`theme-toggle ${className}`} role="group" aria-label="Colour theme">
+    <button
+      type="button"
+      className={`theme-toggle-option ${theme === 'dark' ? 'is-active' : ''}`}
+      onClick={() => onSelect('dark')}
+      aria-pressed={theme === 'dark'}
+      aria-label="Dark mode"
+    >
+      <MoonIcon />
+    </button>
+    <button
+      type="button"
+      className={`theme-toggle-option ${theme === 'light' ? 'is-active' : ''}`}
+      onClick={() => onSelect('light')}
+      aria-pressed={theme === 'light'}
+      aria-label="Light mode"
+    >
+      <SunIcon />
+    </button>
+  </div>
+);
+
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -159,6 +206,12 @@ const Header = () => {
     }
   }, [isMobile, menuOpen]);
   
+  // The context only exposes toggleTheme, so switching to the already-active
+  // theme is a no-op.
+  const selectTheme = useCallback((next) => {
+    if (next !== theme) toggleTheme();
+  }, [theme, toggleTheme]);
+
   const toggleMenu = () => {
     const newMenuState = !menuOpen;
     setMenuOpen(newMenuState);
@@ -184,10 +237,7 @@ const Header = () => {
         <div className="logo-container">
           <Link to="/" className="logo-link">
             <img 
-              src={theme === 'dark' 
-                  ? "/images/kene-logo-dark.svg"
-                  : "/images/kene-logo-imp.svg"
-              } 
+              src="/images/new-logo-avatar.svg"
               alt="Kene Logo" 
               className="kene-logo-img"
             />
@@ -205,12 +255,13 @@ const Header = () => {
                   onClick={() => setToolsOpen(!toolsOpen)}
                   aria-expanded={toolsOpen}
                 >
-                  Tools I've Shipped
+                  <span className="tools-trigger-emoji" aria-hidden="true">🚀</span>
+                  Live apps
                   <CaretDown size={14} className={`tools-caret ${toolsOpen ? 'tools-caret--open' : ''}`} />
                 </button>
                 {toolsOpen && (
                   <div className="tools-dropdown">
-                    <a href="https://www.figma.com/community/plugin/1607414274813196918" target="_blank" rel="noopener noreferrer" className="tools-dropdown-link">
+                    <a href={TEXT_FX_URL} target="_blank" rel="noopener noreferrer" className="tools-dropdown-link">
                       <div className="tool-icon-wrap"><TextFXIcon /></div>
                       <div className="tool-info">
                         <span className="tool-title">Text FX</span>
@@ -231,41 +282,15 @@ const Header = () => {
                   </div>
                 )}
               </li>
-              <li className="nav-item">
-                <a
-                  href="/images/Kenenna_Anyaegbunam_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nav-link"
-                >
-                  My Resumé
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  href="mailto:akenenna@gmail.com"
-                  className="nav-link"
-                >
-                  Contact
-                </a>
-              </li>
             </ul>
           </nav>
           
           {/* Theme Toggle - Desktop only */}
-          <div className="sun-circle">
-            <button 
-                className="sun-circle" 
-                onClick={toggleTheme}
-                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
-                {theme === 'dark' ? (
-                <Sun size={24} weight="fill" color="#FCFCFC" />
-                ) : (
-                <Moon size={24} weight="fill" color="#232327" />
-                )}
-            </button>
-          </div>
+          <ThemeToggle
+            theme={theme}
+            onSelect={selectTheme}
+            className="theme-toggle--header"
+          />
           
           {/* Mobile Menu Button */}
           <button 
@@ -285,17 +310,11 @@ const Header = () => {
             <ul className="mobile-nav-list">
               {/* Theme Toggle in Mobile Menu */}
               <li className="mobile-nav-item">
-                <button 
-                  className="mobile-theme-toggle"
-                  onClick={toggleTheme}
-                  aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                >
-                  {theme === 'dark' ? (
-                    <Sun size={24} weight="fill" color="#FCFCFC" />
-                  ) : (
-                    <Moon size={24} weight="fill" color="#232327" />
-                  )}
-                </button>
+                <ThemeToggle
+                  theme={theme}
+                  onSelect={selectTheme}
+                  className="theme-toggle--mobile"
+                />
               </li>
               
               <li className="mobile-nav-item mobile-tools-item">
@@ -303,12 +322,15 @@ const Header = () => {
                   className="mobile-tools-trigger"
                   onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
                 >
-                  <span className="mobile-nav-link">Tools I've Shipped</span>
+                  <span className="mobile-nav-link">
+                    <span className="tools-trigger-emoji" aria-hidden="true">🚀</span>
+                    Live apps
+                  </span>
                   <CaretDown size={16} className={`tools-caret ${mobileToolsOpen ? 'tools-caret--open' : ''}`} />
                 </button>
                 {mobileToolsOpen && (
                   <div className="mobile-tools-list">
-                    <a href="#" className="mobile-tool-link" onClick={handleMenuClose}>
+                    <a href={TEXT_FX_URL} target="_blank" rel="noopener noreferrer" className="mobile-tool-link" onClick={handleMenuClose}>
                       <div className="tool-icon-wrap"><TextFXIcon /></div>
                       <div className="tool-info">
                         <span className="tool-title">Text FX</span>
@@ -327,29 +349,6 @@ const Header = () => {
                 )}
               </li>
 
-              <li className="mobile-nav-item">
-                <FilePdf size={32} className="mobile-icon" />
-                <a
-                  href="/images/Kenenna_Anyaegbunam_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mobile-nav-link"
-                  onClick={handleMenuClose}
-                >
-                  My Resumé
-                </a>
-              </li>
-              
-              <li className="mobile-nav-item">
-                <EnvelopeOpen size={32} className="mobile-icon" />
-                <a 
-                  href="mailto:akenenna@gmail.com"
-                  className="mobile-nav-link"
-                  onClick={handleMenuClose}
-                >
-                  Contact
-                </a>
-              </li>
             </ul>
           </div>
         </div>

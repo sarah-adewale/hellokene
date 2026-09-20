@@ -34,8 +34,7 @@
    rasterize content (including images) at low resolution, which made
    images look pixelated on high-DPI / mobile screens. */
 
-.hero-heading,
-.mobile-button,
+.hero-copy,
 .skill-icon,
 .profile-image,
 .profile-image-hover,
@@ -53,20 +52,6 @@
   will-change: opacity;
 }
 
-
-.skill-tooltip {
-
-  transform: translate3d(0, 0, 0) scale(0.8);
-  opacity: 0;
-  visibility: hidden;
-  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.skill-icon:hover .skill-tooltip {
-  transform: translate3d(0, 0, 0) scale(1);
-  opacity: 1;
-  visibility: visible;
-}
 
 /* Render images with the browser's default high-quality smoothing.
    (crisp-edges / optimize-contrast made scaled images, even SVGs
@@ -119,13 +104,6 @@ img {
   }
 }
 
-/* Optimize mobile button interactions */
-.mobile-button {
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  /* Prevent layout shifts */
-  will-change: background-color, color, border-color;
-}
-
 /* Add smooth scrolling optimization */
 html {
   scroll-behavior: smooth;
@@ -155,7 +133,7 @@ html {
 }
 
 /* Optimize text rendering */
-/* .hero-heading,
+/* .hero-copy,
 .key-prompt,
 .mobile-text {
   text-rendering: optimizeLegibility;
@@ -204,20 +182,29 @@ html {
   /* min-height: 100vh; */
 }
 
+/* The header is a bottom bar on mobile, so the hero needs far less top room.
+   This has to come after the base rule above to win. */
+@media (max-width: 767px) {
+  .home-container {
+    padding-top: 32px;
+  }
+}
+
 .hero-section {
   display: flex;
   flex-direction: column;
   padding: 0 20px;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 @media (min-width: 768px) {
   .hero-section {
     flex-direction: row;
     padding: 0 48px;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    margin-top: 80px;
+    margin-top: 24px;
+    margin-bottom: 34px;
   }
 }
 
@@ -239,147 +226,99 @@ html {
   min-height: auto;
 }
 
-/* Mobile-only profile avatar above the hero text (tap to toggle photo) */
-.mobile-hero-avatar {
-  display: block;
-  width: 150px;
-  height: 150px;
-  margin: 0 auto 32px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.mobile-hero-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
+@media (min-width: 1024px) {
+  .hero-content {
+    max-width: 560px;
+  }
 }
 
 @media (min-width: 768px) {
   .hero-content {
     width: 50%;
     max-width: 600px;
-    height: 450px; /* Keep fixed height only on desktop */
   }
 }
 
-.hero-heading {
-  font-weight: 500;
-  line-height: 1.3;
-  margin-bottom: 24px; /* Reduced from 42px */
+.hero-copy {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 24px;
   color: var(--text-color);
   /* Add smooth transition for content changes */
   transition: all 0.3s ease;
 }
 
+.hero-copy p,
+.hero-lede {
+  margin: 0 0 24px;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.hero-copy > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Underlined references inside the hero copy. Renders as a plain <span>
+   until a URL is filled in on HERO_LINKS, so there are never dead links. */
+.hero-link {
+  color: inherit;
+  /* custom.css sets a global * { font-size: 62.2% }, so nested inline
+     elements shrink unless they explicitly inherit. */
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a.hero-link:hover {
+  opacity: 0.75;
+}
+
 @media (max-width: 767px) {
-  .hero-heading {
-    text-align: center;
-    font-size: 24px; /* Reduced from 28px */
-    line-height: 1.3;
-    margin-bottom: 16px; /* Reduced spacing */
+  .hero-copy {
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 16px;
     padding: 0 10px; /* Add padding to prevent text touching edges */
   }
-  
-  /* Specific styling for different content types on mobile */
-  .hero-heading.experience {
-    font-size: 20px; /* Smaller for longer text */
-    line-height: 1.4;
-    margin-bottom: 12px;
-  }
-  
-  .hero-heading.skills {
-    font-size: 20px; /* Smaller for longer text */
-    line-height: 1.4;
-    margin-bottom: 12px;
-  }
-}
 
-.hero-content > .experience, .hero-content > .skills{
-  font-size: 24px;
-  line-height: 36px;
-}
-
-@media (max-width: 767px) {
-  .hero-content > .experience, .hero-content > .skills {
-    font-size: 20px;
-    line-height: 1.4;
-  }
-}
-
-.experience-second-section{
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--tertiary-text);
-  margin-top: 16px;
-}
-
-@media (max-width: 767px) {
-  .experience-second-section {
-    font-size: 14px;
-    line-height: 1.4;
-    text-align: center;
-    margin-top: 12px;
-    padding: 0 10px;
-  }
-}
-
-.pivo-seed-link{
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  background: linear-gradient(90deg, #654EA3 0%, #EAAFC8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-@media (max-width: 767px) {
-  .pivo-seed-link {
-    font-size: 14px;
-  }
-}
-
-.pivo-seed-year{
-  font-size: 14px;
-  color: var(--tertiary-text);
-}
-
-@media (max-width: 767px) {
-  .pivo-seed-year {
-    font-size: 12px;
+  .hero-copy p,
+  .hero-lede {
+    margin-bottom: 16px;
   }
 }
 
 @media (min-width: 768px) {
-  .hero-heading {
-    font-size: 36px;
+  .hero-copy {
+    font-size: 22px;
   }
 }
 
 @media (min-width: 1024px) {
-  .hero-heading {
-    font-size: 42px;
+  .hero-copy {
+    font-size: 24px;
   }
 }
 
 .key-prompt {
-  margin-top: 20px;
+  margin-top: 16px;
   margin-bottom: 24px;
-  font-size: 24px;
-  color: var(--key-prompt-text);
-  line-height: 1.8;
+  font-size: 18px;
+  color: var(--tertiary-text);
+  line-height: 1.6;
+}
+
+/* custom.css sets a global * { font-size: 62.2% }, so the paragraph has to
+   inherit explicitly or it renders at ~62% of the size above. */
+.key-prompt p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .key-highlight {
@@ -388,62 +327,95 @@ html {
   justify-content: center;
   width: 24px;
   height: 24px;
-  background-color: var(--key-prompt-button-background);
-  color: var(--key-prompt-button-text);
-  border-radius: 4px;
-  margin: 10px 4px;
-  font-size: 16px;
-}
-
-/* Mobile buttons styling - FIXED */
-.mobile-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px; /* Reduced from 30px */
-  margin-bottom: 20px; /* Reduced from 40px */
-}
-
-.mobile-text {
-  font-size: 16px; /* Reduced from 18px */
-  color: var(--tertiary-text);
-  margin-bottom: 12px; /* Reduced from 16px */
-  text-align: center;
-}
-
-.mobile-button-container {
-  display: flex;
-  gap: 12px; /* Reduced from 16px */
-  justify-content: center;
-  flex-wrap: wrap; /* Allow wrapping if needed */
-  margin-top: 30px;
-}
-
-.mobile-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px; /* Reduced from 8px */
-  background-color: var(--bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: 50px;
-  padding: 10px 20px; /* Reduced from 12px 24px */
-  font-size: 14px; /* Reduced from 16px */
-  color: var(--tertiary-text);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.mobile-button svg {
-  width: 14px; /* Reduced from 16px */
-  height: 14px;
-}
-
-.mobile-button.active {
   background-color: var(--card-bg);
   color: var(--text-color);
-  border-color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin: 0 4px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* Contact actions under the hero copy */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a.hero-cta:hover {
+  opacity: 0.85;
+}
+
+.hero-cta--primary {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+.hero-cta--secondary {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.hero-social {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.hero-social:hover {
+  opacity: 0.75;
+}
+
+.hero-social img {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .hero-actions {
+    justify-content: flex-start;
+  }
+
+  /* The tap chips inherit this, so the whole line scales together. */
+  .key-prompt {
+    font-size: 14px;
+  }
+}
+
+/* Tap target used on mobile in place of the desktop keyboard chips */
+.tap-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tap-chip:active {
+  opacity: 0.7;
 }
 
 .hero-description {
@@ -487,7 +459,8 @@ html {
 @media (min-width: 768px) {
   .profile-container {
     width: 40%;
-    margin-top: 0;
+    /* Enough headroom for the Rive tooltip, which opens upward. */
+    margin-top: 40px;
     align-items: flex-end;
     display: flex;
   }
@@ -566,20 +539,19 @@ html {
 /* Skill icons positioning */
 .skill-icon {
   position: absolute;
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-color);
-  transition: all 0.3s ease;
+  background-color: transparent;
   cursor: pointer;
   z-index: 5;
 }
 
 /* Individual z-index values to create proper stacking context */
-.ae-icon {
+.rive-icon {
   z-index: 6;
 }
 
@@ -595,40 +567,20 @@ html {
   z-index: 5;
 }
 
-/* When hovered, bring icon to front */
+/* When hovered, bring the icon and its tooltip above the others */
 .skill-icon:hover {
-  z-index: 50 !important;
-  transform: scale(1.1);
+  z-index: 50;
 }
 
+/* Each SVG already draws its own circular badge, so render at native size */
 .skill-icon img {
-  width: 24px;
-  height: 24px;
-  transition: all 0.3s ease;
-}
-
-.skill-icon:hover {
-  transform: scale(1.1);
-}
-
-.ps-icon:hover {
-  background-color: #001E36;
-}
-
-.ae-icon:hover{
-  background: linear-gradient(180deg, #3B3A42 0%, #28252E 100%);
-}
-
-.ai-icon:hover{
-  background-color: #330000;
-}
-
-.figma-icon:hover{
-  background-color: #2C2F42
+  width: auto;
+  height: auto;
+  max-width: none;
 }
 
 /* Position the skill icons properly around the profile image */
-.ae-icon {
+.rive-icon {
   top: -10px;
   left: 6px;
 }
@@ -649,7 +601,7 @@ html {
 }
 
 @media (min-width: 768px) {
-  .ae-icon {
+  .rive-icon {
     top: -10px;
     left: 30px;
   }
@@ -672,19 +624,30 @@ html {
 
 .skill-tooltip {
   position: absolute;
-  background-color: #0B0A0F;
-  color: #FCFCFC;
-  padding: 16px;
-  border-radius: 8px;
-  width: 260px;
-  font-size: 14px;
-  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px 6px 6px;
+  background-color: #2F6BED;
+  color: #FFFFFF;
+  border-radius: 10px;
+  font-size: 15px;
+  line-height: 1.3;
+  white-space: nowrap;
   z-index: 100;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   pointer-events: none;
+}
+
+.skill-tooltip-thumb {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background-color: #E9E9EB;
 }
 
 .skill-icon:hover .skill-tooltip {
@@ -692,115 +655,26 @@ html {
   visibility: visible;
 }
 
-.skill-tooltip.mobile-visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Tooltip positioning */
-.ae-tooltip {
-  top: -10px;
-  left: 70px;
+/* Tooltip positioning - one rule per icon, matching the design frames */
+.rive-tooltip {
+  bottom: calc(100% + 14px);
+  right: 0;
 }
 
 .ai-tooltip {
-  top: -10px;
-  right: 70px;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .figma-tooltip {
-  bottom: -10px;
-  left: 70px;
+  top: calc(100% + 14px);
+  right: 0;
 }
 
 .ps-tooltip {
-  bottom: -10px;
-  right: 70px;
-}
-
-@media (max-width: 767px) {
-  .skill-tooltip {
-    width: 200px;
-    font-size: 12px;
-  }
-  
-  .ae-tooltip, .figma-tooltip {
-    left: 60px;
-  }
-  
-  .ai-tooltip, .ps-tooltip {
-    right: 60px;
-  }
-}
-
-/* Live status indicator and company info */
-.status-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-  width: 100%;
-  margin-top: 50px;
-}
-
-@media (min-width: 768px) {
-  .status-container {
-    align-items: flex-end;
-  }
-}
-
-.live-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 8px;
-}
-
-.live-indicator {
-  width: 12px;
-  height: 12px;
-  background-color: #10B981;
-  border-radius: 50%;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-  }
-}
-
-.live-text {
-  font-size: 16px;
-  color: var(--tertiary-text);
-}
-
-.company-logo {
-  width: 100%;
-  max-width: 200px;
-  margin-top: 4px;
-}
-
-@media (max-width: 767px) {
-  .profile-container {
-    margin-top: 20px; /* Reduced from 40px */
-  }
-  
-  .status-container {
-    margin-top: 15px; /* Reduced from 20px */
-    align-items: center;
-  }
-
-  .experience-second-section {
-    text-align: center;
-  }
+  top: calc(100% + 14px);
+  right: 0;
 }
 
 /* Projects Section */
