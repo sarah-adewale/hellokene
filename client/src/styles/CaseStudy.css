@@ -402,6 +402,12 @@
     padding: 0;
   }
 
+  /* 0.622em here and on the rules below keeps text at the size it rendered at
+     under the old global `* { font-size: 62.2% }` rule (removed from custom.css) */
+  .impact-tag span {
+    font-size: 0.622em;
+  }
+
   .impact-tag.frustration, .impact-tag.confusion {
     color: var(--impact-tag-yellow);
   }
@@ -574,6 +580,10 @@
   
 .zoom-indicator-btn-text{
   color: #0B0A0F;
+}
+
+.zoom-indicator span {
+  font-size: 0.622em;
 }
 
   
@@ -1075,6 +1085,7 @@
   .features-role-text-list li{
     color: var(--text-color);
     font-weight: 400;
+    font-size: 0.622em;
   }
 /* Section */
 
@@ -1586,6 +1597,11 @@ flex-grow: 0;
 
 .prev-case-study-link:hover svg {
   transform: translateX(-4px);
+}
+
+.prev-case-study-link .desktop-text,
+.next-case-study-link .desktop-text {
+  font-size: 0.622em;
 }
 
 /* Next Case Study Link (Right) */

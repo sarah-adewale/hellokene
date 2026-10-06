@@ -59,7 +59,13 @@
     color: var(--tertiary-text);
     cursor: pointer;
   }
-  
+
+  /* 0.622em keeps the label at the size it rendered at under the old global
+     `* { font-size: 62.2% }` rule (removed from custom.css) */
+  .tab-button .category-label {
+    font-size: 0.622em;
+  }
+
   .tab-button:hover {
     color: var(--secondary-text);
   }
