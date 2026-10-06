@@ -10,7 +10,7 @@ const Overview = ({ project }) => {
       {/* Case Study Header */}
       <div className="case-study-header">
         <h1>{project.title}</h1>
-        <p className={`subtitle ${project.id === 'nutch' ? 'nutch-subtitle' : ''}`}>{project.description} </p>
+        <p className={`subtitle ${['nutch', '180by2'].includes(project.id) ? 'nutch-subtitle' : ''}`}>{project.description} </p>
         
         {/* Category Tags */}
         <div className="category-tags">
@@ -90,7 +90,7 @@ const Overview = ({ project }) => {
       </div>
 
       {/* Onboarding Process Visual */}
-      {project.id !== 'nutch' && (
+      {project.id !== 'nutch' && project.id !== '180by2' && (
       <div className="onboarding-process">
         {project.id === 'pivo' && (
 
@@ -132,6 +132,25 @@ const Overview = ({ project }) => {
             <img
               src="/images/nutch-banner.svg"
               alt="Nutch"
+              className="nutch-banner-img"
+            />
+          </div>
+        </>
+      )}
+
+      {/* 180by2 overview intro + banner. Reuses the nutch-* case study styles.
+          TODO: replace the placeholder copy and banner image. */}
+      {project.id === '180by2' && (
+        <>
+          <div className="overview-text nutch-overview-text">
+            <p>[Overview placeholder] What 180by2 is, who it serves, and the state of the shopping experience before this project.</p>
+            <p>[Overview placeholder] Your role, the team, and the goal: a UX campaign to generate over R300k in sales.</p>
+          </div>
+
+          <div className="nutch-banner">
+            <img
+              src="/images/180by2.svg"
+              alt="180by2 shopping experience"
               className="nutch-banner-img"
             />
           </div>

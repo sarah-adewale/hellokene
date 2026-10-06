@@ -16,7 +16,7 @@ const Results = ({ project }) => {
   };
 
   // Only show specific content for the Pivo project
-  if (project.id !== 'pivo' && project.id !== 'portfolio' && project.id !== 'nutch') {
+  if (project.id !== 'pivo' && project.id !== 'portfolio' && project.id !== 'nutch' && project.id !== '180by2') {
     return (
       <section className="case-study-section results">
         <h2>Results</h2>
@@ -412,6 +412,22 @@ const Results = ({ project }) => {
         </div>
 
         <p className="nutch-emphasis-light">Every decision balanced user experience, technical feasibility, and long-term scalability.</p>
+      </section>
+    )}
+    {/* TODO: replace the 180by2 placeholder copy and add result visuals */}
+    {project.id === '180by2' && (
+      <section className="case-study-section nutch-section">
+        <h2 className="nutch-h">What we changed</h2>
+        <p className="nutch-text">[Results placeholder] The key changes to the shopping experience, one card per change.</p>
+
+        <div className="nutch-card-grid nutch-card-grid--3">
+          <div className="nutch-card"><h3 className="nutch-card-title">[Change 1]</h3><p className="nutch-card-text">[What it was and why]</p></div>
+          <div className="nutch-card"><h3 className="nutch-card-title">[Change 2]</h3><p className="nutch-card-text">[What it was and why]</p></div>
+          <div className="nutch-card"><h3 className="nutch-card-title">[Change 3]</h3><p className="nutch-card-text">[What it was and why]</p></div>
+        </div>
+
+        <h2 className="nutch-h">Results</h2>
+        <p className="nutch-text">[Results placeholder] The outcome, including the R300k+ in sales and any other metrics.</p>
       </section>
     )}
     </>

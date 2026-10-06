@@ -14,7 +14,7 @@ const Conclusion = ({ project }) => {
   //   setModalImage(null);
   // };
   // Only show specific content for the Pivo project
-  if (project.id !== 'pivo' && project.id !== 'portfolio' && project.id !== 'nutch') {
+  if (project.id !== 'pivo' && project.id !== 'portfolio' && project.id !== 'nutch' && project.id !== '180by2') {
     return (
       <section className="case-study-section challenge">
         <h2>The Conclusion</h2>
@@ -110,6 +110,15 @@ const Conclusion = ({ project }) => {
           <p className="nutch-text">Instead of building another destination for AI, Nutch became an exploration into bringing AI to the place where work already happens.</p>
           <p className="nutch-text">Excited to put it in your hands in the coming months.</p>
           <p className="nutch-text">Till the next one 🥂</p>
+        </div>
+      </section>
+    )}
+    {/* TODO: replace the 180by2 placeholder copy */}
+    {project.id === '180by2' && (
+      <section className="case-study-section nutch-section nutch-conclusion">
+        <h2 className="nutch-h">Reflection</h2>
+        <div className="nutch-text-group">
+          <p className="nutch-text">[Conclusion placeholder] What you learned and what you'd do next.</p>
         </div>
       </section>
     )}

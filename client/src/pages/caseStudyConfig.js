@@ -1,11 +1,20 @@
 // src/config/caseStudyConfig.js
 const caseStudyConfig = {
+    '180by2': {
+      sections: ['Overview', 'Challenge', 'Results', 'Conclusion'],
+      showTeam: false,
+      showTimeline: false,
+      showNextProject: 'nutch',
+      nextProjectTitle: 'Nutch',
+    },
     'nutch': {
       sections: ['Overview', 'Challenge', 'Results', 'Conclusion'],
       showTeam: true,
       showTimeline: true,
       showNextProject: 'pivo',
       nextProjectTitle: 'Pivo',
+      showPreviousProject: '180by2',
+      previousProjectTitle: '180by2'
     },
     'pivo': {
       sections: ['Overview', 'Challenge', 'Solution', 'Results','Conclusion'],

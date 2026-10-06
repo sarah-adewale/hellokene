@@ -17,7 +17,7 @@ const Challenge = ({ project }) => {
   };
   
   // Only show specific content for the Pivo project
-  if (project.id !== 'pivo' && project.id !== 'portfolio' && project.id !== 'nutch') {
+  if (project.id !== 'pivo' && project.id !== 'portfolio' && project.id !== 'nutch' && project.id !== '180by2') {
     return (
       <section className="case-study-section challenge">
         <h2>The Challenge</h2>
@@ -524,6 +524,16 @@ const Challenge = ({ project }) => {
           <p className="nutch-emphasis nutch-emphasis--cursor">Better work starts with better context.</p>
           <p className="nutch-text">Instead of moving work to AI, bring AI to the work.</p>
           <p className="nutch-text">Everything that followed was measured against that idea.</p>
+        </div>
+      </section>
+    )}
+    {/* TODO: replace the 180by2 placeholder copy */}
+    {project.id === '180by2' && (
+      <section className="case-study-section nutch-section">
+        <h2 className="nutch-h">The Challenge</h2>
+        <div className="nutch-text-group">
+          <p className="nutch-text">[Challenge placeholder] What was getting in the way of sales: drop-off points, friction or gaps in the shopping journey.</p>
+          <p className="nutch-text">[Challenge placeholder] What the user feedback and analytics revealed.</p>
         </div>
       </section>
     )}
