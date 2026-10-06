@@ -1,9 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-import PortfolioPage from './pages/PortfolioPage';
 import { ThemeProvider } from './context/ThemeContext';
 import './index.css';
 import './styles/custom.css';
@@ -23,7 +22,8 @@ function App() {
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/portfolio" element={<PortfolioPage />} />
+              {/* The old portfolio listing page was removed; send old links home */}
+              <Route path="/portfolio" element={<Navigate to="/" replace />} />
               <Route path="/portfolio/:projectId" element={<CaseStudyPage />} />
               {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>

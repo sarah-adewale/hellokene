@@ -201,6 +201,9 @@
 
   .read-time-text{
 
+    /* Previously inherited from the deleted PortfolioCard.css; kept so the
+       icon-to-text spacing doesn't change */
+    margin-left: 6px;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;

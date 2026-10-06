@@ -41,10 +41,6 @@
     @apply border-[#E4F8E4] shadow-md;
   }
   
-  .section-container {
-    @apply px-4 md:px-8 lg:px-48 xl:px-52 2xl:px-60;
-  }
-  
   .nav-link {
     @apply text-base md:text-xl font-medium hover:text-text-primary transition-colors duration-200;
   }
@@ -73,13 +69,4 @@
   background-color: green;
   height: 1.2rem;
   width: 1.2rem;
-}
-
-/* For project list/grid view toggle */
-.projects.list-view {
-  @apply flex flex-col gap-6;
-}
-
-.projects:not(.list-view) {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-5;
 }
