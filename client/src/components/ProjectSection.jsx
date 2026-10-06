@@ -22,6 +22,103 @@ const ProjectShowcase = ({ showcase, title }) => (
   </div>
 );
 
+// sRGB channel (0-255) to linear light, per the WCAG luminance formula
+const toLinear = (c) => {
+  const v = c / 255;
+  return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+};
+
+// Share (0-1) of the pixels behind `el` in `img` that are near-white, using
+// WCAG relative luminance. Returns 0 if it can't be measured (some SVGs block
+// pixel reads), which keeps the default white button.
+const lightShareBehind = (img, el) => {
+  const ir = img.getBoundingClientRect();
+  const er = el.getBoundingClientRect();
+  if (!ir.width || !er.width || !img.naturalWidth) return 0;
+  const sx = img.naturalWidth / ir.width;
+  const sy = img.naturalHeight / ir.height;
+  const canvas = document.createElement('canvas');
+  canvas.width = 32;
+  canvas.height = 8;
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  try {
+    ctx.drawImage(
+      img,
+      (er.left - ir.left) * sx, (er.top - ir.top) * sy, er.width * sx, er.height * sy,
+      0, 0, canvas.width, canvas.height,
+    );
+    const px = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    let light = 0;
+    for (let i = 0; i < px.length; i += 4) {
+      const luminance = 0.2126 * toLinear(px[i]) + 0.7152 * toLinear(px[i + 1]) + 0.0722 * toLinear(px[i + 2]);
+      if (luminance > 0.5) light += 1;
+    }
+    return light / (px.length / 4);
+  } catch {
+    return 0;
+  }
+};
+
+// A website screenshot with an "Open website" button. The button is white on
+// glass; when a noticeable part of the screenshot behind it is white (e.g. a
+// white website) it switches to its dark, frosted version. Colourful or dark
+// backgrounds keep the original. Rechecked on resize, since the button moves
+// to the bottom of the card on mobile.
+// Measured: dark and colourful sites have 0-2% near-white pixels behind the
+// button, white sites 30% and up.
+const WebsiteCard = ({ site }) => {
+  const imgRef = useRef(null);
+  const btnRef = useRef(null);
+  const [onLight, setOnLight] = useState(false);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    let frame;
+    const check = () => {
+      if (img.complete) setOnLight(lightShareBehind(img, btnRef.current) > 0.15);
+    };
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(check);
+    };
+    img.addEventListener('load', schedule);
+    window.addEventListener('resize', schedule, { passive: true });
+    schedule();
+    return () => {
+      cancelAnimationFrame(frame);
+      img.removeEventListener('load', schedule);
+      window.removeEventListener('resize', schedule);
+    };
+  }, []);
+
+  return (
+    <div className="website-card">
+      <picture>
+        {site.mobileImageUrl && (
+          <source media="(max-width: 767px)" srcSet={site.mobileImageUrl} />
+        )}
+        <img ref={imgRef} src={site.imageUrl} alt={site.title} className="website-card-img" />
+      </picture>
+      <a
+        ref={btnRef}
+        href={site.projectUrl || undefined}
+        target={site.projectUrl ? '_blank' : undefined}
+        rel={site.projectUrl ? 'noopener noreferrer' : undefined}
+        className={`view-prototype-btn ${onLight ? 'view-prototype-btn--on-light' : ''}`}
+        onClick={(e) => { if (!site.projectUrl) e.preventDefault(); e.stopPropagation(); }}
+      >
+        Open website
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 4.5H19.5V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M14.25 9.75L19.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M9 19.5H4.5V15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M9.75 14.25L4.5 19.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  );
+};
+
 const ProjectsSection = () => {
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
@@ -297,29 +394,7 @@ const renderWebsites = () => {
   return (
     <div className="websites-grid">
       {filteredProjects.map((site) => (
-        <div key={site.id} className="website-card">
-          <picture>
-            {site.mobileImageUrl && (
-              <source media="(max-width: 767px)" srcSet={site.mobileImageUrl} />
-            )}
-            <img src={site.imageUrl} alt={site.title} className="website-card-img" />
-          </picture>
-          <a
-            href={site.projectUrl || undefined}
-            target={site.projectUrl ? '_blank' : undefined}
-            rel={site.projectUrl ? 'noopener noreferrer' : undefined}
-            className="view-prototype-btn"
-            onClick={(e) => { if (!site.projectUrl) e.preventDefault(); e.stopPropagation(); }}
-          >
-            Open website
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 4.5H19.5V9" stroke="#FCFCFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M14.25 9.75L19.5 4.5" stroke="#FCFCFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M9 19.5H4.5V15" stroke="#FCFCFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M9.75 14.25L4.5 19.5" stroke="#FCFCFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
-        </div>
+        <WebsiteCard key={site.id} site={site} />
       ))}
     </div>
   );

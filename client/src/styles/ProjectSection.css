@@ -698,6 +698,16 @@
   opacity: 1;
 }
 
+/* Same button, dark, for when the screenshot behind it is light (set by
+   WebsiteCard after measuring the pixels under the button). The frosted
+   fill keeps the text readable where the background is mixed, e.g. a white
+   page next to a dark device frame. */
+.view-prototype-btn--on-light {
+  color: #0B0A0F;
+  border-color: rgba(11, 10, 15, 0.7);
+  background: rgba(252, 252, 252, 0.6);
+}
+
 /* Mobile: always-visible "Open website" button, centered at the bottom */
 @media (max-width: 767px) {
   .view-prototype-btn {
