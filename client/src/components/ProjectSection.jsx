@@ -217,10 +217,7 @@ const renderHighlights = () => {
   return (
     <div className="project-rows">
       {visible.map((project) => (
-        <article
-          key={project.id}
-          className={`project-row ${project.showcase ? 'project-row--showcase' : ''}`}
-        >
+        <article key={project.id} className="project-row">
           <div className="project-row-media">
             {project.showcase ? (
               <ProjectShowcase showcase={project.showcase} title={project.title} />

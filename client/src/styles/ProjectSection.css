@@ -220,10 +220,10 @@
     color: var(--text-color);
   }
 
-  /* Showcase rows drop the title to sit 29px below the top of the image,
-     as in the design. Only side by side; stacked rows already have a gap. */
+  /* The title sits 29px below the top of the image, as in the design.
+     Only side by side; stacked rows already have a gap. */
   @media (min-width: 901px) {
-    .project-row--showcase .project-row-title {
+    .project-row-title {
       margin-top: 22px;
     }
   }
