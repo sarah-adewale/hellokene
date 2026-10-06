@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import CredentialPopup from './CredentialPopup';
 import '../styles/ProjectSection.css';
 
 // The highlights tab opens with a short preview; the rest are behind a button.
@@ -18,7 +17,6 @@ const ProjectsSection = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [enlargedIllustration, setEnlargedIllustration] = useState(null);
-  const [credentialProject, setCredentialProject] = useState(null);
   const [showAllHighlights, setShowAllHighlights] = useState(false);
   
   const API_BASE_URL = '/api';
@@ -229,24 +227,14 @@ const renderHighlights = () => {
                 </Link>
               )}
               {project.projectUrl && (
-                project.requiresCredentials ? (
-                  <button
-                    type="button"
-                    className="project-cta project-cta--secondary"
-                    onClick={() => setCredentialProject(project)}
-                  >
-                    Visit website
-                  </button>
-                ) : (
-                  <a
-                    className="project-cta project-cta--secondary"
-                    href={project.projectUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Visit website
-                  </a>
-                )
+                <a
+                  className="project-cta project-cta--secondary"
+                  href={project.projectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit website
+                </a>
               )}
             </div>
           </div>
@@ -264,14 +252,6 @@ const renderHighlights = () => {
           </button>
         </div>
       )}
-
-      {/* Demo credentials for the projects that need a login */}
-      <CredentialPopup
-        isOpen={credentialProject !== null}
-        onClose={() => setCredentialProject(null)}
-        credentials={{ email: 'demo@test.com', password: 'demo123' }}
-        projectUrl={credentialProject?.projectUrl}
-      />
     </div>
   );
 };

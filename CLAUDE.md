@@ -31,8 +31,8 @@ client/src/
                         by the hero and footer
   config/articles.js    Medium articles shown in ArticleStack
   pages/                HomePage, CaseStudyPage, caseStudyConfig.js
-  components/           Header, Footer, ProjectSection, ArticleStack, CredentialPopup,
-                        ImageModal, ScrollToTop, and the case-study sections
+  components/           Header, Footer, ProjectSection, ArticleStack, ImageModal,
+                        ScrollToTop, and the case-study sections
   components/case-study/SectionRegistry.js   maps section name → component
   styles/               theme.css (shared colors) + one CSS file per component
 client/public/images/   all image assets, referenced as /images/<name>
@@ -71,10 +71,8 @@ button. Flags pick the homepage tab:
   the colour version cross-faded in on hover
 - `isIllustration: true` → **Illustrations** masonry tab with a full-screen viewer
 
-`requiresCredentials: true` makes "Visit website" open the demo-login popup
-(`CredentialPopup`) instead of linking straight out. `platforms: ["webapp","ios",
-"android","extension","website","ar/vr"]` renders small platform icons in the case-study
-header (`Overview.jsx`).
+`platforms: ["webapp","ios","android","extension","website","ar/vr"]` renders small
+platform icons in the case-study header (`Overview.jsx`).
 
 ## Case studies
 
