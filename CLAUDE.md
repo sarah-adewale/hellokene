@@ -71,6 +71,11 @@ button. Flags pick the homepage tab:
   the colour version cross-faded in on hover
 - `isIllustration: true` → **Illustrations** masonry tab with a full-screen viewer
 
+`showcase: { background, screen }` replaces a highlight's static image with a browser-window
+composition (`ProjectShowcase` in `ProjectSection.jsx`): `screen` framed as a window over
+`background`, sized in `cqw` so it scales with the card. Use animated WebP rather than GIF
+for these (180by2's went from 20MB of GIF to 5.4MB).
+
 `platforms: ["webapp","ios","android","extension","website","ar/vr"]` renders small
 platform icons in the case-study header (`Overview.jsx`).
 

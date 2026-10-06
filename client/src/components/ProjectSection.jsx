@@ -6,6 +6,22 @@ import '../styles/ProjectSection.css';
 // The highlights tab opens with a short preview; the rest are behind a button.
 const HIGHLIGHTS_PREVIEW_COUNT = 3;
 
+// A screen recording framed as a browser window over an animated background,
+// for projects with `showcase: { background, screen }` in their data.
+const ProjectShowcase = ({ showcase, title }) => (
+  <div className="showcase" role="img" aria-label={title}>
+    <img className="showcase-bg" src={showcase.background} alt="" loading="lazy" decoding="async" />
+    <div className="showcase-window">
+      <span className="showcase-dots" aria-hidden="true">
+        <span /><span /><span />
+      </span>
+      <div className="showcase-screen">
+        <img src={showcase.screen} alt="" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </div>
+);
+
 const ProjectsSection = () => {
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
@@ -203,12 +219,16 @@ const renderHighlights = () => {
       {visible.map((project) => (
         <article key={project.id} className="project-row">
           <div className="project-row-media">
-            <img
-              src={project.gridImageUrl || project.imageUrl}
-              alt={project.title}
-              loading="lazy"
-              decoding="async"
-            />
+            {project.showcase ? (
+              <ProjectShowcase showcase={project.showcase} title={project.title} />
+            ) : (
+              <img
+                src={project.gridImageUrl || project.imageUrl}
+                alt={project.title}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
           </div>
 
           <div className="project-row-body">

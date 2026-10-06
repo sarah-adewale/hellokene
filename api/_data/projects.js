@@ -12,6 +12,13 @@ const portfolioProjects = [
     category: ['E-commerce'],
     imageUrl: '/images/180by2.svg',
     gridImageUrl: '/images/180by2.svg',
+    // Homepage highlight: the screen recording framed as a browser window.
+    // Animated WebP converted from 180by2-shader.gif / colletions-menu.gif
+    // (5.4MB instead of 20MB, same frames and timing).
+    showcase: {
+      background: '/images/180by2-shader.webp',
+      screen: '/images/colletions-menu.webp',
+    },
     readTime: '5 min read',
     caseStudyUrl: '/portfolio/180by2',
     // TODO: live 180by2 URL - "Visit website" only renders once this is set
