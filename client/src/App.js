@@ -24,6 +24,8 @@ function App() {
               <Route path="/" element={<HomePage />} />
               {/* The old portfolio listing page was removed; send old links home */}
               <Route path="/portfolio" element={<Navigate to="/" replace />} />
+              {/* The Portfolio Refresh case study was removed */}
+              <Route path="/portfolio/portfolio" element={<Navigate to="/" replace />} />
               <Route path="/portfolio/:projectId" element={<CaseStudyPage />} />
               {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
