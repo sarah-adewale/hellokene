@@ -503,6 +503,15 @@ body.menu-open {
   background: var(--tool-hover);
 }
 
+/* Upcoming tools aren't links, so no hover highlight */
+.tools-dropdown-link--disabled {
+  cursor: default;
+}
+
+.tools-dropdown-link--disabled:hover {
+  background: none;
+}
+
 .tool-icon-wrap {
   flex-shrink: 0;
   display: flex;

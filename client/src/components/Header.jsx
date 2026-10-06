@@ -271,14 +271,15 @@ const Header = () => {
                         <path d="M6 3L11 8L6 13" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </a>
-                    <a href="#" className="tools-dropdown-link">
+                    {/* Not launched yet, so not a link */}
+                    <div className="tools-dropdown-link tools-dropdown-link--disabled" aria-disabled="true">
                       <div className="tool-icon-wrap"><NutchAIIcon /></div>
                       <div className="tool-info">
                         <span className="tool-title">Nutch AI</span>
                         <span className="tool-subtitle">Enhance your browsing experience<br />with AI that follows you around</span>
                       </div>
                       <span className="coming-soon-badge">Coming Soon</span>
-                    </a>
+                    </div>
                   </div>
                 )}
               </li>
@@ -337,14 +338,14 @@ const Header = () => {
                         <span className="tool-subtitle">Turn Figma text into animated<br />components or export as JSON</span>
                       </div>
                     </a>
-                    <a href="#" className="mobile-tool-link" onClick={handleMenuClose}>
+                    <div className="mobile-tool-link" aria-disabled="true">
                       <div className="tool-icon-wrap"><NutchAIIcon /></div>
                       <div className="tool-info">
                         <span className="tool-title">Nutch AI</span>
                         <span className="tool-subtitle">Enhance your browsing experience<br />with AI that follows you around</span>
                       </div>
                       <span className="coming-soon-badge">Coming Soon</span>
-                    </a>
+                    </div>
                   </div>
                 )}
               </li>
