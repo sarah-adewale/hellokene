@@ -1,28 +1,10 @@
 /* Theme-specific styles */
 [data-theme='light'] {
-  --bg-color: #FFFFFF;
-  --text-color: #0B0A0F;
-  --secondary-text: #333333;
-  --tertiary-text: #666666;
-  --card-bg: #F5F5F5;
-  --toggle-bg: #EEEEEE;
-  --toggle-icon: #0B0A0F;
-  --border-color: #DDDDDD;
-  --header-overlay: rgba(255, 255, 255, 0.3);
   --footer-bg-image: url('./light-net.png') no-repeat center center;
   --footer-bg-image-mobile: url('./light-net-mobile.png') no-repeat center center;
 }
 
 [data-theme='dark'] {
-  --bg-color: #0B0A0F;
-  --text-color: #FCFCFC;
-  --secondary-text: #CECECF;
-  --tertiary-text: #9D9D9F;
-  --card-bg: #232327;
-  --toggle-bg: #232327;
-  --toggle-icon: #FCFCFC;
-  --border-color: #3C3B3F;
-  --header-overlay: rgba(11, 10, 15, 0.3);
   --footer-bg-image: url('./dark-net.png') no-repeat center center;
   --footer-bg-image-mobile: url('./dark-net-mobile.png') no-repeat center center;
 }

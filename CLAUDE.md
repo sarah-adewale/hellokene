@@ -74,9 +74,13 @@ JSX block per project id. Only `pivo`, `portfolio`, and `nutch` have real conten
 
 ## Conventions
 
-- **Theming**: never hardcode a color. Each CSS file declares its own
-  `[data-theme='light']` / `[data-theme='dark']` variable block at the top; add new
-  variables to both. In JSX, read `const { theme } = useTheme()` and swap image sources —
+- **Theming**: never hardcode a color. Shared colors (`--bg-color`, `--text-color`,
+  `--secondary-text`, `--tertiary-text`, `--border-color`, …) are defined once in
+  `client/src/styles/theme.css`. A color used by only one component goes in that
+  component's own `[data-theme='light']` / `[data-theme='dark']` blocks under a
+  component-specific name. Never redefine a shared variable in a component file: every
+  stylesheet is global, so the last one loaded would win site-wide. Add new variables
+  to both themes. In JSX, read `const { theme } = useTheme()` and swap image sources —
   the established pattern is a `-white` suffix for the light-mode asset.
 - **Images**: always reference as `/images/foo.svg` (leading slash). `HomePage.jsx` still
   has some `./images/...` that only work because that page sits at `/`; don't copy it.

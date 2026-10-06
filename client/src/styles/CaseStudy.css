@@ -2,31 +2,21 @@
 
 /* Theme-specific styles */
 [data-theme='light'] {
-    --bg-color: #fcfcfc;
-    --text-color: #0B0A0F;
-    --secondary-text: #232327;
-    --tertiary-text: #9D9D9F;
     --back-btn: #6D6C6F;
     --platform-icon-color: #232327;
     --impact-tag-red: #F96167;
     --impact-tag-yellow: #CABF60;
     --zoom-indicator-hover: rgba(255, 255, 255, 0.8);
     --setout-text: #E7E7E7;
-    --border-color: #E7E7E7;
   }
   
   [data-theme='dark'] {
-    --bg-color: #0B0A0F;
-    --text-color: #FCFCFC;
-    --secondary-text: #E7E7E7;
-    --tertiary-text: #6D6C6F;
     --back-btn: #6D6C6F;
     --platform-icon-color: #E7E7E7;
     --impact-tag-red: #F96167;
     --impact-tag-yellow:#FDEF78;
     --zoom-indicator-hover: rgba(0, 0, 0, 0.8);
     --setout-text: #232327;
-    --border-color: #232327
   }
   
   body{

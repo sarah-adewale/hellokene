@@ -1,33 +1,9 @@
 /* Theme-specific styles */
 [data-theme='light'] {
-    --bg-color: #FFFFFF;
-    --text-color: #0B0A0F;
-    --secondary-text: #333333;
-    --tertiary-text: #666666;
-    --card-bg: #F5F5F5;
-    --toggle-bg: #EEEEEE;
-    --toggle-icon: #0B0A0F;
-    --border-color: #DDDDDD;
-    --header-overlay: rgba(255, 255, 255, 0.3);
-    --key-prompt-text: #3C3B3F;
-    --key-prompt-button-background: #6D6C6F;
-    --key-prompt-button-text: #FCFCFC;
     --illustration-overlay-bg: rgba(255, 255, 255, 0.8);
   }
   
   [data-theme='dark'] {
-    --bg-color: #0B0A0F;
-    --text-color: #FCFCFC;
-    --secondary-text: #CECECF;
-    --tertiary-text: #9D9D9F;
-    --card-bg: #232327;
-    --toggle-bg: #232327;
-    --toggle-icon: #FCFCFC;
-    --border-color: #3C3B3F;
-    --header-overlay: rgba(11, 10, 15, 0.3);
-    --key-prompt-text: #FCFCFC;
-    --key-prompt-button-background: #FCFCFC;
-    --key-prompt-button-text: #0B0A0F;
     --illustration-overlay-bg: rgba(11, 10, 15, 0.8);
 
   }
