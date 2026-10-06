@@ -1,6 +1,5 @@
 server/
 config/
-cursor-agent.txt
 *.log
 node_modules
 .env.local
