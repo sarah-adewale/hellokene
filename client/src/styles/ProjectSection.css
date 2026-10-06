@@ -678,7 +678,7 @@
   align-items: center;
   gap: 8px;
   border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 4000px;
+  border-radius: 8px;
   padding: 10px 20px;
   font-size: 14px;
   font-family: 'Albert Sans', sans-serif;
