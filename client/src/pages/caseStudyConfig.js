@@ -6,8 +6,8 @@ const caseStudyConfig = {
       showTimeline: false,
       showNextProject: 'nutch',
       nextProjectTitle: 'Nutch',
-      showPreviousProject: 'portfolio',
-      previousProjectTitle: 'Portfolio'
+      showPreviousProject: 'pivo',
+      previousProjectTitle: 'Pivo'
     },
     'nutch': {
       sections: ['Overview', 'Challenge', 'Results', 'Conclusion'],
@@ -22,19 +22,10 @@ const caseStudyConfig = {
       sections: ['Overview', 'Challenge', 'Solution', 'Results','Conclusion'],
       showTeam: true,
       showTimeline: true,
-      showNextProject: 'portfolio',
-      nextProjectTitle: 'Portfolio',
-      showPreviousProject: 'nutch',
-      previousProjectTitle: 'Nutch'
-    },
-    'portfolio': {
-      sections: ['Overview', 'Challenge', 'Solution', 'Results','Conclusion'],
-      showTeam: true,
-      showTimeline: false,
       showNextProject: '180by2',
       nextProjectTitle: '180by2',
-      showPreviousProject: 'pivo',
-      previousProjectTitle: 'Pivo'
+      showPreviousProject: 'nutch',
+      previousProjectTitle: 'Nutch'
     },
 };
 

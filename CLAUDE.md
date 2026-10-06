@@ -81,12 +81,12 @@ header (`Overview.jsx`).
 `CaseStudyPage` fetches the project, then reads `client/src/pages/caseStudyConfig.js` for
 `sections[]`, `showNextProject`, and `showPreviousProject`. Each name in `sections` is
 looked up in `SectionRegistry`. The prev/next buttons form a loop:
-180by2 → nutch → pivo → portfolio → 180by2. Keep it closed when adding a case study.
+180by2 → nutch → pivo → 180by2. Keep it closed when adding or removing a case study.
 
 The section components (`Overview`, `Challenge`, `Solution`, `Results`, `Conclusion`) are
 each one large file structured as: a generic fallback for unknown ids, then a separate
 JSX block per project id. To add a case study, add its id to the fallback check at the
-top of each section it uses, then add its block. `pivo`, `portfolio`, and `nutch` have
+top of each section it uses, then add its block. `pivo` and `nutch` have
 real content; `180by2` is scaffolded with visible `[… placeholder]` copy and TODOs —
 don't deploy it until that's replaced. `nutch` and `180by2` share the `nutch-*` styles
 at the bottom of `CaseStudy.css`.
@@ -115,7 +115,7 @@ at the bottom of `CaseStudy.css`.
   generic class names (`.read-time`, `.platform-icon`, …) can collide across files.
   Prefer component-prefixed class names.
 - A few `font-size: 0.622em` rules (tab labels, case-study prev/next text, Pivo impact
-  tags, zoom labels, Portfolio KPI list) preserve sizes from a removed global
+  tags, zoom labels) preserve sizes from a removed global
   `* { font-size: 62.2% }` rule. They render smaller than their parent's declared size on
   purpose; delete the rule to use the parent's size.
 - Two image-sharpness fixes are already in place: a global `backface-visibility: hidden`
