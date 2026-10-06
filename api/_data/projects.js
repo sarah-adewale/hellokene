@@ -19,7 +19,7 @@ const portfolioProjects = [
       background: '/images/180by2-shader.webp',
       screen: '/images/colletions-menu.webp',
     },
-    readTime: '5 min read',
+    readTime: '7 min read',
     caseStudyUrl: '/portfolio/180by2',
     // TODO: live 180by2 URL - "Visit website" only renders once this is set
     projectUrl: '',

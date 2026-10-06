@@ -1,5 +1,15 @@
 import { useTheme } from "../context/ThemeContext";
 
+// Questions shoppers bring to unfamiliar tech, shown as chips in the 180by2 overview
+const CS180_QUESTIONS = [
+  ['🤔', 'Which camera is right for me?'],
+  ['🧐', "What's the difference between these models?"],
+  ['🤨', 'Will it work for what I want to do?'],
+  ['🥲', 'What accessories do I actually need?'],
+  ['😰', 'Can I trust this retailer?'],
+  ['🤕', 'What happens if I need support afterwards?'],
+];
+
 const Overview = ({ project }) => {
   const { theme } = useTheme();
     return(
@@ -128,23 +138,56 @@ const Overview = ({ project }) => {
         </>
       )}
 
-      {/* 180by2 overview intro + banner. Reuses the nutch-* case study styles.
-          TODO: replace the placeholder copy and banner image. */}
+      {/* 180by2 overview. Styles are the cs180-* block in CaseStudy.css. */}
       {project.id === '180by2' && (
-        <>
-          <div className="overview-text nutch-overview-text">
-            <p>[Overview placeholder] What 180by2 is, who it serves, and the state of the shopping experience before this project.</p>
-            <p>[Overview placeholder] Your role, the team, and the goal: a UX campaign to generate over R300k in sales.</p>
+        <section className="cs180">
+          <h2 className="cs180-h">Buying a VR headset isn't like buying headphones.</h2>
+          <p className="cs180-text">We're often ready to assume customers already know what they're looking for when they visit an online store.</p>
+          <p className="cs180-text">That assumption works when replacing a phone charger or buying a familiar product. It breaks down when someone is investing in a VR headset, a 360° camera, or equipment they've never owned before.</p>
+          <p className="cs180-text">Buying unfamiliar technology changes the way people shop.</p>
+          <p className="cs180-text">Customers aren't simply looking for products, they're trying to answer questions they haven't had to ask since buying their first smartphone.</p>
+
+          <ul className="cs180-questions">
+            {CS180_QUESTIONS.map(([emoji, question]) => (
+              <li key={question} className="cs180-question">
+                <span aria-hidden="true">{emoji}</span>
+                {question}
+              </li>
+            ))}
+          </ul>
+
+          <div className="cs180-pair">
+            <p className="cs180-text">Every unanswered question introduces uncertainty.</p>
+            <p className="cs180-text">And uncertainty is expensive.</p>
           </div>
 
-          <div className="nutch-banner">
-            <img
-              src="/images/180by2.svg"
-              alt="180by2 shopping experience"
-              className="nutch-banner-img"
-            />
+          <p className="cs180-text">Over three months, we rebuilt 180by2's buying journey around one principle:</p>
+          <blockquote className="cs180-quote">
+            Good e-commerce doesn't simply display inventory.<br />
+            It helps customers make confident decisions.
+          </blockquote>
+
+          <div className="cs180-figures">
+            <figure className="cs180-figure">
+              <img src="/images/180by2img1.svg" alt="A laptop showing a full shopping cart on an online store" />
+              <figcaption>
+                Customers <span className="cs180-accent cs180-accent--no">rarely</span> begin with a{' '}<br />
+                cart full of confident choices
+              </figcaption>
+            </figure>
+            <figure className="cs180-figure">
+              <img src="/images/180by2img2.svg" alt="Two people researching a VR headset with a video tutorial, notes and a phone" />
+              <figcaption>
+                In <span className="cs180-accent cs180-accent--yes">reality</span>, they begin with questions,{' '}<br />
+                comparisons, tutorials, and uncertainty.
+              </figcaption>
+            </figure>
           </div>
-        </>
+
+          <h2 className="cs180-h">The business</h2>
+          <p className="cs180-text">180by2 is a subsidiary of African Technopreneurs, focused on making immersive technology more accessible across South Africa. Its catalogue spans VR headsets, 360° cameras, action cameras, accessories and enterprise solutions, serving everyone from first-time buyers to creators and businesses adopting emerging technology.</p>
+          <p className="cs180-text">The business has become a top retailer of immersive technology in South Africa, drawing in qualified visitors and partners such as the NBA, RMB, and ABSA, along with collaborations with brands like Insta360 and Takealot.</p>
+        </section>
       )}
 
       {/* Overview Text */}
