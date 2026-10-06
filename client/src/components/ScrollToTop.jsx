@@ -48,13 +48,14 @@ function ScrollToTop() {
         background: 'transparent',
         border: 'none',
         cursor: 'pointer',
+        color: 'var(--text-color)',
       }}
     >
 
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42Z" stroke="#FCFCFC" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M17.6436 22.8563L23.9998 16.5L30.3561 22.8563" stroke="#FCFCFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M24 31.5V16.5" stroke="#FCFCFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42Z" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10"/>
+<path d="M17.6436 22.8563L23.9998 16.5L30.3561 22.8563" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M24 31.5V16.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 
 
