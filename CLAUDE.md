@@ -1,76 +1,95 @@
 # CLAUDE.md
 
-Kene's portfolio site. React 19 (CRA + CRACO) frontend, Tailwind + plain CSS, deployed to Vercel.
+Kene's portfolio site. React 19 (CRA + CRACO) frontend, plain CSS with a little Tailwind v3,
+deployed to Vercel.
 
 ## Commands
 
 ```bash
 npm run dev        # concurrently: Express on :4000 + CRA on :3000
-npm run client     # frontend only (CRA proxies /api → :4000)
+npm run client     # frontend only (CRA proxies /api → :4000; without the server the
+                   # homepage shows "Failed to fetch projects")
 npm run server     # Express only
 cd client && npm run build   # production build → client/build
 ```
 
-There are no tests (`client/src/App.test.js` is the untouched CRA stub).
+There are no tests.
 
 ## Architecture
 
 ```
-api/portfolio/       Vercel serverless functions — the PRODUCTION API
-  index.js           GET /api/portfolio
-  [id].js            GET /api/portfolio/:id
-server/              Express on :4000 — LOCAL DEV ONLY (.vercelignore excludes it)
-  server.js → routes/api.js → controllers/portfolio.js → data.js
+api/_data/projects.js   THE project data — the only copy (see Data model)
+api/portfolio/          Vercel serverless functions — the PRODUCTION API (CommonJS)
+  index.js              GET /api/portfolio
+  [id].js               GET /api/portfolio/:id
+server/                 Express on :4000 — LOCAL DEV ONLY (.vercelignore excludes it)
+  server.js → routes/api.js → controllers/portfolio.js → data.js (re-exports api/_data)
 client/src/
-  App.js             routes: / , /portfolio , /portfolio/:projectId
+  App.js                routes: / and /portfolio/:projectId (/portfolio redirects to /)
   context/ThemeContext.js    light/dark → localStorage + data-theme on <html>
-  pages/             HomePage, PortfolioPage, CaseStudyPage
-  components/        Header, Footer, ProjectSection, PortfolioCard, CredentialPopup,
-                     ImageModal, ScrollToTop, and the case-study sections
+  config/links.js       outbound URLs (email, LinkedIn, Medium, resume, Calendly), shared
+                        by the hero and footer
+  config/articles.js    Medium articles shown in ArticleStack
+  pages/                HomePage, CaseStudyPage, caseStudyConfig.js
+  components/           Header, Footer, ProjectSection, ArticleStack, CredentialPopup,
+                        ImageModal, ScrollToTop, and the case-study sections
   components/case-study/SectionRegistry.js   maps section name → component
-  styles/            one CSS file per component
+  styles/               theme.css (shared colors) + one CSS file per component
 client/public/images/   all image assets, referenced as /images/<name>
 ```
 
 `vercel.json` rewrites every non-`/api` path to `/index.html` for client-side routing.
 
+## Homepage
+
+- **Hero** (`HomePage.jsx`): "bio" and "experience" views. Desktop switches them with
+  keyboard shortcuts (E = experience, R = reset, K = open resume); under 768px tap chips
+  replace the shortcuts. Underlined names come from `HERO_LINKS`; an empty URL renders
+  plain underlined text instead of a dead link. The cover image flips on click; the four
+  floating tool icons come from `SKILL_TOOLS`. `ArticleStack` sits under the cover.
+- **Projects** (`ProjectSection.jsx`): four tabs, filtered by flags on each project (see
+  Data model). Highlights render as image + text rows, 3 shown then "Show more
+  highlights". Projects appear in the order they're listed in `api/_data/projects.js`.
+- **Header**: logo, "Tools I've Shipped" dropdown (Text FX link; Nutch AI is a
+  non-clickable "Coming Soon" item), and the moon/sun theme toggle. Mobile gets a
+  hamburger menu.
+
 ## Data model
+
+All project data lives in **`api/_data/projects.js`**. Both Vercel functions and the
+local Express server read it, so edit only that file. The leading underscore keeps
+Vercel from serving it as a route.
 
 Projects are plain objects with `id`, `title`, `subtitle`, `description`, `category[]`,
 `imageUrl`, `hoverImageUrl`, `gridImageUrl`, `readTime`, and either `caseStudyUrl`
-(internal) or `projectUrl` (external). Three boolean flags drive the homepage tabs:
+(internal) or `projectUrl` (external). An empty `projectUrl` hides the "Visit website"
+button. Flags pick the homepage tab:
 
-- neither flag → **Apps** tab
+- no flag → **Highlights** tab (rows)
 - `isWebsite: true` → **Websites** tab (uses `mobileImageUrl` under 768px)
-- `isIllustration: true` → **Illustrations** masonry tab
+- `isBrand: true` → **Logos** tab; `imageUrl` is the greyscale mark, `hoverImageUrl`
+  the colour version cross-faded in on hover
+- `isIllustration: true` → **Illustrations** masonry tab with a full-screen viewer
 
-`platforms: ["webapp","ios","android","extension","website","ar/vr"]` renders the small
-platform icons. `requiresCredentials` is informational; the demo-login popup is actually
-triggered by a hardcoded `project.id === 'laundrybasket'` check in `PortfolioCard.jsx`.
-
-### ⚠️ Project data is duplicated in three files
-
-Adding or editing a project means updating **all three**:
-
-1. `api/portfolio/index.js`   — most current (18 projects)
-2. `api/portfolio/[id].js`    — stale: missing the 4 website entries, still has the old
-                                `illustration1–6` titles
-3. `server/data.js`           — dev only; missing `smartpathways-website`
-
-Consolidating these into one shared module is the highest-value refactor available.
+`requiresCredentials: true` makes "Visit website" open the demo-login popup
+(`CredentialPopup`) instead of linking straight out. `platforms: ["webapp","ios",
+"android","extension","website","ar/vr"]` renders small platform icons in the case-study
+header (`Overview.jsx`).
 
 ## Case studies
 
-`CaseStudyPage` fetches the project, then reads **`client/src/pages/caseStudyConfig.js`**
-(note: `client/src/config/caseStudyConfig.js` is dead and out of date — ignore it) for
+`CaseStudyPage` fetches the project, then reads `client/src/pages/caseStudyConfig.js` for
 `sections[]`, `showNextProject`, and `showPreviousProject`. Each name in `sections` is
-looked up in `SectionRegistry`.
+looked up in `SectionRegistry`. The prev/next buttons form a loop:
+180by2 → nutch → pivo → portfolio → 180by2. Keep it closed when adding a case study.
 
 The section components (`Overview`, `Challenge`, `Solution`, `Results`, `Conclusion`) are
 each one large file structured as: a generic fallback for unknown ids, then a separate
-JSX block per project id. Only `pivo`, `portfolio`, and `nutch` have real content.
-`nutch` styles are namespaced `nutch-*` and live at the bottom of `CaseStudy.css`
-(from ~line 2134).
+JSX block per project id. To add a case study, add its id to the fallback check at the
+top of each section it uses, then add its block. `pivo`, `portfolio`, and `nutch` have
+real content; `180by2` is scaffolded with visible `[… placeholder]` copy and TODOs —
+don't deploy it until that's replaced. `nutch` and `180by2` share the `nutch-*` styles
+at the bottom of `CaseStudy.css`.
 
 ## Conventions
 
@@ -82,22 +101,25 @@ JSX block per project id. Only `pivo`, `portfolio`, and `nutch` have real conten
   stylesheet is global, so the last one loaded would win site-wide. Add new variables
   to both themes. In JSX, read `const { theme } = useTheme()` and swap image sources —
   the established pattern is a `-white` suffix for the light-mode asset.
-- **Images**: always reference as `/images/foo.svg` (leading slash). `HomePage.jsx` still
-  has some `./images/...` that only work because that page sits at `/`; don't copy it.
+- **Images**: always reference as `/images/foo.svg` (leading slash).
 - **Styling**: component CSS in `client/src/styles/<Component>.css`, imported by the
-  component. Tailwind utilities are available but only lightly used (mostly
-  `PortfolioPage.jsx` and the `index.css` `@layer` helpers).
+  component. Tailwind (v3) is barely used: the layout classes in `App.js` and the
+  `index.css` `@layer` helpers. `html` is `font-size: 62.5%`, so `1rem` = 10px.
 - **Mobile**: many components render separate desktop and mobile markup blocks toggled by
   CSS (`*-mobile` class names) rather than by one responsive layout. Follow whichever
   pattern the surrounding file already uses.
 
 ## Gotchas
 
-- Local dev and production read **different** data files, so a project can appear in one
-  and not the other.
-- `client/src/components/ProjectIcon.jsx` has no export and is imported nowhere — dead.
+- Every stylesheet is bundled globally regardless of which component imports it, so
+  generic class names (`.read-time`, `.platform-icon`, …) can collide across files.
+  Prefer component-prefixed class names.
+- A few `font-size: 0.622em` rules (tab labels, case-study prev/next text, Pivo impact
+  tags, zoom labels, Portfolio KPI list) preserve sizes from a removed global
+  `* { font-size: 62.2% }` rule. They render smaller than their parent's declared size on
+  purpose; delete the rule to use the parent's size.
 - Two image-sharpness fixes are already in place: a global `backface-visibility: hidden`
   and `image-rendering: crisp-edges` were removed from `Home.css` because they forced 1x
   rasterization on retina screens. Don't reintroduce either.
+- Tailwind is pinned to v3 on purpose; the config and CSS use v3 syntax.
 - Vercel builds with `CI=false` so lint warnings don't fail the build.
-- `cursor-agent.txt` at the repo root is an unrelated leftover file.
