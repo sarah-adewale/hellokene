@@ -7,6 +7,4 @@ export const MEDIUM_URL = 'https://medium.com/@_Kenenna';
 export const RESUME_URL = '/images/Kenenna_Anyaegbunam_Resume.pdf';
 export const DEVELOPER_URL = 'https://sarah-adewale.netlify.app/';
 
-// TODO: scheduling link (Calendly/Cal.com). While empty, "Book a call" renders
-// without an href instead of linking somewhere wrong.
-export const BOOK_A_CALL_URL = '';
+export const BOOK_A_CALL_URL = 'https://calendly.com/akenenna/30min';

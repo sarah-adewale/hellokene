@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import '../styles/Home.css';
 import ProjectsSection from '../components/ProjectSection';
+import ArticleStack from '../components/ArticleStack';
 import { EMAIL_URL, LINKEDIN_URL, RESUME_URL, BOOK_A_CALL_URL } from '../config/links';
 
 
@@ -21,10 +22,10 @@ const HERO_LINKS = {
 // Tools that float around the cover image. `id` drives both the position
 // class and the tooltip class in Home.css.
 const SKILL_TOOLS = [
-  { id: 'rive',  name: 'Rive',              icon: '/images/rive-icon.svg',       blurb: 'Interactive animations with Rive' },
-  { id: 'ai',    name: 'Adobe Illustrator', icon: '/images/ilustrator-icon.svg', blurb: 'Scalable graphics with Illustrator' },
-  { id: 'figma', name: 'Figma',             icon: '/images/figma-icon.svg',      blurb: 'Design and prototyping with Figma' },
-  { id: 'ps',    name: 'Adobe Photoshop',   icon: '/images/photoshop-icon.svg',  blurb: 'High-impact visuals with Photoshop' },
+  { id: 'rive',  name: 'Rive',              icon: '/images/rive-icon.svg',       blurb: 'I use Rive to bring web animations to life' },
+  { id: 'ai',    name: 'Adobe Illustrator', icon: '/images/ilustrator-icon.svg', blurb: 'I use Illustrator to craft vector artwork' },
+  { id: 'figma', name: 'Figma',             icon: '/images/figma-icon.svg',      blurb: 'I use Figma to ideate and prototype products' },
+  { id: 'ps',    name: 'Adobe Photoshop',   icon: '/images/photoshop-icon.svg',  blurb: 'I use Photoshop for creative visual design' },
 ];
 
 const HeroLink = ({ href, children }) => (
@@ -36,6 +37,7 @@ const HeroLink = ({ href, children }) => (
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('bio');
   const [isMobile, setIsMobile] = useState(false);
+  const [coverFlipped, setCoverFlipped] = useState(false);
 
   // Check if device is mobile
   useEffect(() => {
@@ -234,9 +236,14 @@ const headingClass = useMemo(() => (
           
           {/* Right Column - Image and Skills */}
           <div className="profile-container">
-            <div className="profile-image-wrapper">
-              {/* Add profile image container with hover effect */}
-              <div className="profile-image-container">
+            <div className={`profile-image-wrapper ${coverFlipped ? 'is-flipped' : ''}`}>
+              {/* Hover previews the other image; clicking pins it. */}
+              <button
+                type="button"
+                className="profile-image-container"
+                onClick={() => setCoverFlipped((prev) => !prev)}
+                aria-label="Switch profile photo"
+              >
                 <img 
                   src="/images/new-cover-img.svg" 
                   alt="Kene" 
@@ -252,7 +259,7 @@ const headingClass = useMemo(() => (
                   loading="lazy"
                   decoding="async"
                 />
-              </div>
+              </button>
               
               {/* Skill Icons */}
               {SKILL_TOOLS.map((tool) => (
@@ -264,12 +271,13 @@ const headingClass = useMemo(() => (
                     decoding="async"
                   />
                   <span className={`skill-tooltip ${tool.id}-tooltip`}>
-                    <span className="skill-tooltip-thumb" aria-hidden="true" />
                     {tool.blurb}
                   </span>
                 </div>
               ))}
             </div>
+
+            <ArticleStack />
           </div>
         </section>
         

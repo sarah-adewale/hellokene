@@ -256,7 +256,7 @@ const Header = () => {
                   aria-expanded={toolsOpen}
                 >
                   <span className="tools-trigger-emoji" aria-hidden="true">🚀</span>
-                  Live apps
+                  Tools I've Shipped
                   <CaretDown size={14} className={`tools-caret ${toolsOpen ? 'tools-caret--open' : ''}`} />
                 </button>
                 {toolsOpen && (
@@ -324,7 +324,7 @@ const Header = () => {
                 >
                   <span className="mobile-nav-link">
                     <span className="tools-trigger-emoji" aria-hidden="true">🚀</span>
-                    Live apps
+                    Tools I've Shipped
                   </span>
                   <CaretDown size={16} className={`tools-caret ${mobileToolsOpen ? 'tools-caret--open' : ''}`} />
                 </button>

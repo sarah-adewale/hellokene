@@ -34,7 +34,7 @@
 
 /* Project section container */
 .projects-section {
-    padding: 30px 150px;
+    padding: 20px 150px;
     color: var(--text-color);
     font-family: 'Albert Sans', sans-serif;
   }
@@ -51,7 +51,7 @@
   /* Tabs container */
   .tabs-container {
     display: flex;
-    gap: 16px;
+    gap: 4px;
     overflow-x: auto;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
@@ -72,9 +72,9 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 20px;
+    padding: 8px 12px;
     border-radius: 100px;
-    font-size: 25px;
+    font-size: 25.5px;
     font-weight: 500;
     white-space: nowrap;
     transition: all 0.3s ease;
@@ -89,6 +89,7 @@
   }
   
   .tab-button.active {
+    padding: 8px 18px;
     color: var(--text-color);
     background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
                 linear-gradient(90deg, #654EA3 0%, #EAAFC8 100%) border-box;
@@ -106,65 +107,209 @@
     height: 18px;
   }
   
-  /* View mode toggle */
-  .view-mode-toggle {
+  /* Highlights: image on the left, details on the right */
+  .project-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 20px;
+  }
+
+  .project-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+    gap: 60px;
+    align-items: start;
+  }
+
+  .show-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .show-more-button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .show-more-button:hover {
+    opacity: 0.85;
+  }
+
+  .project-row-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .project-row-title {
+    margin: 0 0 12px;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text-color);
+  }
+
+  .project-row-subtitle {
+    margin: 0 0 12px;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--tertiary-text);
+  }
+
+  /* Gradients/Ultraviolet, same treatment as the hero links */
+  .project-row-readtime {
+    margin: 0 0 24px;
+    font-size: 16px;
+    line-height: 1.4;
+    background: linear-gradient(90deg, #654EA3 0%, #EAAFC8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .project-row-actions {
     display: flex;
     align-items: center;
-    gap: 4px;
-    /* background-color: var(--card-bg); */
-    border-radius: 100px;
-    padding: 4px;
-    /* border: 1px solid red; */
+    gap: 16px;
+    flex-wrap: wrap;
   }
-  
-  .toggle-button {
+
+  .project-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .project-cta:hover {
+    opacity: 0.85;
+  }
+
+  .project-cta--primary {
+    background-color: #FCFCFC;
+    color: #0B0A0F;
+  }
+
+  .project-cta--secondary {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+  }
+
+  [data-theme='light'] .project-cta--secondary {
+    background-color: #232327;
+    color: #FCFCFC;
+  }
+
+  @media (max-width: 900px) {
+    .project-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+  }
+
+  /* Brands: a wide, airy logo wall. Flex rather than grid so a short final
+     row centres itself the way the design shows. */
+  .brands-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .brand-item {
+    flex: 0 0 33.333%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 100px;
-    background-color: transparent;
-    border: none;
-    color: var(--tertiary-text);
-    cursor: pointer;
-    transition: all 0.3s ease;
+    min-height: 260px;
+    padding: 24px;
   }
-  
-  .toggle-button.active {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+
+  /* Every mark is exported on the same 360x240 canvas, so one width keeps
+     them all optically consistent. */
+  .brand-logo-stack {
+    position: relative;
+    display: block;
+    width: 320px;
+    max-width: 100%;
   }
-  
-  .toggle-divider {
-    width:.5px;
-    height: 24px;
-    background-color: var(--border-color);
+
+  .brand-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
   }
-  
-  .toggle-icon {
-    width: 18px;
-    height: 18px;
+
+  .brand-logo--base {
+    opacity: 0.9;
   }
-  
-  /* Projects grid/list view */
-  .projects {
-    transition: height 0.4s ease, opacity 0.4s ease;
+
+  .brand-logo--hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
   }
-  
-  .projects.list-view {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-top: 30px;
+
+  .brand-item:hover .brand-logo--base {
+    opacity: 0;
   }
-  
-  .projects.grid-view {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 40px 24px; /* Increase vertical gap for better separation */
+
+  .brand-item:hover .brand-logo--hover {
     opacity: 1;
-    animation: fadeIn 0.4s ease;
+  }
+
+  /* The base marks are greyscale light-on-dark, so they need inverting to
+     read on a light background. The hover marks carry real brand colour, so
+     inverting those would corrupt them - light mode keeps the base instead. */
+  [data-theme='light'] .brand-logo--base {
+    filter: invert(1);
+  }
+
+  [data-theme='light'] .brand-logo--hover {
+    display: none;
+  }
+
+  [data-theme='light'] .brand-item:hover .brand-logo--base {
+    opacity: 1;
+  }
+
+  @media (max-width: 900px) {
+    .brand-item {
+      flex-basis: 50%;
+      min-height: 200px;
+    }
+
+    .brand-logo-stack {
+      width: 260px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .brand-item {
+      flex-basis: 100%;
+      min-height: 150px;
+    }
   }
 
   /* Enhanced Masonry layout for illustrations */
@@ -174,7 +319,8 @@
   grid-auto-rows: 250px;
   grid-auto-flow: dense;
   gap: 20px;
-  padding: 20px 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .illustration-item {
@@ -423,7 +569,7 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 100%;
 }
 
@@ -507,7 +653,7 @@
   /* Mobile styles */
   @media (max-width: 768px) {
     .projects-section {
-      padding: 30px 20px;
+      padding: 20px 20px;
     }
     
     .section-title {
@@ -527,26 +673,8 @@
       -webkit-overflow-scrolling: touch;
     }
     
-    .view-mode-toggle {
-      align-self: flex-end;
-      display: none;
-    }
   }
   
-  /* Tablet and desktop grid */
-  @media (min-width: 768px) {
-    .projects.grid-view {
-      grid-template-columns: repeat(2, 1fr);
-      margin-top: 30px
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .projects.grid-view {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
   
   
   /* Custom gradient border animation for active tabs */

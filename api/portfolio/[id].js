@@ -1,6 +1,20 @@
 // Portfolio data embedded directly for Vercel serverless function
 const portfolioProjects = [
   {
+    id: '180by2',
+    title: '180by2 shopping experience',
+    subtitle: 'A UX campaign to generate over R300k in sales, leveraging user feedback and analytics',
+    description: 'A UX campaign to generate over R300k in sales, leveraging user feedback and analytics',
+    category: ['E-commerce'],
+    imageUrl: '/images/180by2.svg',
+    gridImageUrl: '/images/180by2.svg',
+    readTime: '5 min read',
+    caseStudyUrl: '/portfolio/180by2',
+    // TODO: live 180by2 URL - "Visit website" only renders once this is set
+    projectUrl: '',
+    platforms: ["webapp"],
+  },
+  {
     id: 'nutch',
     title: 'Building Nutch',
     subtitle: 'Designing an AI-native workflow from first principles.',

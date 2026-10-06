@@ -1,28 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import PortfolioCard from '../components/PortfolioCard';
+import { Link } from 'react-router-dom';
+import CredentialPopup from './CredentialPopup';
 import '../styles/ProjectSection.css';
+
+// The highlights tab opens with a short preview; the rest are behind a button.
+const HIGHLIGHTS_PREVIEW_COUNT = 3;
 
 const ProjectsSection = () => {
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('apps');
-  const [viewMode, setViewMode] = useState('list'); // 'list' or 'grid'
+  const [activeCategory, setActiveCategory] = useState('highlights');
   const tabsContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [enlargedIllustration, setEnlargedIllustration] = useState(null);
+  const [credentialProject, setCredentialProject] = useState(null);
+  const [showAllHighlights, setShowAllHighlights] = useState(false);
   
   const API_BASE_URL = '/api';
   
   // Categories for the tabs
   const categories = [
-    { id: 'apps', label: 'Apps', icon: 'apps-icon' },
-    { id: 'websites', label: 'Websites', icon: 'websites-icon' },
-    { id: 'illustrations', label: 'Illustrations', icon: 'illustrations-icon' },
+    { id: 'highlights', label: 'Highlights', icon: '✨' },
+    { id: 'websites', label: 'Websites', icon: '🖥️' },
+    { id: 'brands', label: 'Logos', icon: '🎭' },
+    { id: 'illustrations', label: 'Illustrations', icon: '🎨' },
   ];
   
   useEffect(() => {
@@ -36,7 +42,9 @@ const ProjectsSection = () => {
         const projectsData = response.data;
         
         setProjects(projectsData);
-        setFilteredProjects(projectsData.filter(project => !project.isIllustration && !project.isWebsite));
+        setFilteredProjects(projectsData.filter(project => (
+          !project.isIllustration && !project.isWebsite && !project.isBrand
+        )));
         setIsLoading(false);
       } catch (err) {
         console.error('Error fetching projects:', err);
@@ -300,20 +308,25 @@ const ProjectsSection = () => {
     ];
     
     setProjects(dummyProjects);
-    setFilteredProjects(dummyProjects.filter(project => !project.isIllustration && !project.isWebsite));
+    setFilteredProjects(dummyProjects.filter(project => (
+      !project.isIllustration && !project.isWebsite && !project.isBrand
+    )));
   };
   
   // Filter projects when category changes
   useEffect(() => {
-    if (activeCategory === 'apps') {
-      setFilteredProjects(projects.filter(project => !project.isIllustration && !project.isWebsite));
-      setViewMode('list');
+    setShowAllHighlights(false);
+
+    if (activeCategory === 'highlights') {
+      setFilteredProjects(projects.filter(project => (
+        !project.isIllustration && !project.isWebsite && !project.isBrand
+      )));
     } else if (activeCategory === 'websites') {
       setFilteredProjects(projects.filter(project => project.isWebsite));
-      setViewMode('websites');
+    } else if (activeCategory === 'brands') {
+      setFilteredProjects(projects.filter(project => project.isBrand));
     } else if (activeCategory === 'illustrations') {
       setFilteredProjects(projects.filter(project => project.isIllustration));
-      setViewMode('masonry');
     }
   }, [activeCategory, projects]);
 
@@ -368,18 +381,7 @@ const handleTouchEnd = () => {
   setIsDragging(false);
 };
   // Get the appropriate icon for each category
-  const getCategoryIcon = (categoryId, isActive) => {
-    switch(categoryId) {
-      case 'apps':
-        return <p className='emoji-icon'>📦</p>; 
-      case 'websites':
-        return <p className='emoji-icon'>🖥️</p>; 
-      case 'illustrations':
-        return <p className='emoji-icon'>🎨</p>;
-      default:
-        return null;
-    }
-  };
+
 
   // Render illustrations in masonry layout
   const openEnlargedView = (illustration) => {
@@ -407,6 +409,129 @@ useEffect(() => {
     window.removeEventListener('keydown', handleKeyDown);
   };
 }, [enlargedIllustration]);
+
+const renderBrands = () => {
+  return (
+    <div className="brands-grid">
+      {filteredProjects.map((brand) => {
+        // The base mark is greyscale; hovering cross-fades to the brand's
+        // colour version.
+        const logo = (
+          <span className="brand-logo-stack">
+            <img
+              className="brand-logo brand-logo--base"
+              src={brand.imageUrl}
+              alt={brand.title}
+              loading="lazy"
+              decoding="async"
+            />
+            {brand.hoverImageUrl && (
+              <img
+                className="brand-logo brand-logo--hover"
+                src={brand.hoverImageUrl}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+          </span>
+        );
+        return (
+          <div key={brand.id} className="brand-item">
+            {brand.projectUrl ? (
+              <a href={brand.projectUrl} target="_blank" rel="noopener noreferrer">
+                {logo}
+              </a>
+            ) : logo}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const renderHighlights = () => {
+  const visible = showAllHighlights
+    ? filteredProjects
+    : filteredProjects.slice(0, HIGHLIGHTS_PREVIEW_COUNT);
+  const hasMore = filteredProjects.length > visible.length;
+
+  return (
+    <div className="project-rows">
+      {visible.map((project) => (
+        <article key={project.id} className="project-row">
+          <div className="project-row-media">
+            <img
+              src={project.gridImageUrl || project.imageUrl}
+              alt={project.title}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div className="project-row-body">
+            <h3 className="project-row-title">{project.title}</h3>
+            {project.subtitle && (
+              <p className="project-row-subtitle">{project.subtitle}</p>
+            )}
+            {project.readTime && project.readTime !== '--' && (
+              <p className="project-row-readtime">{project.readTime}</p>
+            )}
+
+            <div className="project-row-actions">
+              {project.caseStudyUrl && (
+                <Link className="project-cta project-cta--primary" to={project.caseStudyUrl}>
+                  Read Case Study
+                </Link>
+              )}
+              {project.projectUrl && (
+                project.requiresCredentials ? (
+                  <button
+                    type="button"
+                    className="project-cta project-cta--secondary"
+                    onClick={() => setCredentialProject(project)}
+                  >
+                    Visit website
+                  </button>
+                ) : (
+                  <a
+                    className="project-cta project-cta--secondary"
+                    href={project.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit website
+                  </a>
+                )
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+
+      {hasMore && (
+        <div className="show-more-wrap">
+          <button
+            type="button"
+            className="show-more-button"
+            onClick={() => setShowAllHighlights(true)}
+          >
+            Show more highlights
+          </button>
+        </div>
+      )}
+
+      {/* Demo credentials for the projects that need a login */}
+      <CredentialPopup
+        isOpen={credentialProject !== null}
+        onClose={() => setCredentialProject(null)}
+        credentials={{ email: 'demo@test.com', password: 'demo123' }}
+        projectUrl={credentialProject?.projectUrl}
+      />
+    </div>
+  );
+};
 
 const renderWebsites = () => {
   return (
@@ -503,64 +628,15 @@ const renderIllustrations = () => {
               className={`tab-button ${activeCategory === category.id ? 'active' : ''}`}
               onClick={() => setActiveCategory(category.id)}
             >
-              {activeCategory === category.id && (
+              {activeCategory === category.id && category.icon && (
                 <span className="category-icon">
-                  {getCategoryIcon(category.id, true)}
+                  <span className="emoji-icon">{category.icon}</span>
                 </span>
               )}
               <span className="category-label">{category.label}</span>
             </button>
           ))}
         </div>
-        
-        {/* View mode toggle - hide for websites and illustrations */}
-        {activeCategory !== 'illustrations' && activeCategory !== 'websites' && (
-          <div className="view-mode-toggle">
-            <button 
-              className={`toggle-button ${viewMode === 'list' ? 'active' : ''}`}
-              onClick={() => setViewMode('list')}
-              aria-label="List view"
-            >
-              <svg 
-                className="toggle-icon" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2" 
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </button>
-            
-            <div className="toggle-divider"></div>
-            
-            <button 
-              className={`toggle-button ${viewMode === 'grid' ? 'active' : ''}`}
-              onClick={() => setViewMode('grid')}
-              aria-label="Grid view"
-            >
-              <svg 
-                className="toggle-icon" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2" 
-                  d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        )}
       </div>
       
       {isLoading ? (
@@ -604,20 +680,10 @@ const renderIllustrations = () => {
         renderIllustrations()
       ) : activeCategory === 'websites' ? (
         renderWebsites()
+      ) : activeCategory === 'brands' ? (
+        renderBrands()
       ) : (
-        // Render regular projects list/grid view
-        <div 
-          className={`projects ${viewMode === 'list' ? 'list-view' : 'grid-view'}`}
-          key={viewMode} // Force re-render on view mode change for smoother animation
-        >
-          {filteredProjects.map((project) => (
-            <PortfolioCard 
-              key={`${project.id}-${viewMode}`} // Unique key based on both project and view mode
-              project={project} 
-              viewMode={viewMode}
-            />
-          ))}
-        </div> 
+        renderHighlights()
       )}
     </section>
   );

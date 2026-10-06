@@ -1,0 +1,184 @@
+/* Stacked Medium articles under the cover image.
+   Resting state: one card with two layers peeking above it.
+   Hover: the layers drop away and prev/next arrows appear either side. */
+
+/* One easing for every part of the hover so the card, layers and arrows
+   settle together. */
+.article-stack {
+  --article-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Slight overshoot, used only on the way in */
+  --article-bounce: cubic-bezier(0.34, 1.46, 0.64, 1);
+  --article-duration: 0.45s;
+  --article-duration-in: 0.5s;
+  position: relative;
+  width: 100%;
+  max-width: 368px;
+  margin-top: 64px;
+  align-self: flex-end;
+}
+
+/* The column right-aligns its children, but the design centres the card on
+   the 270px photo - so pull it right by half the width difference. Only
+   where there's room for the card and its arrows to overhang. */
+@media (min-width: 1024px) {
+  .article-stack {
+    margin-right: calc((368px - 270px) / -2);
+  }
+}
+
+.article-stack-layer {
+  position: absolute;
+  left: 50%;
+  border-radius: 12px;
+  background-color: var(--card-bg);
+  transition: opacity var(--article-duration) var(--article-ease),
+              transform var(--article-duration) var(--article-ease);
+}
+
+.article-stack-layer--mid {
+  top: -10px;
+  width: calc(100% - 28px);
+  height: 26px;
+  transform: translateX(-50%);
+  opacity: 0.85;
+}
+
+.article-stack-layer--back {
+  top: -20px;
+  width: calc(100% - 60px);
+  height: 26px;
+  transform: translateX(-50%);
+  opacity: 0.55;
+}
+
+.article-stack:hover .article-stack-layer {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+  transition: opacity var(--article-duration-in) var(--article-ease),
+              transform var(--article-duration-in) var(--article-bounce);
+}
+
+.article-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background-color: var(--card-bg);
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(0);
+  transition: transform var(--article-duration) var(--article-ease),
+              background-color var(--article-duration) var(--article-ease);
+}
+
+.article-stack:hover .article-card {
+  transform: translateY(-6px);
+  transition: transform var(--article-duration-in) var(--article-bounce),
+              background-color var(--article-duration-in) var(--article-ease);
+}
+
+.article-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.article-card-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text-color);
+}
+
+/* The external-link mark only shows on hover, as in the design */
+.article-card-arrow {
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity var(--article-duration) var(--article-ease);
+}
+
+.article-stack:hover .article-card-arrow {
+  opacity: 1;
+}
+
+.article-card-meta {
+  font-size: 11px;
+  line-height: 1.3;
+  color: var(--tertiary-text);
+}
+
+.article-card-thumb {
+  display: block;
+  width: 48px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* Stand-in until an article's artwork is supplied. Deliberately not
+   var(--border-color): CaseStudy.css redefines that to the same value as
+   --card-bg, which would make this invisible. */
+.article-card-thumb--empty {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='light'] .article-card-thumb--empty {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.article-nav {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) scale(0.85);
+  transition: opacity var(--article-duration) var(--article-ease),
+              visibility var(--article-duration) var(--article-ease),
+              transform var(--article-duration) var(--article-ease),
+              background-color 0.2s ease;
+}
+
+.article-nav--prev {
+  left: -40px;
+}
+
+.article-nav--next {
+  right: -40px;
+}
+
+.article-stack:hover .article-nav {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) scale(1);
+  transition: opacity var(--article-duration-in) var(--article-ease),
+              visibility var(--article-duration-in) var(--article-ease),
+              transform var(--article-duration-in) var(--article-bounce),
+              background-color 0.2s ease;
+}
+
+.article-nav:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+[data-theme='light'] .article-nav:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}

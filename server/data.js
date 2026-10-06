@@ -3,6 +3,20 @@
 
 const portfolioProjects = [
     {
+      id: '180by2',
+      title: '180by2 shopping experience',
+      subtitle: 'A UX campaign to generate over R300k in sales, leveraging user feedback and analytics',
+      description: 'A UX campaign to generate over R300k in sales, leveraging user feedback and analytics',
+      category: ['E-commerce'],
+      imageUrl: '/images/180by2.svg',
+      gridImageUrl: '/images/180by2.svg',
+      readTime: '5 min read',
+      caseStudyUrl: '/portfolio/180by2',
+      // TODO: live 180by2 URL - "Visit website" only renders once this is set
+      projectUrl: '',
+      platforms: ["webapp"],
+    },
+    {
       id: 'nutch',
       title: 'Building Nutch',
       subtitle: 'Designing an AI-native workflow from first principles.',
@@ -134,6 +148,22 @@ const portfolioProjects = [
       projectUrl: 'https://smart-pathways.netlify.app/',
     },
     {
+      id: 'laundrybasket-website',
+      title: 'Laundry Basket',
+      category: ['Admin Dashboard'],
+      imageUrl: '/images/laudry-basket-web.svg',
+      isWebsite: true,
+      projectUrl: 'https://laundrysquared.onrender.com/',
+    },
+    {
+      id: 'gidigan-website',
+      title: 'Gidigan',
+      category: ['Saas'],
+      imageUrl: '/images/gidigan-web.svg',
+      isWebsite: true,
+      projectUrl: 'https://gidigan.netlify.app/',
+    },
+    {
       id: 'agri-youth',
       title: 'Agri Youth',
       category: ['Website'],
@@ -149,6 +179,63 @@ const portfolioProjects = [
       mobileImageUrl: '/images/AT2-mobile.svg',
       isWebsite: true,
       projectUrl: 'https://www.africantechno.com/',
+    },
+    // Brand marks, in the order the design lays them out
+    {
+      id: 'brand-pivo',
+      title: 'Pivo',
+      imageUrl: '/images/pivo-brand.svg',
+      hoverImageUrl: '/images/inv-pivo-brand.svg',
+      isBrand: true,
+    },
+    {
+      id: 'brand-theresa',
+      title: 'Theresa Josiah Realty',
+      imageUrl: '/images/therasa-brand.svg',
+      hoverImageUrl: '/images/inv-therasa-brand.svg',
+      isBrand: true,
+    },
+    {
+      id: 'brand-capital',
+      title: 'capital by Tradevu',
+      imageUrl: '/images/capital-by-tradevu-brand.svg',
+      hoverImageUrl: '/images/inv-capital-by-tradevu-brand.svg',
+      isBrand: true,
+    },
+    {
+      id: 'brand-adrois',
+      title: 'adrois',
+      imageUrl: '/images/adrois-brand.svg',
+      hoverImageUrl: '/images/inv-adrois-brand.svg',
+      isBrand: true,
+    },
+    {
+      id: 'brand-smylz',
+      title: 'smylz',
+      imageUrl: '/images/smylz-brand.svg',
+      hoverImageUrl: '/images/inv-smylz-brand.svg',
+      isBrand: true,
+    },
+    {
+      id: 'brand-gidigan',
+      title: 'Gidigan',
+      imageUrl: '/images/gidigan-brand.svg',
+      hoverImageUrl: '/images/inv-gidigan-brand.svg',
+      isBrand: true,
+    },
+    {
+      id: 'brand-nutch',
+      title: 'nutch',
+      imageUrl: '/images/nutch-brand.svg',
+      hoverImageUrl: '/images/inv-nutch-brand.svg',
+      isBrand: true,
+    },
+    {
+      id: 'brand-textfx',
+      title: 'Text FX',
+      imageUrl: '/images/textfx-brand.svg',
+      hoverImageUrl: '/images/inv-textfx-brand.svg',
+      isBrand: true,
     },
     {
       id: 'illustration1',
