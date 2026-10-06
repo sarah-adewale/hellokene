@@ -2091,7 +2091,10 @@
   margin: 47px 0 48px;
 }
 
-.cs180-question {
+/* Rounded grey label: the overview's question chips, the problem section's
+   method names */
+.cs180-question,
+.cs180-chip {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2156,6 +2159,68 @@
   color: var(--cs180-accent-yes);
 }
 
+/* Problem section: tighter spacing than the overview */
+.cs180--compact {
+  padding-top: 0;
+  margin-top: 60px;
+}
+
+.cs180--compact .cs180-text {
+  margin-bottom: 22px;
+}
+
+.cs180--compact .cs180-quote {
+  /* 27px top collapses with a preceding paragraph's 22px */
+  margin: 27px 0 32px;
+}
+
+/* Team avatars (nutch's hover stack) followed by a line of text */
+.cs180-team {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 33px;
+}
+
+.cs180--compact .cs180-team .cs180-text {
+  margin: 0;
+}
+
+/* Full-width figure; the SVG carries its own rounded corners */
+.cs180-wide {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 60px;
+}
+
+.cs180-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 0 0 22px;
+}
+
+.cs180-method {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.cs180-method dd {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.18;
+  color: var(--secondary-text);
+}
+
+.cs180-figures--grid {
+  row-gap: 20px;
+  margin-bottom: 22px;
+}
+
 @media (max-width: 768px) {
   .cs180-h {
     font-size: 20px;
@@ -2174,8 +2239,18 @@
     gap: 12px;
   }
 
-  .cs180-question {
+  .cs180-question,
+  .cs180-chip,
+  .cs180-method dd {
     font-size: 16px;
+  }
+
+  .cs180--compact {
+    margin-top: 40px;
+  }
+
+  .cs180-wide {
+    margin-bottom: 40px;
   }
 
   .cs180-quote {

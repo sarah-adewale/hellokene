@@ -2,6 +2,29 @@
 import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 
+// 180by2: the project team, in the order the design stacks them
+const CS180_TEAM = [
+  { name: 'Kene', role: 'Design lead', image: '/images/keneimg.webp' },
+  { name: 'Yenzi', role: 'Marketing manager', image: '/images/yenziimg.webp' },
+  { name: 'Ayooluwa', role: 'Comms manager', image: '/images/ayooluwaimg.webp' },
+  { name: 'Onyebuchi', role: 'Developer', image: '/images/onyebuchiimg.webp' },
+  { name: 'Thuthukani', role: 'Knowledge manager', image: '/images/thuthukaniimg.webp' },
+];
+
+const CS180_METHODS = [
+  ['UX audit', 'We evaluated the system to identify what questions needed answers'],
+  ['Feedback', "We asked stakeholders and customers for context on what worked and what didn't"],
+  ['Analytics', 'We investigated the activity and patterns from entry to exit'],
+];
+
+// [image, caption, alt]
+const CS180_RESEARCH = [
+  ['/images/180by2img4.svg', 'Audit findings', 'UX audit board: the journey from home to checkout, recurring patterns, and a prioritised list of what to fix first'],
+  ['/images/180by2img5.svg', 'Stakeholder notes', 'Stakeholder notes grouped by leadership, marketing, support and product, with key themes and next steps'],
+  ['/images/180by2img6.svg', 'Support feedback', 'Support feedback sticky notes clustered into themes around a central focus on clarity and confidence'],
+  ['/images/180by2img7.svg', 'Analytics excerpts', 'Analytics excerpts on compatibility, beginner, shipping and accessory questions, with patterns noticed and actions'],
+];
+
 const Challenge = ({ project }) => {
   const { theme } = useTheme();
 
@@ -338,14 +361,64 @@ const Challenge = ({ project }) => {
         </div>
       </section>
     )}
-    {/* TODO: replace the 180by2 placeholder copy */}
+    {/* 180by2 problem section. Styles are the cs180-* block in CaseStudy.css;
+        the team avatars reuse nutch's hover stack. */}
     {project.id === '180by2' && (
-      <section className="case-study-section nutch-section">
-        <h2 className="nutch-h">The Challenge</h2>
-        <div className="nutch-text-group">
-          <p className="nutch-text">[Challenge placeholder] What was getting in the way of sales: drop-off points, friction or gaps in the shopping journey.</p>
-          <p className="nutch-text">[Challenge placeholder] What the user feedback and analytics revealed.</p>
+      <section className="cs180 cs180--compact">
+        <h2 className="cs180-h">The opportunity</h2>
+        <p className="cs180-text">Three months of campaign data showed a clear pattern. Marketing was successfully bringing potential customers to the website, but relatively few completed a purchase. At the same time, support teams were receiving more pre-purchase questions about products, accessories, shipping and returns that the website should have answered itself.</p>
+        <p className="cs180-text">With the festive season approaching and marketing activity set to increase, improving conversion became an immediate priority. Before investing further in acquisition, we needed to understand why existing visitors weren't becoming customers.</p>
+
+        <div className="cs180-team">
+          <div className="nutch-product-stack">
+            {CS180_TEAM.map(({ name, role, image }) => (
+              <span key={name} className="nutch-avatar-item">
+                <img src={image} alt="" className="nutch-avatar" />
+                <span className="nutch-avatar-tip"><strong>{name},</strong> {role}</span>
+              </span>
+            ))}
+          </div>
+          <p className="cs180-text">The team had a clear objective</p>
         </div>
+
+        <blockquote className="cs180-quote">
+          Identify where customers are losing confidence and<br />
+          redesign those moments before they become reasons to leave.
+        </blockquote>
+
+        <img
+          className="cs180-wide"
+          src="/images/180by2img3.svg"
+          alt="Checkout funnel: of 36,431 sessions, 2.27% added to cart, 1.62% reached checkout and 0.24% completed a purchase"
+        />
+
+        <h2 className="cs180-h">How we approached the problem</h2>
+        <p className="cs180-text">Clarity, like charity begins at home.</p>
+        <p className="cs180-text">We needed to ask the right questions and that meant understanding everything about the existing systems</p>
+
+        <dl className="cs180-methods">
+          {CS180_METHODS.map(([method, description]) => (
+            <div key={method} className="cs180-method">
+              <dt className="cs180-chip">{method}</dt>
+              <dd>{description}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="cs180-figures cs180-figures--grid">
+          {CS180_RESEARCH.map(([image, caption, alt]) => (
+            <figure key={caption} className="cs180-figure">
+              <img src={image} alt={alt} />
+              <figcaption>{caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <p className="cs180-text">Everything seemed to point to one big question</p>
+        <blockquote className="cs180-quote">
+          At what point do customers stop feeling confident enough to continue?
+        </blockquote>
+        <p className="cs180-text">This question became the foundation for every design decision that followed.</p>
       </section>
     )}
     </>
