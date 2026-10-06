@@ -21,8 +21,7 @@ const portfolioProjects = [
     },
     readTime: '7 min read',
     caseStudyUrl: '/portfolio/180by2',
-    // TODO: live 180by2 URL - "Visit website" only renders once this is set
-    projectUrl: '',
+    projectUrl: 'https://180by2.co.za/',
     platforms: ["webapp"],
   },
   {
@@ -36,6 +35,8 @@ const portfolioProjects = [
     gridImageUrl: '/images/nutch-highlight.gif',
     readTime: '5 min read',
     caseStudyUrl: '/portfolio/nutch',
+    // "Join waitlist" shows but isn't clickable until this is set
+    waitlistUrl: '',
     highlighted: true,
     growthDesign: false,
     productDesign: true,
@@ -107,7 +108,7 @@ const portfolioProjects = [
     id: 'laundrybasket-website',
     title: 'Laundry Basket',
     category: ['Admin Dashboard'],
-    imageUrl: '/images/laudry-basket-web.svg',
+    imageUrl: '/images/laundrybasketimg.svg',
     isWebsite: true,
     projectUrl: 'https://laundrysquared.onrender.com/',
   },
@@ -115,7 +116,7 @@ const portfolioProjects = [
     id: 'gidigan-website',
     title: 'Gidigan',
     category: ['Saas'],
-    imageUrl: '/images/gidigan-web.svg',
+    imageUrl: '/images/gidiganimg.webp',
     isWebsite: true,
     projectUrl: 'https://gidigan.netlify.app/',
   },

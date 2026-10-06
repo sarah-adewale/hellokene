@@ -288,6 +288,15 @@
     color: #FCFCFC;
   }
 
+  /* Looks like a button but isn't one yet (e.g. a waitlist with no link) */
+  .project-cta--inert {
+    cursor: default;
+  }
+
+  .project-cta--inert:hover {
+    opacity: 1;
+  }
+
   @media (max-width: 900px) {
     .project-row {
       grid-template-columns: minmax(0, 1fr);
@@ -668,7 +677,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid rgba(252, 252, 252, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 4000px;
   padding: 10px 20px;
   font-size: 14px;

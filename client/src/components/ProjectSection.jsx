@@ -256,6 +256,23 @@ const renderHighlights = () => {
                   Visit website
                 </a>
               )}
+              {/* Shown for projects with a waitlistUrl key; inert until it's filled in */}
+              {'waitlistUrl' in project && (
+                project.waitlistUrl ? (
+                  <a
+                    className="project-cta project-cta--secondary"
+                    href={project.waitlistUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Join waitlist
+                  </a>
+                ) : (
+                  <span className="project-cta project-cta--secondary project-cta--inert" aria-disabled="true">
+                    Join waitlist
+                  </span>
+                )
+              )}
             </div>
           </div>
         </article>
