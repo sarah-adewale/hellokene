@@ -2051,11 +2051,29 @@
 [data-theme='light'] {
   --cs180-accent-no: #C93C3C;
   --cs180-accent-yes: #2E8B3E;
+  --cs180-window: #E7E7E7;
+  --cs180-split-line: #8B7FE8;
+  --cs180-split-glow: rgba(139, 127, 232, 0.35);
+  --cs180-before-tint: rgba(40, 25, 60, 0.14);
+  --cs180-handle-bg: #FCFCFC;
+  --cs180-handle-icon: #4C4C4F;
+  --cs180-good: #4D9A41;
+  --cs180-flag: #E5615F;
+  --cs180-icon-glyph: #FCFCFC;
 }
 
 [data-theme='dark'] {
   --cs180-accent-no: #E76B6B;
   --cs180-accent-yes: #90DB82;
+  --cs180-window: #161619;
+  --cs180-split-line: #A99FF0;
+  --cs180-split-glow: rgba(169, 159, 240, 0.35);
+  --cs180-before-tint: rgba(40, 25, 60, 0.14);
+  --cs180-handle-bg: #FCFCFC;
+  --cs180-handle-icon: #4C4C4F;
+  --cs180-good: #4D9A41;
+  --cs180-flag: #E5615F;
+  --cs180-icon-glyph: #FCFCFC;
 }
 
 .cs180 {
@@ -2265,5 +2283,436 @@
 
   .cs180-figure figcaption br {
     display: none;
+  }
+}
+
+/* ---------- 180by2 solution ---------- */
+
+/* Small grey heading over a paragraph: Hypothesis, Design decision, Validation */
+.cs180-label {
+  /* the top margin collapses with the previous paragraph's */
+  margin: 34px 0 16px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--tertiary-text);
+}
+
+.cs180-solution .cs180-h {
+  margin-bottom: 36px;
+}
+
+/* A numbered observation, quoted with the bar */
+.cs180--compact .cs180-quote--point {
+  margin: 0 0 33px;
+  color: var(--secondary-text);
+}
+
+/* Recording on one side, text on the other */
+.cs180-split {
+  display: grid;
+  grid-template-columns: 48.4% minmax(0, 1fr);
+  column-gap: 7.6%;
+  align-items: center;
+  margin-bottom: 58px;
+}
+
+.cs180-split--reverse {
+  grid-template-columns: minmax(0, 1fr) 48.4%;
+  align-items: start;
+  margin: 68px 0 0;
+}
+
+.cs180-split-text {
+  max-width: 445px;
+}
+
+.cs180-split--reverse .cs180-split-text {
+  padding-top: 22px;
+}
+
+.cs180--compact .cs180-split-text .cs180-text {
+  margin-bottom: 38px;
+}
+
+.cs180--compact .cs180-split-text .cs180-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Grey card with a browser window anchored top-left that runs off the
+   right and bottom edges. Sized in cqw so it scales with the card. */
+.cs180-shot {
+  position: relative;
+  aspect-ratio: 189 / 127;
+  overflow: hidden;
+  border-radius: 4.2cqw;
+  background: var(--card-bg);
+  container-type: inline-size;
+}
+
+.cs180-shot-window {
+  position: absolute;
+  left: 4.8cqw;
+  top: 4.5cqw;
+  width: 100%;
+  height: 100%;
+  padding: 9.3cqw 0 0 3.3cqw;
+  border-top-left-radius: 2cqw;
+  background: var(--cs180-window);
+}
+
+.cs180-dots {
+  position: absolute;
+  top: 5.1cqw;
+  left: 3.3cqw;
+  display: flex;
+  gap: 1.4cqw;
+}
+
+.cs180-dots span {
+  width: 2cqw;
+  height: 2cqw;
+  border-radius: 50%;
+  background: #FF5F57;
+}
+
+.cs180-dots span:nth-child(2) {
+  background: #FEBC2E;
+}
+
+.cs180-dots span:nth-child(3) {
+  background: #28C840;
+}
+
+.cs180-shot-screen {
+  height: 100%;
+  overflow: hidden;
+  border-top-left-radius: 1.1cqw;
+}
+
+.cs180-shot-screen img {
+  display: block;
+  width: 112cqw;
+  max-width: none;
+}
+
+/* The old site's recording is narrower, so it's shown larger, with the
+   shipping banner cropped off as in the design */
+.cs180-shot--old .cs180-shot-screen img {
+  width: 126cqw;
+  margin-top: -5.25cqw;
+}
+
+/* Closer in on the product, from the breadcrumbs down */
+.cs180-shot--product .cs180-shot-screen img {
+  width: 115cqw;
+  margin-top: -21cqw;
+}
+
+/* Before/after slider. --cs180-split (set inline) is how much of the
+   screen shows the before image. */
+.cs180-compare {
+  position: relative;
+  overflow: hidden;
+  margin: 8px 0 52px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  container-type: inline-size;
+}
+
+.cs180-compare-label {
+  position: absolute;
+  top: 2.9cqw;
+  left: 2.6cqw;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--tertiary-text);
+}
+
+.cs180-compare-label--after {
+  left: auto;
+  right: 2.6cqw;
+}
+
+.cs180-compare-window {
+  position: relative;
+  margin: 9cqw 10cqw 0;
+  padding: 2.8cqw 1.4cqw 0;
+  border-radius: 1.2cqw 1.2cqw 0 0;
+  background: var(--cs180-window);
+}
+
+.cs180-compare-window .cs180-dots {
+  top: 1.15cqw;
+  left: 1.6cqw;
+  gap: 0.45cqw;
+}
+
+.cs180-compare-window .cs180-dots span {
+  width: 0.55cqw;
+  height: 0.55cqw;
+}
+
+.cs180-compare-screen {
+  position: relative;
+  /* the before/after images' shape, so the card keeps its height while
+     they load */
+  aspect-ratio: 872 / 366;
+  overflow: hidden;
+  border-radius: 0.6cqw 0.6cqw 0 0;
+}
+
+.cs180-compare-screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The before image on top, cut off at the split; tinted so the two
+   halves read apart */
+.cs180-compare-before {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--cs180-split)) 0 0);
+}
+
+.cs180-compare-before::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cs180-before-tint);
+}
+
+/* Spans the screen's width and the card's full height */
+.cs180-compare-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 11.4cqw;
+  right: 11.4cqw;
+  pointer-events: none;
+}
+
+.cs180-compare-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--cs180-split);
+  width: 2px;
+  margin-left: -1px;
+  background: linear-gradient(to bottom, var(--border-color) 0, var(--border-color) 11.8cqw, var(--cs180-split-line) 11.8cqw);
+}
+
+.cs180-compare-handle {
+  position: absolute;
+  top: 50%;
+  left: var(--cs180-split);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--cs180-handle-bg);
+  color: var(--cs180-handle-icon);
+  box-shadow: 0 0 40px 14px var(--cs180-split-glow);
+}
+
+/* The screen's area within the track; the handle sits in its middle */
+.cs180-compare-zone {
+  position: absolute;
+  top: 11.8cqw;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Invisible, over the screen: dragging anywhere moves the split */
+.cs180-compare-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  pointer-events: auto;
+  touch-action: pan-y;
+}
+
+.cs180-compare:has(.cs180-compare-input:focus-visible) .cs180-compare-handle {
+  outline: 2px solid var(--text-color);
+  outline-offset: 3px;
+}
+
+.cs180-solution .cs180-methods {
+  margin-bottom: 36px;
+}
+
+/* Validation table: grey heading bands over rows of cells */
+.cs180-table {
+  overflow: hidden;
+  margin: 30px 0 68px;
+  border: 1px solid var(--card-bg);
+  border-radius: 12px;
+}
+
+.cs180-table-head {
+  margin: 0;
+  padding: 18px 24px;
+  background: var(--card-bg);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--secondary-text);
+}
+
+.cs180-table-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cs180-table-row--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cs180-table-cell {
+  padding: 22px 24px 24px;
+}
+
+.cs180-table-cell + .cs180-table-cell {
+  border-left: 1px solid var(--card-bg);
+}
+
+.cs180-table-label,
+.cs180-table-name {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--tertiary-text);
+}
+
+/* Quote cells: more room around the quote */
+.cs180-table-label:has(+ .cs180-table-text + .cs180-table-name) {
+  margin-bottom: 16px;
+}
+
+.cs180-table-name {
+  margin: 20px 0 0;
+}
+
+.cs180-table-text {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.25;
+  color: var(--secondary-text);
+}
+
+.cs180-learned-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  color: var(--cs180-icon-glyph);
+}
+
+.cs180-learned-icon--good {
+  background: var(--cs180-good);
+}
+
+.cs180-learned-icon--flag {
+  background: var(--cs180-flag);
+}
+
+.cs180--compact .cs180-text--lead {
+  margin-bottom: 8px;
+}
+
+.cs180-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  /* collapses with the paragraph's bottom margin */
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .cs180-label {
+    font-size: 16px;
+  }
+
+  .cs180-split,
+  .cs180-split--reverse {
+    grid-template-columns: 1fr;
+    row-gap: 28px;
+    margin-bottom: 40px;
+  }
+
+  /* Recording first when stacked */
+  .cs180-split--reverse .cs180-shot {
+    grid-row: 1;
+  }
+
+  .cs180-split--reverse {
+    margin-top: 40px;
+  }
+
+  .cs180-split--reverse .cs180-split-text {
+    padding-top: 0;
+  }
+
+  .cs180--compact .cs180-split-text .cs180-text {
+    margin-bottom: 20px;
+  }
+
+  .cs180-compare {
+    margin-bottom: 40px;
+  }
+
+  .cs180-compare-label {
+    font-size: 14px;
+  }
+
+  .cs180-compare-handle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .cs180-table {
+    margin-bottom: 48px;
+  }
+
+  .cs180-table-row,
+  .cs180-table-row--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .cs180-table-cell + .cs180-table-cell {
+    border-left: 0;
+    border-top: 1px solid var(--card-bg);
+  }
+
+  .cs180-table-head {
+    padding: 14px 18px;
+    font-size: 16px;
+  }
+
+  .cs180-table-cell {
+    padding: 18px;
+  }
+
+  .cs180-table-text {
+    font-size: 16px;
+  }
+
+  .cs180-table-label,
+  .cs180-table-name {
+    font-size: 14px;
   }
 }

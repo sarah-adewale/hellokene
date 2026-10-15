@@ -1,7 +1,7 @@
 // src/pages/caseStudyConfig.js
 const caseStudyConfig = {
     '180by2': {
-      sections: ['Overview', 'Challenge', 'Results', 'Conclusion'],
+      sections: ['Overview', 'Challenge', 'Solution', 'Results', 'Conclusion'],
       showTeam: false,
       showTimeline: false,
       showNextProject: 'nutch',
