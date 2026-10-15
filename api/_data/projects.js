@@ -74,7 +74,7 @@ const portfolioProjects = [
     category: ['Real Estate'],
     imageUrl: '/images/new-liberterra-img.svg',
     hoverImageUrl: '/images/new-liberterra-img-hover.svg',
-    gridImageUrl: '/images/liberterra-grid.svg',
+    gridImageUrl: '/images/liberterra-project.webp',
     readTime: '7 min read',
     projectUrl: 'https://www.behance.net/gallery/111156945/LiberTerra',
     highlighted: false,
