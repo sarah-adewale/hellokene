@@ -153,11 +153,11 @@ html {
   /* min-height: 100vh; */
 }
 
-/* The header is a bottom bar on mobile, so the hero needs far less top room.
-   This has to come after the base rule above to win. */
+/* Room for the compact header bar on phones. This has to come after the
+   base rule above to win. */
 @media (max-width: 767px) {
   .home-container {
-    padding-top: 32px;
+    padding-top: 104px;
   }
 }
 

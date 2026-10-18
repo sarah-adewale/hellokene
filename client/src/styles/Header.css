@@ -46,13 +46,6 @@ html, body {
   max-width: 100vw;
 }
 
-/* Prevent scrolling when mobile menu is open */
-body.menu-open {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-}
-
 /* Desktop Header Styles */
 .site-header {
   position: fixed;
@@ -192,112 +185,6 @@ body.menu-open {
   color: var(--toggle-icon-active);
 }
 
-/* Hamburger menu - hidden on desktop */
-.hamburger-menu {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 20px;
-  height: 14px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 60;
-  position: relative;
-}
-
-.hamburger-menu span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: var(--text-color);
-  transition: all 0.3s ease;
-  border-radius: 1px;
-}
-
-.hamburger-menu.active span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-}
-
-.hamburger-menu.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger-menu.active span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
-}
-
-/* Mobile Menu Overlay */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--bg-color);
-  z-index: 50;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-.mobile-menu.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.mobile-menu-container {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: 0 20px;
-}
-
-.mobile-nav-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  list-style: none;
-}
-
-.mobile-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 0;
-}
-
-.mobile-icon {
-  color: var(--text-color);
-}
-
-.mobile-nav-link {
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.theme-toggle--mobile {
-  margin-bottom: 24px;
-}
-
 /* Desktop responsive padding to match hero-section */
 @media (min-width: 768px) {
   .site-header {
@@ -317,73 +204,54 @@ body.menu-open {
   }
 }
 
-/* Mobile Styles */
+/* Phones: the same bar at the top, compacted; the Tools label shortens */
+.tools-label-short {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  /* Override desktop header positioning for mobile */
   .site-header {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
     padding: 12px 20px;
-    width: 100vw;
-    max-width: 100vw;
-    background-color: var(--bg-color);
-    border-top: 1px solid var(--border-color);
-    box-sizing: border-box;
-  }
-
-  /* Always show header on mobile - remove scrolled condition */
-  .site-header.scrolled {
-    background-color: var(--bg-color);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  .header-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  .logo-container {
-    flex: 1;
   }
 
   .kene-logo-img {
-    height: 44px;
-    width: auto;
+    height: 40px;
   }
 
   .header-right {
-    gap: 16px;
-    flex-shrink: 0;
+    gap: 14px;
   }
 
-  /* Hide desktop elements on mobile */
-  .desktop-nav {
+  .tools-trigger {
+    gap: 4px;
+    font-size: 14px;
+  }
+
+  .tools-trigger-emoji {
+    font-size: 14px;
+  }
+
+  .tools-label-full {
     display: none;
   }
 
-  .theme-toggle--header {
-    display: none;
+  .tools-label-short {
+    display: inline;
   }
 
-  /* Show hamburger on mobile */
-  .hamburger-menu {
-    display: flex;
+  .theme-toggle {
+    gap: 2px;
+    padding: 3px;
   }
 
-  /* Ensure mobile menu covers entire screen */
-  .mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+  .theme-toggle-option {
+    width: 26px;
+    height: 26px;
+  }
+
+  .theme-toggle-option svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
@@ -540,49 +408,18 @@ body.menu-open {
   margin-top: 2px;
 }
 
-/* Mobile tools section */
-.mobile-tools-item {
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-}
+/* Phones: full width under the bar, since the trigger isn't at the screen
+   edge. After the base .tools-dropdown rule so it wins. */
+@media (max-width: 768px) {
+  .tools-dropdown {
+    position: fixed;
+    top: 64px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
 
-.mobile-tools-trigger {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  color: var(--text-color);
-}
-
-.mobile-tools-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-  max-width: 320px;
-}
-
-.mobile-tool-link {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  text-decoration: none;
-  background: var(--dropdown-bg);
-  border: 1px solid var(--dropdown-border);
-  box-sizing: border-box;
-}
-
-.mobile-tool-link .tool-title {
-  font-size: 13px;
-}
-
-.mobile-tool-link .tool-subtitle {
-  font-size: 11px;
+  .tools-dropdown .tool-subtitle br {
+    display: none;
+  }
 }

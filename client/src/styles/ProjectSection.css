@@ -304,6 +304,64 @@
     }
   }
 
+  /* Phones: smaller type, and full-width buttons stacked under each other */
+  @media (max-width: 767px) {
+    .tab-button {
+      font-size: 22.5px; /* label renders at 14px (0.622em) */
+      padding: 6px 10px;
+    }
+
+    .tab-button.active {
+      padding: 6px 14px;
+    }
+
+    .project-rows {
+      gap: 90px;
+    }
+
+    .project-row {
+      gap: 36px;
+    }
+
+    .project-row-title {
+      margin-bottom: 10px;
+      font-size: 18px;
+      line-height: 1.3;
+    }
+
+    .project-row-subtitle {
+      margin-bottom: 14px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .project-row-readtime {
+      margin-bottom: 48px;
+      font-size: 14px;
+    }
+
+    .project-row-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+
+    .project-cta {
+      padding: 14px 20px;
+      font-size: 15px;
+    }
+
+    /* sits inside .project-rows, so the 90px gap applies too: 74px in all */
+    .show-more-wrap {
+      margin-top: -16px;
+    }
+
+    .show-more-button {
+      padding: 14px 24px;
+      font-size: 15px;
+    }
+  }
+
   /* Brands: a wide, airy logo wall. Flex rather than grid so a short final
      row centres itself the way the design shows. */
   .brands-grid {

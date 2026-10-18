@@ -131,46 +131,28 @@ const ThemeToggle = ({ theme, onSelect, className = '' }) => (
 );
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
-  const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
   const scrollTimeoutRef = useRef(null);
   const toolsDropdownRef = useRef(null);
 
-  // Check if device is mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  // Optimized scroll handler with throttling
+  const handleScroll = useCallback(() => {
+    if (scrollTimeoutRef.current) return;
 
-    // Optimized scroll handler with throttling
-    const handleScroll = useCallback(() => {
-      if (scrollTimeoutRef.current) return;
-      
-      scrollTimeoutRef.current = requestAnimationFrame(() => {
-        const shouldBeScrolled = window.scrollY > 20;
-        if (scrolled !== shouldBeScrolled) {
-          setScrolled(shouldBeScrolled);
-        }
-        scrollTimeoutRef.current = null;
-      });
-    }, [scrolled]);
+    scrollTimeoutRef.current = requestAnimationFrame(() => {
+      const shouldBeScrolled = window.scrollY > 20;
+      if (scrolled !== shouldBeScrolled) {
+        setScrolled(shouldBeScrolled);
+      }
+      scrollTimeoutRef.current = null;
+    });
+  }, [scrolled]);
 
-  
-  // Handle scroll event to add backdrop filter (desktop only)
+  // Blurred backdrop once the page has scrolled
   useEffect(() => {
-    if (isMobile) return; // Don't apply scroll effects on mobile
-    
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -178,8 +160,8 @@ const Header = () => {
         cancelAnimationFrame(scrollTimeoutRef.current);
       }
     };
-  }, [isMobile, handleScroll]);
-  
+  }, [handleScroll]);
+
   // Close tools dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -191,47 +173,19 @@ const Header = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close menu when route changes
+  // Close the dropdown when the route changes
   useEffect(() => {
-    setMenuOpen(false);
     setToolsOpen(false);
-    document.body.classList.remove('menu-open');
   }, [location]);
-  
-  // Close menu when resizing to desktop
-  useEffect(() => {
-    if (!isMobile && menuOpen) {
-      setMenuOpen(false);
-      document.body.classList.remove('menu-open');
-    }
-  }, [isMobile, menuOpen]);
-  
+
   // The context only exposes toggleTheme, so switching to the already-active
   // theme is a no-op.
   const selectTheme = useCallback((next) => {
     if (next !== theme) toggleTheme();
   }, [theme, toggleTheme]);
 
-  const toggleMenu = () => {
-    const newMenuState = !menuOpen;
-    setMenuOpen(newMenuState);
-    
-    // Toggle body class to prevent scrolling when menu is open
-    if (newMenuState) {
-      document.body.classList.add('menu-open');
-    } else {
-      document.body.classList.remove('menu-open');
-    }
-  };
-  
-  // Close menu when clicking outside
-  const handleMenuClose = () => {
-    setMenuOpen(false);
-    document.body.classList.remove('menu-open');
-  };
-  
   return (
-    <header className={`site-header ${!isMobile && scrolled ? 'scrolled' : ''}`}>
+    <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
         {/* Logo - Left side */}
         <div className="logo-container">
@@ -256,7 +210,9 @@ const Header = () => {
                   aria-expanded={toolsOpen}
                 >
                   <span className="tools-trigger-emoji" aria-hidden="true">🚀</span>
-                  Tools I've Shipped
+                  {/* "Tools" alone on phones (CSS picks one) */}
+                  <span className="tools-label-full">Tools I've Shipped</span>
+                  <span className="tools-label-short">Tools</span>
                   <CaretDown size={14} className={`tools-caret ${toolsOpen ? 'tools-caret--open' : ''}`} />
                 </button>
                 {toolsOpen && (
@@ -265,7 +221,7 @@ const Header = () => {
                       <div className="tool-icon-wrap"><TextFXIcon /></div>
                       <div className="tool-info">
                         <span className="tool-title">Text FX</span>
-                        <span className="tool-subtitle">Turn Figma text into animated<br />components or export as JSON</span>
+                        <span className="tool-subtitle">Turn Figma text into animated{' '}<br />components or export as JSON</span>
                       </div>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="tool-link-arrow">
                         <path d="M6 3L11 8L6 13" stroke="#E7E7E7" strokeLinecap="round" strokeLinejoin="round"/>
@@ -276,7 +232,7 @@ const Header = () => {
                       <div className="tool-icon-wrap"><NutchAIIcon /></div>
                       <div className="tool-info">
                         <span className="tool-title">Nutch AI</span>
-                        <span className="tool-subtitle">Enhance your browsing experience<br />with AI that follows you around</span>
+                        <span className="tool-subtitle">Enhance your browsing experience{' '}<br />with AI that follows you around</span>
                       </div>
                       <span className="coming-soon-badge">Coming Soon</span>
                     </div>
@@ -286,72 +242,12 @@ const Header = () => {
             </ul>
           </nav>
           
-          {/* Theme Toggle - Desktop only */}
+          {/* Theme Toggle */}
           <ThemeToggle
             theme={theme}
             onSelect={selectTheme}
             className="theme-toggle--header"
           />
-          
-          {/* Mobile Menu Button */}
-          <button 
-            className={`hamburger-menu ${menuOpen ? 'active' : ''}`}
-            onClick={toggleMenu}
-            aria-label="Toggle mobile menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-        
-        {/* Mobile Menu Overlay */}
-        <div className={`mobile-menu ${menuOpen ? 'active' : ''}`}>
-          <div className="mobile-menu-container">
-            <ul className="mobile-nav-list">
-              {/* Theme Toggle in Mobile Menu */}
-              <li className="mobile-nav-item">
-                <ThemeToggle
-                  theme={theme}
-                  onSelect={selectTheme}
-                  className="theme-toggle--mobile"
-                />
-              </li>
-              
-              <li className="mobile-nav-item mobile-tools-item">
-                <button
-                  className="mobile-tools-trigger"
-                  onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
-                >
-                  <span className="mobile-nav-link">
-                    <span className="tools-trigger-emoji" aria-hidden="true">🚀</span>
-                    Tools I've Shipped
-                  </span>
-                  <CaretDown size={16} className={`tools-caret ${mobileToolsOpen ? 'tools-caret--open' : ''}`} />
-                </button>
-                {mobileToolsOpen && (
-                  <div className="mobile-tools-list">
-                    <a href={TEXT_FX_URL} target="_blank" rel="noopener noreferrer" className="mobile-tool-link" onClick={handleMenuClose}>
-                      <div className="tool-icon-wrap"><TextFXIcon /></div>
-                      <div className="tool-info">
-                        <span className="tool-title">Text FX</span>
-                        <span className="tool-subtitle">Turn Figma text into animated<br />components or export as JSON</span>
-                      </div>
-                    </a>
-                    <div className="mobile-tool-link" aria-disabled="true">
-                      <div className="tool-icon-wrap"><NutchAIIcon /></div>
-                      <div className="tool-info">
-                        <span className="tool-title">Nutch AI</span>
-                        <span className="tool-subtitle">Enhance your browsing experience<br />with AI that follows you around</span>
-                      </div>
-                      <span className="coming-soon-badge">Coming Soon</span>
-                    </div>
-                  </div>
-                )}
-              </li>
-
-            </ul>
-          </div>
         </div>
       </div>
     </header>
