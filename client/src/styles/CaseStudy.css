@@ -2813,26 +2813,12 @@
   border-left: 1px solid var(--card-bg);
 }
 
-.cs180-trust-item img,
-.cs180-trust-placeholder {
+.cs180-trust-item img {
   display: block;
   width: 100%;
-  aspect-ratio: 339 / 101;
+  height: auto;
+  aspect-ratio: 328 / 96;
   margin-bottom: 20px;
-  border-radius: 8px;
-}
-
-.cs180-trust-item img {
-  object-fit: cover;
-}
-
-.cs180-trust-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--card-bg);
-  font-size: 14px;
-  color: var(--tertiary-text);
 }
 
 /* Closing story: wider gaps between paragraphs */

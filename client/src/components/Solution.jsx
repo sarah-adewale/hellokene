@@ -189,13 +189,11 @@ const CS180PageToggle = ({ before, after }) => {
   );
 };
 
-// 180by2 "Trust begins long before checkout": what was added along the
-// journey. TODO: the three screenshots weren't supplied yet; set `image`
-// once they're in /images.
+// 180by2 "Trust begins long before checkout": what was added along the journey
 const CS180_TRUST = [
-  { image: null, alt: 'Shipping and returns benefits shown on the product page', label: <>Shipping<br />&amp; return benefits</> },
-  { image: null, alt: 'An “Ask us anything” support search box', label: <>Flexible<br />support</> },
-  { image: null, alt: 'Google reviews summary with a star rating', label: <>Social<br />Reviews</> },
+  { image: '/images/180by2-trust-shipping.svg', alt: 'Satisfied or refunded: 30 day return policy for eligible purchases, next to an international delivery badge', label: <>Shipping<br />&amp; return benefits</> },
+  { image: '/images/180by2-trust-support.svg', alt: 'An “Ask us anything” support message box', label: <>Flexible<br />support</> },
+  { image: '/images/180by2-trust-reviews.svg', alt: 'Google reviews: 4.5 stars from 136 reviews, with a customer review', label: <>Social<br />Reviews</> },
 ];
 
 const CS180_COLLECTIONS = [['🌍', 'Travel'], ['🥽', 'Water Sports'], ['🪄', 'Content Creation']];
@@ -690,9 +688,7 @@ const Solution = ({ project }) => {
         <ul className="cs180-trust">
           {CS180_TRUST.map(({ image, alt, label }, i) => (
             <li key={i} className="cs180-trust-item">
-              {image
-                ? <img src={image} alt={alt} loading="lazy" decoding="async" />
-                : <span className="cs180-trust-placeholder">[image]</span>}
+              <img src={image} alt={alt} loading="lazy" decoding="async" />
               <p className="cs180-table-text">{label}</p>
             </li>
           ))}
