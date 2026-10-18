@@ -661,6 +661,17 @@ a.hero-cta:hover {
   top: calc(100% + 12px);
 }
 
+/* Portrait tablets: the photo sits near the right edge, so the right-hand
+   tooltips open leftwards from their icon instead of centring on it */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ai-tooltip,
+  .ps-tooltip {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+}
+
 /* Projects Section */
 .projects-section {
   padding: 0 20px 80px;

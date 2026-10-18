@@ -6,9 +6,9 @@ import CS180Table from './CS180Table';
 
 const CS180_RESULTS = [
   { heading: 'Experience', cells: [
-    { text: <>Easier<br />navigation</> },
-    { text: <>Greater<br />purchase confidence</> },
-    { text: <>Better understanding<br />of product differences</> },
+    { text: <>Easier{' '}<br />navigation</> },
+    { text: <>Greater{' '}<br />purchase confidence</> },
+    { text: <>Better understanding{' '}<br />of product differences</> },
   ] },
   { heading: 'Business', cells: [
     { text: '~15% monthly conversion growth' },
@@ -16,10 +16,10 @@ const CS180_RESULTS = [
     { text: 'Increased product discoverability' },
   ] },
   { heading: 'Operational', cells: [
-    { text: <>Reusable<br />merchandising system</> },
-    { text: <>Faster onboarding<br />of new products</> },
-    { text: <>Better<br />content governance</> },
-    { text: <>More consistent<br />promotional assets</> },
+    { text: <>Reusable{' '}<br />merchandising system</> },
+    { text: <>Faster onboarding{' '}<br />of new products</> },
+    { text: <>Better{' '}<br />content governance</> },
+    { text: <>More consistent{' '}<br />promotional assets</> },
   ] },
 ];
 
@@ -220,7 +220,7 @@ const Results = ({ project }) => {
           <div className="nutch-card"><h3 className="nutch-card-title">Speak the User's Language</h3><p className="nutch-card-text">Prompts should sound like natural questions, not prompt engineering</p></div>
           <div className="nutch-card"><h3 className="nutch-card-title">Feel Precise, Not Robotic</h3><p className="nutch-card-text">Interactions should feel accurate, responsive, and human.</p></div>
           <div className="nutch-card"><h3 className="nutch-card-title">Show What You're Doing (and Why)</h3><p className="nutch-card-text">Users should always understand what the system is processing.</p></div>
-          <div className="nutch-card"><h3 className="nutch-card-title">Hide the Depth Until It's Needed</h3><p className="nutch-card-text">Start simple.<br />Reveal power progressively.</p></div>
+          <div className="nutch-card"><h3 className="nutch-card-title">Hide the Depth Until It's Needed</h3><p className="nutch-card-text">Start simple.{' '}<br />Reveal power progressively.</p></div>
           <div className="nutch-card"><h3 className="nutch-card-title">Work With the Web, Not Against It</h3><p className="nutch-card-text">Respect the browser instead of replacing it.</p></div>
         </div>
 
@@ -276,7 +276,7 @@ const Results = ({ project }) => {
                 <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <p className="nutch-decision-text">Editable prompts<br />instead of hidden automation</p>
+            <p className="nutch-decision-text">Editable prompts{' '}<br />instead of hidden automation</p>
           </div>
           <div className="nutch-card">
             <div className="nutch-decision-icon">
@@ -286,7 +286,7 @@ const Results = ({ project }) => {
                 <path d="M13 15H16V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <p className="nutch-decision-text">Context-first interactions<br />instead of blank input fields</p>
+            <p className="nutch-decision-text">Context-first interactions{' '}<br />instead of blank input fields</p>
           </div>
           <div className="nutch-card">
             <div className="nutch-decision-icon">
@@ -296,7 +296,7 @@ const Results = ({ project }) => {
                 <path d="M3.5 16.5l1.5 1.5L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <p className="nutch-decision-text">Transparent<br />model selection</p>
+            <p className="nutch-decision-text">Transparent{' '}<br />model selection</p>
           </div>
           <div className="nutch-card">
             <div className="nutch-decision-icon">
@@ -305,7 +305,7 @@ const Results = ({ project }) => {
                 <path d="M3 13l9 5 9-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <p className="nutch-decision-text">Progressive disclosure<br />of advanced capabilities</p>
+            <p className="nutch-decision-text">Progressive disclosure{' '}<br />of advanced capabilities</p>
           </div>
           <div className="nutch-card">
             <div className="nutch-decision-icon">
@@ -314,7 +314,7 @@ const Results = ({ project }) => {
                 <path d="M9 5v14" stroke="currentColor" strokeWidth="1.5"/>
               </svg>
             </div>
-            <p className="nutch-decision-text">Organized chat history<br />and generated files</p>
+            <p className="nutch-decision-text">Organized chat history{' '}<br />and generated files</p>
           </div>
           <div className="nutch-card">
             <div className="nutch-decision-icon">
@@ -324,7 +324,7 @@ const Results = ({ project }) => {
                 <path d="M15.5 8.5l-5.09 5.09a5 5 0 1 1-1.999-1.999L13.5 6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <p className="nutch-decision-text">Bring Your Own Key (BYOK)<br />to support users' existing AI subscriptions while reducing platform dependency</p>
+            <p className="nutch-decision-text">Bring Your Own Key (BYOK){' '}<br />to support users' existing AI subscriptions while reducing platform dependency</p>
           </div>
         </div>
 

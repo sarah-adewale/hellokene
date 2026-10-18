@@ -36,31 +36,31 @@ const HeroLink = ({ href, children }) => (
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('bio');
-  const [isMobile, setIsMobile] = useState(false);
+  const [useTapChips, setUseTapChips] = useState(false);
   const [coverFlipped, setCoverFlipped] = useState(false);
 
-  // Check if device is mobile
+  // Tap chips instead of keyboard shortcuts on phones and on touch screens
+  // with no mouse or trackpad (an iPad without a keyboard is wider than a
+  // phone but has no keys to press).
   useEffect(() => {
     let timeoutId;
-    
-    const checkIfMobile = () => {
+    const touchOnly = window.matchMedia('(hover: none)');
+
+    const update = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        setIsMobile(window.innerWidth < 768);
+        setUseTapChips(window.innerWidth < 768 || touchOnly.matches);
       }, 100); // Debounce resize events
     };
-    
 
-    // Check on initial load
-    checkIfMobile();
-
-    // Add event listener for window resize
-    window.addEventListener('resize', checkIfMobile, { passive: true });
+    update();
+    window.addEventListener('resize', update, { passive: true });
+    touchOnly.addEventListener('change', update);
 
     return () => {
-      window.removeEventListener('resize', checkIfMobile);
+      window.removeEventListener('resize', update);
+      touchOnly.removeEventListener('change', update);
       clearTimeout(timeoutId);
-
     };
   }, []);
 
@@ -82,16 +82,13 @@ const HomePage = () => {
       }
     }, []);
   
+    // Shortcuts stay on everywhere: a tablet with a keyboard can use them too
     useEffect(() => {
-      // Only add keyboard event listener for desktop
-      if (!isMobile) {
-        document.addEventListener('keydown', handleKeyPress, { passive: true });
-        
-        return () => {
-          document.removeEventListener('keydown', handleKeyPress);
-        };
-      }
-    }, [isMobile, handleKeyPress]);
+      document.addEventListener('keydown', handleKeyPress, { passive: true });
+      return () => {
+        document.removeEventListener('keydown', handleKeyPress);
+      };
+    }, [handleKeyPress]);
 
   // Helper function to get heading class based on active tab
 // Memoize heading class calculation
@@ -155,7 +152,7 @@ const headingClass = useMemo(() => (
               </div>
             )}
 
-            {isMobile ? (
+            {useTapChips ? (
               /* Touch devices get tappable chips instead of keyboard shortcuts. */
               <div className="key-prompt">
                 {activeTab === 'bio' ? (

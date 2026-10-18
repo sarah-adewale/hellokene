@@ -2838,6 +2838,15 @@
   margin: 0;
 }
 
+/* Below desktop width the columns are too narrow for the designed line
+   breaks, so lines wrap naturally (each <br> has a space before it) */
+@media (max-width: 1023px) {
+  .cs180-table-text br,
+  .cs180-split-text br {
+    display: none;
+  }
+}
+
 /* ---------- 180by2 results and principles ---------- */
 
 .cs180-results .cs180-table {

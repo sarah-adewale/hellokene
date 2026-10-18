@@ -61,47 +61,47 @@ const CS180Compare = ({ before, after }) => {
 // 180by2 validation tables, rendered by CS180Table (see CS180Table.jsx)
 const CS180_NAV_VALIDATION = [
   { heading: 'We looked for evidence across three areas', cells: [
-    { label: 'Product click-through', text: <>Increased from<br />42% → 58%</> },
-    { label: 'Navigation abandonment', text: <>Reduced by<br />22%</> },
-    { label: 'Bounce rate', text: <>Reduced by<br />15%</> },
+    { label: 'Product click-through', text: <>Increased from{' '}<br />42% → 58%</> },
+    { label: 'Navigation abandonment', text: <>Reduced by{' '}<br />22%</> },
+    { label: 'Bounce rate', text: <>Reduced by{' '}<br />15%</> },
   ] },
   { heading: 'We noticed users were', cells: [
-    { text: <>Locating products<br />without assistance</> },
-    { text: <>Fewer backtracks<br />between categories</> },
-    { text: <>Less reliance<br />on search</> },
+    { text: <>Locating products{' '}<br />without assistance</> },
+    { text: <>Fewer backtracks{' '}<br />between categories</> },
+    { text: <>Less reliance{' '}<br />on search</> },
   ] },
   { heading: 'Interaction analysis showed', cells: [
-    { label: 'Fewer', text: <>“Where can I find...?”<br />support requests.</> },
-    { label: 'Faster', text: <>Merchandising of<br />newly added products.</> },
-    { label: 'Reduced', text: <>Internal effort<br />maintaining navigation.</> },
+    { label: 'Fewer', text: <>“Where can I find...?”{' '}<br />support requests.</> },
+    { label: 'Faster', text: <>Merchandising of{' '}<br />newly added products.</> },
+    { label: 'Reduced', text: <>Internal effort{' '}<br />maintaining navigation.</> },
   ] },
   { heading: 'Users also said', cells: [
     { label: 'When you came to the site, where did you start?', text: '“I went straight to cameras, then GoPro, because that’s what we already shoot with. Last time I searched instead and got mounts and batteries mixed in.”', name: 'Angela' },
     { label: 'How did you feel choosing between products?', text: '“I’m not a camera person, so the beginner options helped. I didn’t have to compare specs I don’t understand.”', name: 'Sipho' },
   ] },
   { heading: 'What we learned', cells: [
-    { icon: 'good', text: <>Discovery<br />improved</> },
-    { icon: 'good', text: <>Customers reached<br />products faster</> },
-    { icon: 'flag', text: <>Product pages were the next major<br />source of hesitation.</> },
+    { icon: 'good', text: <>Discovery{' '}<br />improved</> },
+    { icon: 'good', text: <>Customers reached{' '}<br />products faster</> },
+    { icon: 'flag', text: <>Product pages were the next major{' '}<br />source of hesitation.</> },
   ] },
 ];
 
 const CS180_PRODUCT_VALIDATION = [
   { heading: 'Engagement indicators', cells: [
-    { text: <>Average engagement<br />time increased</> },
-    { text: <>Higher<br />scroll depth</> },
-    { text: <>Increased<br />add-to-cart rate</> },
-    { text: <>More accessory<br />interactions</> },
+    { text: <>Average engagement{' '}<br />time increased</> },
+    { text: <>Higher{' '}<br />scroll depth</> },
+    { text: <>Increased{' '}<br />add-to-cart rate</> },
+    { text: <>More accessory{' '}<br />interactions</> },
   ] },
   { heading: 'During UAT we observed', cells: [
-    { text: <>Customers completing research<br />without leaving the page</> },
-    { text: <>More overall interaction with<br />accessories</> },
-    { text: <>Greater confidence during product<br />comparisons</> },
+    { text: <>Customers completing research{' '}<br />without leaving the page</> },
+    { text: <>More overall interaction with{' '}<br />accessories</> },
+    { text: <>Greater confidence during product{' '}<br />comparisons</> },
   ] },
   { heading: 'Business indicators', cells: [
-    { text: <>Better performance of campaign<br />landing pages</> },
-    { text: <>Higher conversion on featured<br />launches</> },
-    { text: <>Increased accessory attachment<br />rate</> },
+    { text: <>Better performance of campaign{' '}<br />landing pages</> },
+    { text: <>Higher conversion on featured{' '}<br />launches</> },
+    { text: <>Increased accessory attachment{' '}<br />rate</> },
   ] },
   { heading: 'What we learned', cells: [
     { text: <>Customers rarely needed <span className="cs180-accent--no">more</span> information, they needed <span className="cs180-accent--yes">better organised</span> information.</> },
@@ -115,9 +115,9 @@ const CS180_COLLECTION_VALIDATION = [
     { text: 'More products viewed per session' },
   ] },
   { heading: 'Behavior', cells: [
-    { text: <>More visitors entering through<br />collections</> },
-    { text: <>Higher interaction with<br />recommended products</> },
-    { text: <>Increased cross-category<br />exploration</> },
+    { text: <>More visitors entering through{' '}<br />collections</> },
+    { text: <>Higher interaction with{' '}<br />recommended products</> },
+    { text: <>Increased cross-category{' '}<br />exploration</> },
   ] },
   { heading: 'Users also said', cells: [
     { label: 'Did you end up buying anything you weren’t looking for?', text: '“I was in the travel section looking at cameras for a trip and saw a carry case for my Quest 3. I didn’t know that existed, so I grabbed it.”', name: 'Busola' },
@@ -130,10 +130,10 @@ const CS180_COLLECTION_VALIDATION = [
 
 const CS180_TRUST_VALIDATION = [
   { heading: 'We noticed', cells: [
-    { text: <>Reduced pre-purchase<br />support enquiries</> },
-    { text: <>Improved customer<br />satisfaction</> },
-    { text: <>Increased returning<br />visitor conversion</> },
-    { text: <>Positive qualitative<br />feedback around<br />transparency</> },
+    { text: <>Reduced pre-purchase{' '}<br />support enquiries</> },
+    { text: <>Improved customer{' '}<br />satisfaction</> },
+    { text: <>Increased returning{' '}<br />visitor conversion</> },
+    { text: <>Positive qualitative{' '}<br />feedback around{' '}<br />transparency</> },
   ] },
 ];
 
@@ -171,9 +171,9 @@ const CS180PageToggle = ({ before, after }) => {
 
 // 180by2 "Trust begins long before checkout": what was added along the journey
 const CS180_TRUST = [
-  { image: '/images/180by2-trust-shipping.svg', alt: 'Satisfied or refunded: 30 day return policy for eligible purchases, next to an international delivery badge', label: <>Shipping<br />&amp; return benefits</> },
-  { image: '/images/180by2-trust-support.svg', alt: 'An “Ask us anything” support message box', label: <>Flexible<br />support</> },
-  { image: '/images/180by2-trust-reviews.svg', alt: 'Google reviews: 4.5 stars from 136 reviews, with a customer review', label: <>Social<br />Reviews</> },
+  { image: '/images/180by2-trust-shipping.svg', alt: 'Satisfied or refunded: 30 day return policy for eligible purchases, next to an international delivery badge', label: <>Shipping{' '}<br />&amp; return benefits</> },
+  { image: '/images/180by2-trust-support.svg', alt: 'An “Ask us anything” support message box', label: <>Flexible{' '}<br />support</> },
+  { image: '/images/180by2-trust-reviews.svg', alt: 'Google reviews: 4.5 stars from 136 reviews, with a customer review', label: <>Social{' '}<br />Reviews</> },
 ];
 
 const CS180_COLLECTIONS = [['🌍', 'Travel'], ['🥽', 'Water Sports'], ['🪄', 'Content Creation']];
@@ -518,9 +518,9 @@ const Solution = ({ project }) => {
           />
           <div className="cs180-split-text">
             <p className="cs180-text">People rarely started with a specific product.</p>
-            <p className="cs180-text">Some looked for a camera.<br />Others searched for a brand.</p>
+            <p className="cs180-text">Some looked for a camera.{' '}<br />Others searched for a brand.</p>
             <p className="cs180-text">Many simply wanted equipment for travel, content creation or a hobby they were beginning.</p>
-            <p className="cs180-text">The navigation reflected the catalogue<br />but customers thought in use cases.</p>
+            <p className="cs180-text">The navigation reflected the catalogue{' '}<br />but customers thought in use cases.</p>
           </div>
         </div>
 
@@ -620,7 +620,7 @@ const Solution = ({ project }) => {
             <p className="cs180-text">A traveller wants to capture a holiday.</p>
             <p className="cs180-text">A diver wants underwater footage.</p>
             <p className="cs180-text">A creator wants a complete filming setup.</p>
-            <p className="cs180-text">Collections helped bridge the gap between<br />inventory and intent.</p>
+            <p className="cs180-text">Collections helped bridge the gap between{' '}<br />inventory and intent.</p>
           </div>
         </div>
 
