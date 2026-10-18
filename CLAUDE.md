@@ -51,8 +51,9 @@ client/public/images/   all image assets, referenced as /images/<name>
   Data model). Highlights render as image + text rows, 3 shown then "Show more
   highlights". Projects appear in the order they're listed in `api/_data/projects.js`.
 - **Header**: logo, "Tools I've Shipped" dropdown (Text FX link; Nutch AI is a
-  non-clickable "Coming Soon" item), and the moon/sun theme toggle. Mobile gets a
-  hamburger menu.
+  non-clickable "Coming Soon" item), and the moon/sun theme toggle. Fixed to the top
+  at every width; on phones the label shortens to "Tools" and the dropdown spans the
+  screen. There is no hamburger menu.
 
 ## Data model
 
