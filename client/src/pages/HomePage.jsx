@@ -14,7 +14,7 @@ const HERO_LINKS = {
   africanTechnopreneurs: 'https://www.africantechno.com/',
   oneEightyBy2: 'https://180by2.co.za/',
   ikedc: 'https://www.ikejaelectric.com/',
-  lexAi: '',
+  lexAi: '', // no link on purpose: shown like the others but not clickable
   inclusivePeace: 'https://www.inclusivepeace.org/',
   capitalInvestmentClub: 'https://www.capitalinvestmentclub.org/',
 };
