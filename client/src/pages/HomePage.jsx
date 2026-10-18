@@ -9,14 +9,14 @@ import { EMAIL_URL, LINKEDIN_URL, RESUME_URL, BOOK_A_CALL_URL } from '../config/
 // which renders the phrase as plain underlined text instead of a dead link.
 const HERO_LINKS = {
   tradevu: 'https://www.tradevu.co',
-  pivo: '',
-  pivoSeed: '',
+  pivo: 'https://www.ycombinator.com/companies/pivo-technology-inc',
+  pivoSeed: 'https://techcrunch.com/2022/11/24/pivo-powers-up-nigerian-freight-carriers-with-a-bespoke-digital-bank-gets-2m-seed-funding/',
   africanTechnopreneurs: 'https://www.africantechno.com/',
-  oneEightyBy2: '',
-  ikedc: '',
+  oneEightyBy2: 'https://180by2.co.za/',
+  ikedc: 'https://www.ikejaelectric.com/',
   lexAi: '',
-  inclusivePeace: '',
-  capitalInvestmentClub: '',
+  inclusivePeace: 'https://www.inclusivepeace.org/',
+  capitalInvestmentClub: 'https://www.capitalinvestmentclub.org/',
 };
 
 // Tools that float around the cover image. `id` drives both the position
