@@ -18,11 +18,6 @@
   will-change: transform;
 }
 
-.profile-image-wrapper:hover .profile-image,
-.profile-image-wrapper:hover .profile-image-hover {
-  will-change: opacity;
-}
-
 
 /* Render images with the browser's default high-quality smoothing.
    (crisp-edges / optimize-contrast made scaled images, even SVGs
@@ -95,11 +90,6 @@ html {
 
 /* Remove will-change after animations complete */
 .skill-icon:not(:hover) {
-  will-change: auto;
-}
-
-.profile-image-wrapper:not(:hover) .profile-image,
-.profile-image-wrapper:not(:hover) .profile-image-hover {
   will-change: auto;
 }
 
@@ -463,7 +453,7 @@ a.hero-cta:hover {
   margin: 0 auto;
 }
 
-/* Profile image hover effect */
+/* Profile image: two stacked images, cross-faded on click */
 .profile-image-container {
   position: relative;
   width: 100%;
@@ -491,8 +481,7 @@ a.hero-cta:hover {
   z-index: 1;
 }
 
-/* Clicking the cover pins the swapped image; hover still previews the other
-   one, so the flipped state reverses both rules. */
+/* Clicking the cover swaps to the other image (no hover preview) */
 .profile-image-container {
   padding: 0;
   border: none;
@@ -506,22 +495,6 @@ a.hero-cta:hover {
 }
 
 .profile-image-wrapper.is-flipped .profile-image-hover {
-  opacity: 1;
-}
-
-.profile-image-wrapper.is-flipped:hover .profile-image {
-  opacity: 1;
-}
-
-.profile-image-wrapper.is-flipped:hover .profile-image-hover {
-  opacity: 0;
-}
-
-.profile-image-wrapper:hover .profile-image {
-  opacity: 0;
-}
-
-.profile-image-wrapper:hover .profile-image-hover {
   opacity: 1;
 }
 

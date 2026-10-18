@@ -234,7 +234,7 @@ const headingClass = useMemo(() => (
           {/* Right Column - Image and Skills */}
           <div className="profile-container">
             <div className={`profile-image-wrapper ${coverFlipped ? 'is-flipped' : ''}`}>
-              {/* Hover previews the other image; clicking pins it. */}
+              {/* Clicking swaps to the other image. */}
               <button
                 type="button"
                 className="profile-image-container"
