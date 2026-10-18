@@ -54,7 +54,7 @@ const portfolioProjects = [
     category: ['Fintech'],
     imageUrl: '/images/new-pivo-img.svg',
     hoverImageUrl: '/images/new-pivo-img-hover.svg',
-    gridImageUrl: '/images/pivo-highlight.webp',
+    gridImageUrl: '/images/pivo-highlight-new.webp',
     readTime: '10 min read',
     caseStudyUrl: '/portfolio/pivo',
     highlighted: true,
