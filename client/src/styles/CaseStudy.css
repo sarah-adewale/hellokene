@@ -2838,6 +2838,59 @@
   margin: 0;
 }
 
+/* ---------- 180by2 results and principles ---------- */
+
+.cs180-results .cs180-table {
+  margin-bottom: 24px;
+}
+
+/* The chart image carries its own rounded corners */
+.cs180-chart img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cs180-principles .cs180-pair .cs180-text {
+  margin-bottom: 8px;
+}
+
+/* Closer to the chart above than other sections sit */
+.cs180--compact.cs180-principles {
+  margin-top: 30px;
+}
+
+/* 3 x 2 bordered cells, each an icon over a line of text */
+.cs180-principle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--card-bg);
+  border-radius: 12px;
+}
+
+.cs180-principle {
+  min-height: 225px;
+  padding: 46px 24px 40px;
+  border-left: 1px solid var(--card-bg);
+  color: var(--secondary-text);
+}
+
+.cs180-principle:nth-child(3n + 1) {
+  border-left: 0;
+}
+
+.cs180-principle:nth-child(n + 4) {
+  border-top: 1px solid var(--card-bg);
+}
+
+.cs180-principle svg {
+  display: block;
+  margin-bottom: 24px;
+}
+
 @media (max-width: 768px) {
   .cs180-label {
     font-size: 16px;
@@ -2951,5 +3004,54 @@
 
   .cs180--compact .cs180-iteration .cs180-text {
     margin-bottom: 24px;
+  }
+
+  .cs180-principle-grid {
+    grid-template-columns: 1fr;
+    margin-top: 28px;
+  }
+
+  .cs180-principle {
+    min-height: 0;
+    padding: 24px 18px;
+  }
+
+  .cs180-principle:nth-child(3n + 1) {
+    border-left: 0;
+  }
+
+  .cs180-principle + .cs180-principle {
+    border-left: 0;
+    border-top: 1px solid var(--card-bg);
+  }
+
+  .cs180-principle svg {
+    margin-bottom: 16px;
+  }
+
+  /* the photo collage becomes a single column */
+  .cs180-photos {
+    grid-template-columns: 1fr;
+  }
+
+  .cs180-photos img {
+    height: auto;
+  }
+
+  .cs180-photos img:nth-child(3) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  /* Too small to read at phone width: show it larger and let it scroll
+     sideways inside its own box */
+  .cs180-chart {
+    overflow-x: auto;
+    border-radius: 16px;
+  }
+
+  .cs180-chart img {
+    width: 760px;
+    max-width: none;
   }
 }

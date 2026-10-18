@@ -2,6 +2,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// 180by2: [icon paths, principle]. Line icons drawn on a 24px grid.
+const CS180_PRINCIPLES = [
+  [<><circle cx="12" cy="12" r="9" /><path d="M8.5 14.5s1.3 1.5 3.5 1.5 3.5-1.5 3.5-1.5" /><path d="M9 9.5h.01M15 9.5h.01" strokeWidth="2" /></>,
+    'Organise around customer intent, not internal inventory.'],
+  [<><path d="M3 21h18" /><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17" /><path d="M14 12h.01" strokeWidth="2" /></>,
+    'Every unanswered question becomes a potential exit point.'],
+  [<><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /><path d="m9 12 2 2 4-4" /></>,
+    'Product pages should reduce uncertainty, not simply describe products'],
+  [<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />,
+    'Trust begins before checkout.'],
+  [<><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z" /><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" /></>,
+    'Every release is a hypothesis.'],
+  [<><path d="m11 17 2 2a1 1 0 1 0 3-3" /><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" /><path d="m21 3 1 11h-2" /><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" /><path d="M3 4h8" /></>,
+    'Great e-commerce helps customers make confident decisions.'],
+];
+
 const Conclusion = ({ project }) => {
   // const { theme, toggleTheme } = useTheme();
   // const [modalImage, setModalImage] = useState(null);
@@ -92,13 +108,24 @@ const Conclusion = ({ project }) => {
         </div>
       </section>
     )}
-    {/* TODO: replace the 180by2 placeholder copy */}
+    {/* 180by2 closing principles. Styles are the cs180-* block in CaseStudy.css. */}
     {project.id === '180by2' && (
-      <section className="case-study-section nutch-section nutch-conclusion">
-        <h2 className="nutch-h">Reflection</h2>
-        <div className="nutch-text-group">
-          <p className="nutch-text">[Conclusion placeholder] What you learned and what you'd do next.</p>
+      <section className="cs180 cs180--compact cs180-principles">
+        <h2 className="cs180-h">Principles I still use today</h2>
+        <div className="cs180-pair">
+          <p className="cs180-text">This project changed how I think about e-commerce.</p>
+          <p className="cs180-text">Mainly because of the questions we learned to answer.</p>
         </div>
+        <ul className="cs180-principle-grid">
+          {CS180_PRINCIPLES.map(([icon, text]) => (
+            <li key={text} className="cs180-principle">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                {icon}
+              </svg>
+              <p className="cs180-table-text">{text}</p>
+            </li>
+          ))}
+        </ul>
       </section>
     )}
 

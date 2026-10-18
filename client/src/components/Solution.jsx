@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import ImageModal from '../components/ImageModal';
 import { useTheme } from '../context/ThemeContext';
+import CS180Table from './CS180Table';
 
 // 180by2: a screen recording framed as a browser window on a grey card.
 // `crop` picks how the recording is scaled and cropped in the window (see
@@ -57,9 +58,7 @@ const CS180Compare = ({ before, after }) => {
   );
 };
 
-// 180by2 validation tables. Each group is a grey heading band over a row of
-// cells; a cell has `text` and optionally a grey `label` above it, a `name`
-// below it (quotes) or an `icon` ('good' or 'flag').
+// 180by2 validation tables, rendered by CS180Table (see CS180Table.jsx)
 const CS180_NAV_VALIDATION = [
   { heading: 'We looked for evidence across three areas', cells: [
     { label: 'Product click-through', text: <>Increased from<br />42% → 58%</> },
@@ -138,25 +137,6 @@ const CS180_TRUST_VALIDATION = [
   ] },
 ];
 
-const CS180Table = ({ groups }) => (
-  <div className="cs180-table">
-    {groups.map(({ heading, cells }) => (
-      <div key={heading} className="cs180-table-group">
-        <h4 className="cs180-table-head">{heading}</h4>
-        <div className="cs180-table-row" style={{ '--cs180-cols': cells.length }}>
-          {cells.map(({ label, text, name, icon }, i) => (
-            <div key={i} className="cs180-table-cell">
-              {icon && <CS180Icon good={icon === 'good'} />}
-              {label && <p className="cs180-table-label">{label}</p>}
-              <p className="cs180-table-text">{text}</p>
-              {name && <p className="cs180-table-name">{name}</p>}
-            </div>
-          ))}
-        </div>
-      </div>
-    ))}
-  </div>
-);
 
 // 180by2: a full page in a browser window that scrolls inside the frame,
 // with a Before/After switch in the title bar
@@ -206,19 +186,6 @@ const CS180_BROWSE_BY = [
 
 const CS180_PAGE_PARTS = ['Product overview', 'Rich media', 'Key features', 'Compatible accessories', 'Supporting content'];
 
-const CS180Icon = ({ good }) => (
-  <span className={`cs180-learned-icon ${good ? 'cs180-learned-icon--good' : 'cs180-learned-icon--flag'}`} aria-hidden="true">
-    {good ? (
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M7.5 12.5l3 3 6-6.5" />
-      </svg>
-    ) : (
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-        <path d="M6 3.5a1 1 0 0 1 1 1V5h10.2a.8.8 0 0 1 .64 1.28L15.5 9.5l2.34 3.22a.8.8 0 0 1-.64 1.28H7v6.5a1 1 0 1 1-2 0v-16a1 1 0 0 1 1-1z" />
-      </svg>
-    )}
-  </span>
-);
 
 const Solution = ({ project }) => {
     const [modalImage, setModalImage] = useState(null);

@@ -89,10 +89,11 @@ looked up in `SectionRegistry`. The prev/next buttons form a loop:
 The section components (`Overview`, `Challenge`, `Solution`, `Results`, `Conclusion`) are
 each one large file structured as: a generic fallback for unknown ids, then a separate
 JSX block per project id. To add a case study, add its id to the fallback check at the
-top of each section it uses, then add its block. `pivo` and `nutch` have
-real content; `180by2` is scaffolded with visible `[… placeholder]` copy and TODOs —
-don't deploy it until that's replaced. `nutch` and `180by2` share the `nutch-*` styles
-at the bottom of `CaseStudy.css`.
+top of each section it uses, then add its block. `nutch` uses the `nutch-*` styles
+near the bottom of `CaseStudy.css` (180by2's problem section borrows its avatar
+hover stack). `180by2` has its own `cs180-*` block at the very end of that file, and
+its grey-band tables (validation, results) are the shared `CS180Table` component,
+fed `{ heading, cells }` data from each section file.
 
 ## Conventions
 

@@ -2,6 +2,29 @@
 import React, { useState } from 'react';
 import ImageModal from '../components/ImageModal';
 import { useTheme } from '../context/ThemeContext';
+import CS180Table from './CS180Table';
+
+const CS180_RESULTS = [
+  { heading: 'Experience', cells: [
+    { text: <>Easier<br />navigation</> },
+    { text: <>Greater<br />purchase confidence</> },
+    { text: <>Better understanding<br />of product differences</> },
+  ] },
+  { heading: 'Business', cells: [
+    { text: '~15% monthly conversion growth' },
+    { text: 'Improved campaign performance' },
+    { text: 'Increased product discoverability' },
+  ] },
+  { heading: 'Operational', cells: [
+    { text: <>Reusable<br />merchandising system</> },
+    { text: <>Faster onboarding<br />of new products</> },
+    { text: <>Better<br />content governance</> },
+    { text: <>More consistent<br />promotional assets</> },
+  ] },
+];
+
+const CS180_CHART = '/images/180by2-results-chart.webp';
+const CS180_CHART_ALT = 'Product recommendation click rate, Q3 to Q4 2025: up for all five top products, from 14.2% to 20.1% for the Logitech MX Ink. A table below shows a 53% rise in click rate overall, with sessions up 62% and recommendations up 59%.';
 
 const Results = ({ project }) => {
   const [modalImage, setModalImage] = useState(null);
@@ -308,20 +331,15 @@ const Results = ({ project }) => {
         <p className="nutch-emphasis-light">Every decision balanced user experience, technical feasibility, and long-term scalability.</p>
       </section>
     )}
-    {/* TODO: replace the 180by2 placeholder copy and add result visuals */}
+    {/* 180by2 results. Styles are the cs180-* block in CaseStudy.css. */}
     {project.id === '180by2' && (
-      <section className="case-study-section nutch-section">
-        <h2 className="nutch-h">What we changed</h2>
-        <p className="nutch-text">[Results placeholder] The key changes to the shopping experience, one card per change.</p>
-
-        <div className="nutch-card-grid nutch-card-grid--3">
-          <div className="nutch-card"><h3 className="nutch-card-title">[Change 1]</h3><p className="nutch-card-text">[What it was and why]</p></div>
-          <div className="nutch-card"><h3 className="nutch-card-title">[Change 2]</h3><p className="nutch-card-text">[What it was and why]</p></div>
-          <div className="nutch-card"><h3 className="nutch-card-title">[Change 3]</h3><p className="nutch-card-text">[What it was and why]</p></div>
+      <section className="cs180 cs180--compact cs180-results">
+        <h2 className="cs180-h">Results</h2>
+        <CS180Table groups={CS180_RESULTS} />
+        {/* Scrolls sideways on phones so the figures stay readable */}
+        <div className="cs180-chart">
+          <img src={CS180_CHART} alt={CS180_CHART_ALT} loading="lazy" decoding="async" />
         </div>
-
-        <h2 className="nutch-h">Results</h2>
-        <p className="nutch-text">[Results placeholder] The outcome, including the R300k+ in sales and any other metrics.</p>
       </section>
     )}
     </>
