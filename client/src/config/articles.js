@@ -8,32 +8,17 @@ import { MEDIUM_URL } from './links';
 // `url` falls back to the Medium profile when empty.
 export const MEDIUM_ARTICLES = [
   {
+    title: 'Driving Ms. Data: Lessons for the Road',
+    readTime: '', // TODO: add once known (Medium didn't expose it)
+    url: 'https://medium.com/@_Kenenna/driving-ms-data-lessons-for-the-road-7ac6d2bf3a4f',
+    image: '/images/medium-article-1.jpeg',
+  },
+  {
     title: 'Simplifying Batch Exports in Figma',
     readTime: '3 min read',
-    url: '',
-    image: '',
-  },
-
-  // TODO: placeholders for testing the carousel - replace with real articles.
-  // Each points at the Medium profile with a distinct fragment so the links
-  // are distinguishable but still open somewhere real.
-  {
-    title: 'Designing onboarding that survives regulation',
-    readTime: '6 min read',
-    url: 'https://medium.com/@_Kenenna#placeholder-2',
-    image: '',
-  },
-  {
-    title: 'What I learned shipping a design system solo',
-    readTime: '4 min read',
-    url: 'https://medium.com/@_Kenenna#placeholder-3',
-    image: '',
-  },
-  {
-    title: 'Bringing AI to the work instead of the other way round',
-    readTime: '8 min read',
-    url: 'https://medium.com/@_Kenenna#placeholder-4',
-    image: '',
+    url: 'https://medium.com/@_Kenenna/from-project-zip-to-purposeful-zip-simplifying-batch-exports-in-figma-56e5cf20394f',
+    // cropped from the article's first screenshot
+    image: '/images/medium-article-2.webp',
   },
 ];
 

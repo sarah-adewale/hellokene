@@ -77,21 +77,25 @@
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-a.footer-cta:hover {
-  opacity: 0.85;
+  transition: background-color 0.2s ease;
 }
 
 .footer-cta--primary {
-  background-color: var(--text-color);
-  color: var(--bg-color);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+}
+
+a.footer-cta--primary:hover {
+  background-color: var(--btn-primary-hover);
 }
 
 .footer-cta--secondary {
-  background-color: var(--card-bg);
-  color: var(--text-color);
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+}
+
+a.footer-cta--secondary:hover {
+  background-color: var(--btn-secondary-hover);
 }
 
 /* Social icons - hovering one slides the rest aside to make room for its label */

@@ -17,6 +17,13 @@
   --key-prompt-text: #3C3B3F;
   --key-prompt-button-background: #6D6C6F;
   --key-prompt-button-text: #FCFCFC;
+  /* Buttons (hero, highlights, footer, forms) */
+  --btn-primary-bg: #0B0A0F;
+  --btn-primary-text: #E7E7E7;
+  --btn-primary-hover: #232327;
+  --btn-secondary-bg: #E7E7E7;
+  --btn-secondary-text: #0B0A0F;
+  --btn-secondary-hover: #DCDCDC;
 }
 
 [data-theme='dark'] {
@@ -32,4 +39,11 @@
   --key-prompt-text: #FCFCFC;
   --key-prompt-button-background: #FCFCFC;
   --key-prompt-button-text: #0B0A0F;
+  /* Buttons (hero, highlights, footer, forms) */
+  --btn-primary-bg: #FCFCFC;
+  --btn-primary-text: #232327;
+  --btn-primary-hover: #E3E3E3;
+  --btn-secondary-bg: #232327;
+  --btn-secondary-text: #FCFCFC;
+  --btn-secondary-hover: #2C2C31;
 }

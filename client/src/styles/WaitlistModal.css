@@ -1,0 +1,163 @@
+/* Nutch waitlist popup (WaitlistModal.jsx). Buttons use the shared
+   --btn-* colours from theme.css. */
+
+[data-theme='light'] {
+  --waitlist-backdrop: rgba(11, 10, 15, 0.4);
+  --waitlist-error: #C93C3C;
+}
+
+[data-theme='dark'] {
+  --waitlist-backdrop: rgba(0, 0, 0, 0.6);
+  --waitlist-error: #E76B6B;
+}
+
+.waitlist-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--waitlist-backdrop);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.waitlist-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 32px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Albert Sans', sans-serif;
+}
+
+.waitlist-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  padding: 6px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: var(--tertiary-text);
+  cursor: pointer;
+}
+
+.waitlist-close:hover {
+  color: var(--text-color);
+}
+
+.waitlist-title {
+  margin: 0 0 8px;
+  padding-right: 32px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.waitlist-text {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--tertiary-text);
+}
+
+.waitlist-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.waitlist-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--secondary-text);
+}
+
+.waitlist-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  font: inherit;
+  font-size: 16px; /* 16px stops iOS zooming in on focus */
+}
+
+.waitlist-field input:focus {
+  outline: 2px solid var(--text-color);
+  outline-offset: 1px;
+}
+
+.waitlist-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.waitlist-error {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--waitlist-error);
+}
+
+.waitlist-error a {
+  color: inherit;
+}
+
+.waitlist-submit {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.waitlist-submit:hover:not(:disabled) {
+  background-color: var(--btn-primary-hover);
+}
+
+.waitlist-submit:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.waitlist-submit:focus-visible,
+.waitlist-close:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .waitlist-dialog {
+    padding: 24px 20px;
+  }
+
+  .waitlist-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

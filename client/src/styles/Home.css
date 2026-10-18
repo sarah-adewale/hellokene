@@ -321,21 +321,25 @@ a.hero-link:hover {
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-a.hero-cta:hover {
-  opacity: 0.85;
+  transition: background-color 0.2s ease;
 }
 
 .hero-cta--primary {
-  background-color: var(--text-color);
-  color: var(--bg-color);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+}
+
+a.hero-cta--primary:hover {
+  background-color: var(--btn-primary-hover);
 }
 
 .hero-cta--secondary {
-  background-color: var(--card-bg);
-  color: var(--text-color);
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+}
+
+a.hero-cta--secondary:hover {
+  background-color: var(--btn-secondary-hover);
 }
 
 .hero-social {

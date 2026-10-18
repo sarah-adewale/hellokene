@@ -64,7 +64,10 @@ Vercel from serving it as a route.
 Projects are plain objects with `id`, `title`, `subtitle`, `description`, `category[]`,
 `imageUrl`, `hoverImageUrl`, `gridImageUrl`, `readTime`, and either `caseStudyUrl`
 (internal) or `projectUrl` (external). An empty `projectUrl` hides the "Visit website"
-button. Flags pick the homepage tab:
+button. `waitlist: 'Nutch'` (a product name) adds a "Join waitlist" button that opens
+`WaitlistModal`: first name, last name and email, sent to Kene's inbox through FormSubmit
+(`WAITLIST_FORM_ENDPOINT` in `config/links.js`; the first submission triggers a one-time
+activation email to Kene). Flags pick the homepage tab:
 
 - no flag → **Highlights** tab (rows)
 - `isWebsite: true` → **Websites** tab (uses `mobileImageUrl` under 768px)
@@ -106,6 +109,9 @@ fed `{ heading, cells }` data from each section file.
   stylesheet is global, so the last one loaded would win site-wide. Add new variables
   to both themes. In JSX, read `const { theme } = useTheme()` and swap image sources —
   the established pattern is a `-white` suffix for the light-mode asset.
+- **Buttons**: primary and secondary buttons (hero, highlights, footer, waitlist form)
+  take their colours from the `--btn-primary-*` / `--btn-secondary-*` variables in
+  `theme.css`, with a background-colour change on hover. Use those for new buttons.
 - **Images**: always reference as `/images/foo.svg` (leading slash).
 - **Styling**: component CSS in `client/src/styles/<Component>.css`, imported by the
   component. Tailwind (v3) is barely used: the layout classes in `App.js` and the

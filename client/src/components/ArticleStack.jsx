@@ -61,7 +61,7 @@ const ArticleStack = ({ articles = MEDIUM_ARTICLES }) => {
             {truncate(article.title)}
             <ExternalArrow />
           </span>
-          <span className="article-card-meta">{article.readTime}</span>
+          {article.readTime && <span className="article-card-meta">{article.readTime}</span>}
         </span>
         {article.image ? (
           <img className="article-card-thumb" src={article.image} alt="" aria-hidden="true" />

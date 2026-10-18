@@ -117,17 +117,17 @@
     padding: 14px 28px;
     border: none;
     border-radius: 10px;
-    background-color: var(--card-bg);
-    color: var(--text-color);
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
     font-family: inherit;
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    transition: background-color 0.2s ease;
   }
 
   .show-more-button:hover {
-    opacity: 0.85;
+    background-color: var(--btn-secondary-hover);
   }
 
   .project-row-media img {
@@ -266,35 +266,25 @@
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    transition: opacity 0.2s ease;
-  }
-
-  .project-cta:hover {
-    opacity: 0.85;
+    transition: background-color 0.2s ease;
   }
 
   .project-cta--primary {
-    background-color: #FCFCFC;
-    color: #0B0A0F;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+  }
+
+  .project-cta--primary:hover {
+    background-color: var(--btn-primary-hover);
   }
 
   .project-cta--secondary {
-    background-color: var(--card-bg);
-    color: var(--text-color);
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
   }
 
-  [data-theme='light'] .project-cta--secondary {
-    background-color: #232327;
-    color: #FCFCFC;
-  }
-
-  /* Looks like a button but isn't one yet (e.g. a waitlist with no link) */
-  .project-cta--inert {
-    cursor: default;
-  }
-
-  .project-cta--inert:hover {
-    opacity: 1;
+  .project-cta--secondary:hover {
+    background-color: var(--btn-secondary-hover);
   }
 
   @media (max-width: 900px) {
@@ -778,6 +768,8 @@
     padding: 14px 28px;
     font-size: 16px;
     gap: 10px;
+    /* centred with left: 50%, which would otherwise squeeze it onto two lines */
+    white-space: nowrap;
   }
 }
 

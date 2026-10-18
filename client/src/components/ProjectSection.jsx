@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/ProjectSection.css';
+import WaitlistModal from './WaitlistModal';
 
 // The highlights tab opens with a short preview; the rest are behind a button.
 const HIGHLIGHTS_PREVIEW_COUNT = 3;
@@ -125,6 +126,8 @@ const ProjectsSection = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeCategory, setActiveCategory] = useState('highlights');
+  // Product whose waitlist popup is open, or null
+  const [waitlistFor, setWaitlistFor] = useState(null);
   const tabsContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -353,22 +356,14 @@ const renderHighlights = () => {
                   Visit website
                 </a>
               )}
-              {/* Shown for projects with a waitlistUrl key; inert until it's filled in */}
-              {'waitlistUrl' in project && (
-                project.waitlistUrl ? (
-                  <a
-                    className="project-cta project-cta--secondary"
-                    href={project.waitlistUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Join waitlist
-                  </a>
-                ) : (
-                  <span className="project-cta project-cta--secondary project-cta--inert" aria-disabled="true">
-                    Join waitlist
-                  </span>
-                )
+              {project.waitlist && (
+                <button
+                  type="button"
+                  className="project-cta project-cta--secondary"
+                  onClick={() => setWaitlistFor(project.waitlist)}
+                >
+                  Join waitlist
+                </button>
               )}
             </div>
           </div>
@@ -520,6 +515,11 @@ const renderIllustrations = () => {
       ) : (
         renderHighlights()
       )}
+      <WaitlistModal
+        isOpen={waitlistFor !== null}
+        product={waitlistFor || ''}
+        onClose={() => setWaitlistFor(null)}
+      />
     </section>
   );
 };
