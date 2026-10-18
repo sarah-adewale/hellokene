@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ImageModal from '../components/ImageModal';
 import { useTheme } from '../context/ThemeContext';
 
@@ -57,37 +57,148 @@ const CS180Compare = ({ before, after }) => {
   );
 };
 
-// 180by2 validation table: [heading, cells]. A cell is [label, text] or, for
-// the quotes, [question, quote, name].
-const CS180_VALIDATION = [
-  ['We looked for evidence across three areas', [
-    ['Product click-through', <>Increased from<br />42% → 58%</>],
-    ['Navigation abandonment', <>Reduced by<br />22%</>],
-    ['Bounce rate', <>Reduced by<br />15%</>],
-  ]],
-  ['We noticed users were', [
-    [null, <>Locating products<br />without assistance</>],
-    [null, <>Fewer backtracks<br />between categories</>],
-    [null, <>Less reliance<br />on search</>],
-  ]],
-  ['Interaction analysis showed', [
-    ['Fewer', <>“Where can I find...?”<br />support requests.</>],
-    ['Faster', <>Merchandising of<br />newly added products.</>],
-    ['Reduced', <>Internal effort<br />maintaining navigation.</>],
-  ]],
-  ['Users also said', [
-    ['When you came to the site, where did you start?', '“I went straight to cameras, then GoPro, because that’s what we already shoot with. Last time I searched instead and got mounts and batteries mixed in.”', 'Angela'],
-    ['How did you feel choosing between products?', '“I’m not a camera person, so the beginner options helped. I didn’t have to compare specs I don’t understand.”', 'Sipho'],
-  ]],
+// 180by2 validation tables. Each group is a grey heading band over a row of
+// cells; a cell has `text` and optionally a grey `label` above it, a `name`
+// below it (quotes) or an `icon` ('good' or 'flag').
+const CS180_NAV_VALIDATION = [
+  { heading: 'We looked for evidence across three areas', cells: [
+    { label: 'Product click-through', text: <>Increased from<br />42% → 58%</> },
+    { label: 'Navigation abandonment', text: <>Reduced by<br />22%</> },
+    { label: 'Bounce rate', text: <>Reduced by<br />15%</> },
+  ] },
+  { heading: 'We noticed users were', cells: [
+    { text: <>Locating products<br />without assistance</> },
+    { text: <>Fewer backtracks<br />between categories</> },
+    { text: <>Less reliance<br />on search</> },
+  ] },
+  { heading: 'Interaction analysis showed', cells: [
+    { label: 'Fewer', text: <>“Where can I find...?”<br />support requests.</> },
+    { label: 'Faster', text: <>Merchandising of<br />newly added products.</> },
+    { label: 'Reduced', text: <>Internal effort<br />maintaining navigation.</> },
+  ] },
+  { heading: 'Users also said', cells: [
+    { label: 'When you came to the site, where did you start?', text: '“I went straight to cameras, then GoPro, because that’s what we already shoot with. Last time I searched instead and got mounts and batteries mixed in.”', name: 'Angela' },
+    { label: 'How did you feel choosing between products?', text: '“I’m not a camera person, so the beginner options helped. I didn’t have to compare specs I don’t understand.”', name: 'Sipho' },
+  ] },
+  { heading: 'What we learned', cells: [
+    { icon: 'good', text: <>Discovery<br />improved</> },
+    { icon: 'good', text: <>Customers reached<br />products faster</> },
+    { icon: 'flag', text: <>Product pages were the next major<br />source of hesitation.</> },
+  ] },
 ];
 
-// 180by2: what the first round taught us. `good` picks the green badge,
-// otherwise a red flag.
-const CS180_LEARNED = [
-  [true, <>Discovery<br />improved</>],
-  [true, <>Customers reached<br />products faster</>],
-  [false, <>Product pages were the next major<br />source of hesitation.</>],
+const CS180_PRODUCT_VALIDATION = [
+  { heading: 'Engagement indicators', cells: [
+    { text: <>Average engagement<br />time increased</> },
+    { text: <>Higher<br />scroll depth</> },
+    { text: <>Increased<br />add-to-cart rate</> },
+    { text: <>More accessory<br />interactions</> },
+  ] },
+  { heading: 'During UAT we observed', cells: [
+    { text: <>Customers completing research<br />without leaving the page</> },
+    { text: <>More overall interaction with<br />accessories</> },
+    { text: <>Greater confidence during product<br />comparisons</> },
+  ] },
+  { heading: 'Business indicators', cells: [
+    { text: <>Better performance of campaign<br />landing pages</> },
+    { text: <>Higher conversion on featured<br />launches</> },
+    { text: <>Increased accessory attachment<br />rate</> },
+  ] },
+  { heading: 'What we learned', cells: [
+    { text: <>Customers rarely needed <span className="cs180-accent--no">more</span> information, they needed <span className="cs180-accent--yes">better organised</span> information.</> },
+  ] },
 ];
+
+const CS180_COLLECTION_VALIDATION = [
+  { heading: 'Commerce', cells: [
+    { text: 'Higher average order value' },
+    { text: 'Increased accessory attachment' },
+    { text: 'More products viewed per session' },
+  ] },
+  { heading: 'Behavior', cells: [
+    { text: <>More visitors entering through<br />collections</> },
+    { text: <>Higher interaction with<br />recommended products</> },
+    { text: <>Increased cross-category<br />exploration</> },
+  ] },
+  { heading: 'Users also said', cells: [
+    { label: 'Did you end up buying anything you weren’t looking for?', text: '“I was in the travel section looking at cameras for a trip and saw a carry case for my Quest 3. I didn’t know that existed, so I grabbed it.”', name: 'Busola' },
+    { label: 'Has the new categories menu affected your experience?', text: '“I wanted the Meta glasses but didn’t know what they were actually called. Having a smart glasses category meant I didn’t need to know.”', name: 'Michael' },
+  ] },
+  { heading: 'What we learned', cells: [
+    { text: 'Merchandising that goes beyond boosting basket size, can directly offers what customers need to thrive.' },
+  ] },
+];
+
+const CS180_TRUST_VALIDATION = [
+  { heading: 'We noticed', cells: [
+    { text: <>Reduced pre-purchase<br />support enquiries</> },
+    { text: <>Improved customer<br />satisfaction</> },
+    { text: <>Increased returning<br />visitor conversion</> },
+    { text: <>Positive qualitative<br />feedback around<br />transparency</> },
+  ] },
+];
+
+const CS180Table = ({ groups }) => (
+  <div className="cs180-table">
+    {groups.map(({ heading, cells }) => (
+      <div key={heading} className="cs180-table-group">
+        <h4 className="cs180-table-head">{heading}</h4>
+        <div className="cs180-table-row" style={{ '--cs180-cols': cells.length }}>
+          {cells.map(({ label, text, name, icon }, i) => (
+            <div key={i} className="cs180-table-cell">
+              {icon && <CS180Icon good={icon === 'good'} />}
+              {label && <p className="cs180-table-label">{label}</p>}
+              <p className="cs180-table-text">{text}</p>
+              {name && <p className="cs180-table-name">{name}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+// 180by2: a full page in a browser window that scrolls inside the frame,
+// with a Before/After switch in the title bar
+const CS180PageToggle = ({ before, after }) => {
+  const [showAfter, setShowAfter] = useState(true);
+  const screenRef = useRef(null);
+  const show = (next) => {
+    const screen = screenRef.current;
+    // keep the same relative scroll position across the two pages
+    const ratio = screen && screen.scrollHeight > screen.clientHeight
+      ? screen.scrollTop / (screen.scrollHeight - screen.clientHeight)
+      : 0;
+    setShowAfter(next);
+    requestAnimationFrame(() => {
+      if (screen) screen.scrollTop = ratio * (screen.scrollHeight - screen.clientHeight);
+    });
+  };
+  return (
+    <div className="cs180-window cs180-window--scroll">
+      <span className="cs180-dots" aria-hidden="true"><span /><span /><span /></span>
+      <div className="cs180-toggle" role="group" aria-label="Show the product page">
+        <button type="button" aria-pressed={!showAfter} onClick={() => show(false)}>Before</button>
+        <button type="button" aria-pressed={showAfter} onClick={() => show(true)}>After</button>
+      </div>
+      <div className="cs180-window-screen" ref={screenRef} tabIndex={0} aria-label="Product page, scrollable">
+        <img src={before.src} alt={before.alt} hidden={showAfter} loading="lazy" decoding="async" />
+        <img src={after.src} alt={after.alt} hidden={!showAfter} loading="lazy" decoding="async" />
+      </div>
+    </div>
+  );
+};
+
+// 180by2 "Trust begins long before checkout": what was added along the
+// journey. TODO: the three screenshots weren't supplied yet; set `image`
+// once they're in /images.
+const CS180_TRUST = [
+  { image: null, alt: 'Shipping and returns benefits shown on the product page', label: <>Shipping<br />&amp; return benefits</> },
+  { image: null, alt: 'An “Ask us anything” support search box', label: <>Flexible<br />support</> },
+  { image: null, alt: 'Google reviews summary with a star rating', label: <>Social<br />Reviews</> },
+];
+
+const CS180_COLLECTIONS = [['🌍', 'Travel'], ['🥽', 'Water Sports'], ['🪄', 'Content Creation']];
 
 const CS180_BROWSE_BY = [
   ['Product category & brand', 'Menu items for ‘Categories’ and ‘brands’ aimed at making sorting simpler.'],
@@ -469,42 +580,16 @@ const Solution = ({ project }) => {
         </dl>
 
         <h3 className="cs180-label">Validation</h3>
-        <div className="cs180-table">
-          {CS180_VALIDATION.map(([heading, cells]) => (
-            <div key={heading} className="cs180-table-group">
-              <h4 className="cs180-table-head">{heading}</h4>
-              <div className={`cs180-table-row cs180-table-row--${cells.length}`}>
-                {cells.map(([label, text, name], i) => (
-                  <div key={i} className="cs180-table-cell">
-                    {label && <p className="cs180-table-label">{label}</p>}
-                    <p className="cs180-table-text">{text}</p>
-                    {name && <p className="cs180-table-name">{name}</p>}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-          <div className="cs180-table-group">
-            <h4 className="cs180-table-head">What we learned</h4>
-            <div className="cs180-table-row cs180-table-row--3">
-              {CS180_LEARNED.map(([good, text], i) => (
-                <div key={i} className="cs180-table-cell">
-                  <CS180Icon good={good} />
-                  <p className="cs180-table-text">{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <CS180Table groups={CS180_NAV_VALIDATION} />
 
         <blockquote className="cs180-quote cs180-quote--point">
           2. Finding a product wasn’t the same as feeling ready to buy it.
         </blockquote>
         <div className="cs180-split">
           <CS180Shot
-            src="/images/product-page-hero.webp"
-            alt="A 180by2 product page for the Meta Quest 3 headset"
-            crop="product"
+            src="/images/180by2-product-before.webp"
+            alt="The old 180by2 product page for the Meta Quest 3 headset"
+            crop="before"
           />
           <div className="cs180-split-text">
             <p className="cs180-text">Buying emerging technology often requires reassurance before commitment.</p>
@@ -530,10 +615,110 @@ const Solution = ({ project }) => {
             <p className="cs180-text">‘Pairs well with’ expanded and placed closer to the purchase point for ease of access</p>
           </div>
           <CS180Shot
+            src="/images/product-page-hero.webp"
+            alt="The redesigned Meta Quest 3 product page, scrolling from price and payment options down to ‘Pairs well with’"
+          />
+        </div>
+
+        <div className="cs180-split cs180-split--learn">
+          <CS180Shot
             src="/images/product-description.webp"
             alt="Scrolling the redesigned Meta Quest 3 product page, from price and payment options down to the product description"
           />
+          <div className="cs180-split-text">
+            <p className="cs180-text">We improved what it means to ‘learn more’ about a product for anyone shopping with a little less urgency.</p>
+            <p className="cs180-text">Detailed sections featuring flagship features and robust technical descriptions were added to every new product.</p>
+          </div>
         </div>
+
+        <p className="cs180-text">Homepage promotions also shifted from generic marketing banners towards product-focused hero experiences, encouraging visitors to explore these richer product pages.</p>
+        <p className="cs180-text">The landing page → cart experience now allowed experts to make quicker decisions and novices to take their time learning about a product without getting in either one’s way.</p>
+
+        <CS180PageToggle
+          before={{ src: '/images/180by2-product-before.webp', alt: 'The old Meta Quest 3 product page, from the header down to the footer' }}
+          after={{ src: '/images/180by2-product-after.webp', alt: 'The redesigned Meta Quest 3 product page, with accessories, feature sections, specifications and a closing call to action' }}
+        />
+
+        <h3 className="cs180-label">Validation</h3>
+        <CS180Table groups={CS180_PRODUCT_VALIDATION} />
+
+        <blockquote className="cs180-quote cs180-quote--point">
+          3. Customers don’t buy products. They buy outcomes.
+        </blockquote>
+        <div className="cs180-split">
+          <div className="cs180-photos">
+            <img src="/images/180by2-diver.webp" alt="Underwater footage of a giant sea bass with labels for its size, diet and behaviour" loading="lazy" decoding="async" />
+            <img src="/images/180by2-creator.webp" alt="A hand holding a compact camera while filming" loading="lazy" decoding="async" />
+            <img src="/images/180by2-traveller.webp" alt="Someone trying on FPV goggles while a friend adjusts them" loading="lazy" decoding="async" />
+          </div>
+          <div className="cs180-split-text">
+            <p className="cs180-text">A traveller wants to capture a holiday.</p>
+            <p className="cs180-text">A diver wants underwater footage.</p>
+            <p className="cs180-text">A creator wants a complete filming setup.</p>
+            <p className="cs180-text">Collections helped bridge the gap between<br />inventory and intent.</p>
+          </div>
+        </div>
+
+        <h3 className="cs180-label">Hypothesis</h3>
+        <p className="cs180-text">Grouping products around customer scenarios would reduce decision fatigue while naturally surfacing complementary products.</p>
+        <h3 className="cs180-label">Design decisions</h3>
+        <p className="cs180-text">We introduced curated collections built around activities instead of inventory.</p>
+        <div className="cs180-examples">
+          <span className="cs180-text">Examples included</span>
+          <ul className="cs180-tags">
+            {CS180_COLLECTIONS.map(([emoji, name]) => (
+              <li key={name} className="cs180-chip"><span aria-hidden="true">{emoji}</span>{name}</li>
+            ))}
+          </ul>
+        </div>
+        <p className="cs180-text">Featured products were paired with compatible accessories, helping customers complete their setup in one purchase.</p>
+
+        <div className="cs180-window cs180-window--collections">
+          <span className="cs180-dots" aria-hidden="true"><span /><span /><span /></span>
+          <div className="cs180-window-screen">
+            <img src="/images/colletions-menu.webp" alt="The new 180by2 homepage: a Collections menu in the navigation and a product-focused hero for the Insta360 X6" loading="lazy" decoding="async" />
+          </div>
+        </div>
+
+        <h3 className="cs180-label">Validation</h3>
+        <CS180Table groups={CS180_COLLECTION_VALIDATION} />
+
+        <blockquote className="cs180-quote cs180-quote--point">
+          4. Trust begins long before checkout.
+        </blockquote>
+        <p className="cs180-text">Purchase confidence develops gradually. Throughout the journey we introduced</p>
+        <ul className="cs180-trust">
+          {CS180_TRUST.map(({ image, alt, label }, i) => (
+            <li key={i} className="cs180-trust-item">
+              {image
+                ? <img src={image} alt={alt} loading="lazy" decoding="async" />
+                : <span className="cs180-trust-placeholder">[image]</span>}
+              <p className="cs180-table-text">{label}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="cs180-text">Each addition answered questions customers repeatedly asked before purchasing.</p>
+
+        <h3 className="cs180-label">Validation</h3>
+        <CS180Table groups={CS180_TRUST_VALIDATION} />
+
+        <h2 className="cs180-h">Designing through iteration</h2>
+        <div className="cs180-iteration">
+          <p className="cs180-text">This project wasn’t delivered as a single redesign.</p>
+          <p className="cs180-text">Over approximately six months, improvements were released, validated and refined in stages.</p>
+          <div className="cs180-pair">
+            <p className="cs180-text">Every release generated new evidence.</p>
+            <p className="cs180-text">Every round of user acceptance testing informed the next set of priorities.</p>
+          </div>
+          <p className="cs180-text">By the second release, the conversation had shifted from helping customers find products to helping them make confident purchasing decisions.</p>
+        </div>
+        <img
+          className="cs180-wide cs180-timeline"
+          src="/images/180by2-timeline.webp"
+          alt="Timeline from September to November: discovery, version 1 build and ship, UAT, version 2 build and ship, then review"
+          loading="lazy"
+          decoding="async"
+        />
       </section>
     )}
     </>
