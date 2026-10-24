@@ -31,7 +31,7 @@ const SKILL_TOOLS = [
 const HeroLink = ({ href, children }) => (
   href
     ? <a className="hero-link" href={href} target="_blank" rel="noopener noreferrer">{children}</a>
-    : <span className="hero-link">{children}</span>
+    : <span className="hero-link hero-link--plain">{children}</span>
 );
 
 const HomePage = () => {

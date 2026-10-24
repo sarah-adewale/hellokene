@@ -102,7 +102,11 @@ const WebsiteCard = ({ site }) => {
     const img = imgRef.current;
     let frame;
     const check = () => {
-      if (img.complete) setOnLight(lightShareBehind(img, btnRef.current) > 0.15);
+      // React clears the ref on unmount before this effect's cleanup runs, so
+      // a frame already scheduled can land after the card has gone
+      const btn = btnRef.current;
+      if (!btn || !img.isConnected) return;
+      if (img.complete) setOnLight(lightShareBehind(img, btn) > 0.15);
     };
     const schedule = () => {
       cancelAnimationFrame(frame);

@@ -47,8 +47,8 @@ client/public/images/   all image assets, referenced as /images/<name>
 
 - **Hero** (`HomePage.jsx`): "bio" and "experience" views. Desktop switches them with
   keyboard shortcuts (E = experience, R = reset, K = open resume); under 768px tap chips
-  replace the shortcuts. Underlined names come from `HERO_LINKS`; an empty URL renders
-  plain underlined text instead of a dead link. The cover image flips on click; the four
+  replace the shortcuts. Gradient-text names come from `HERO_LINKS`; an empty URL renders
+  the name in the copy's own colour (`.hero-link--plain`) instead of a dead link. The cover image flips on click; the four
   floating tool icons come from `SKILL_TOOLS`. `ArticleStack` sits under the cover.
 - **Projects** (`ProjectSection.jsx`): four tabs, filtered by flags on each project (see
   Data model). Highlights render as image + text rows, 3 shown then "Show more

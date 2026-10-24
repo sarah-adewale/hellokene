@@ -246,6 +246,14 @@ a.hero-link:hover {
   opacity: 0.75;
 }
 
+/* A name with no URL yet (e.g. Lex AI): no gradient, so it reads as the
+   surrounding copy and doesn't look clickable */
+.hero-link--plain {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: inherit;
+}
+
 @media (max-width: 767px) {
   .hero-copy {
     text-align: left;

@@ -9,7 +9,7 @@ import { MEDIUM_URL } from './links';
 export const MEDIUM_ARTICLES = [
   {
     title: 'Driving Ms. Data: Lessons for the Road',
-    readTime: '', // TODO: add once known (Medium didn't expose it)
+    readTime: '5 min read',
     url: 'https://medium.com/@_Kenenna/driving-ms-data-lessons-for-the-road-7ac6d2bf3a4f',
     image: '/images/medium-article-1.jpeg',
   },
