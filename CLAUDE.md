@@ -26,7 +26,8 @@ server/                 Express on :4000 — LOCAL DEV ONLY (.vercelignore exclu
   server.js → routes/api.js → controllers/portfolio.js → data.js (re-exports api/_data)
 client/src/
   App.js                routes: /, /portfolio/:projectId (/portfolio redirects to /), and
-                        one per website preview (/agri-youth)
+                        one per website preview (/agri-youth,
+                        /african-technopreneurs)
   context/ThemeContext.js    light/dark → localStorage + data-theme on <html>
   config/links.js       outbound URLs (email, LinkedIn, Medium, resume, Calendly), shared
                         by the hero and footer
@@ -82,7 +83,7 @@ composition (`ProjectShowcase` in `ProjectSection.jsx`): `screen` framed as a wi
 `background`, sized in `cqw` so it scales with the card. Use animated WebP rather than GIF
 for these (180by2's went from 20MB of GIF to 5.4MB).
 
-`previewUrl` + `preview: { desktop, mobile }` (Agri Youth) make a website card's "Open
+`previewUrl` + `preview: { desktop, mobile }` (Agri Youth, African Technopreneurs) make a website card's "Open
 website" button open an in-site preview page (`WebsitePreviewPage`) instead of a live site:
 the full-page screenshots in a browser-like frame, scrollable, with a toolbar toggle between
 desktop and mobile and a close button (Esc also closes). Each view is `{ width, slices:

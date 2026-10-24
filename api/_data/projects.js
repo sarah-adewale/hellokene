@@ -163,7 +163,28 @@ const portfolioProjects = [
     imageUrl: '/images/african-tech.png',
     mobileImageUrl: '/images/AT2-mobile.webp',
     isWebsite: true,
-    projectUrl: 'https://www.africantechno.com/',
+    previewUrl: '/african-technopreneurs',
+    preview: {
+      desktop: {
+        width: 1440,
+        slices: [
+          { src: '/images/at-desktop-1.webp', height: 1727 },
+          { src: '/images/at-desktop-2.webp', height: 1727 },
+          { src: '/images/at-desktop-3.webp', height: 1727 },
+          { src: '/images/at-desktop-4.webp', height: 1724 },
+        ],
+      },
+      mobile: {
+        width: 390,
+        slices: [
+          { src: '/images/at-mobile-1.webp', height: 1893 },
+          { src: '/images/at-mobile-2.webp', height: 1893 },
+          { src: '/images/at-mobile-3.webp', height: 1893 },
+          { src: '/images/at-mobile-4.webp', height: 1893 },
+          { src: '/images/at-mobile-5.webp', height: 1891 },
+        ],
+      },
+    },
   },
   // Brand marks, in the order the design lays them out
   {

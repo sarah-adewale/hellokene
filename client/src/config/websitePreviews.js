@@ -4,6 +4,7 @@
 // The project's `previewUrl` in api/_data/projects.js must match `path`.
 export const WEBSITE_PREVIEWS = [
   { path: '/agri-youth', projectId: 'agri-youth' },
+  { path: '/african-technopreneurs', projectId: 'african-technopreneurs' },
 ];
 
 export const isWebsitePreviewPath = (pathname) =>
