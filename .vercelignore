@@ -1,5 +1,7 @@
-server/
-config/
+# A leading / anchors a pattern to the repo root. Without it, `config/` also
+# matched client/src/config/ and broke every Vercel build that imported it.
+/server/
+/config/
 *.log
 node_modules
 .env.local
