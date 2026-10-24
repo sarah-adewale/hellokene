@@ -1,14 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { getPreviewReturn } from '../config/websitePreviews';
 
+
+// The app picks the scroll position on every route change (below), so stop the
+// browser restoring its own on back/forward, which scrolls smoothly (html has
+// scroll-behavior: smooth) after the app has already placed the page.
+if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
   const [isVisible, setIsVisible] = useState(false);
 
-  // Handle route change - scroll to top
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  // Handle route change - scroll to top before the new page paints, and
+  // instantly (html has scroll-behavior: smooth), so the old scroll position
+  // never shows on the new page. The homepage handles its own scroll when
+  // returning from a website preview (ProjectSection).
+  useLayoutEffect(() => {
+    if (pathname === '/' && getPreviewReturn()) return;
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
 
   // Handle scroll visibility

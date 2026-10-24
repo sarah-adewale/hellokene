@@ -1,0 +1,121 @@
+/* Website preview page (WebsitePreviewPage): a browser-like frame whose
+   screen scrolls through a website's full-page screenshots. */
+
+[data-theme='light'] {
+  --wp-frame-bg: #E7E7E7;
+  --wp-screen-bg: #F5F5F5;
+  --wp-toggle-icon: #FFBB2E;
+  --wp-close-icon: #F96167;
+}
+
+[data-theme='dark'] {
+  --wp-frame-bg: #232327;
+  --wp-screen-bg: #0B0A0F;
+  --wp-toggle-icon: #FFBB2E;
+  --wp-close-icon: #F96167;
+}
+
+.wp-frame {
+  display: flex;
+  flex-direction: column;
+  /* Fixed in the design; shorter phones keep a sliver of page below it */
+  height: 750px;
+  max-height: calc(100svh - 24px);
+  padding: 0 8px 8px;
+  border-radius: 16px;
+  background-color: var(--wp-frame-bg);
+  /* For the grow-from-card animation: scaled from its top-left corner, and
+     above the footer while it passes over it */
+  position: relative;
+  z-index: 2;
+  transform-origin: 0 0;
+}
+
+.wp-toolbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  height: 52px;
+  /* 18px from the frame edge to the close icon, less the button padding */
+  padding-right: 2px;
+}
+
+/* 16px icons with 8px of padding, so the icons sit 20px apart */
+.wp-tool {
+  display: flex;
+  padding: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.wp-tool:hover {
+  opacity: 0.8;
+}
+
+.wp-tool:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
+.wp-tool--toggle .wp-icon-fill { fill: var(--wp-toggle-icon); }
+.wp-tool--close .wp-icon-fill { fill: var(--wp-close-icon); }
+.wp-tool .wp-icon-cutout { fill: var(--wp-frame-bg); }
+.wp-tool .wp-icon-cutout-stroke { stroke: var(--wp-frame-bg); }
+
+.wp-screen {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  border-radius: 4px;
+  background-color: var(--wp-screen-bg);
+}
+
+.wp-site {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+/* The mobile screenshot is a 390px column with a gap above and below */
+.wp-screen--mobile .wp-site {
+  padding: 16px 0;
+}
+
+.wp-slice {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wp-status {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--tertiary-text);
+}
+
+/* On phones the mobile screenshot fills the screen edge to edge */
+@media (max-width: 767px) {
+  .wp-screen--mobile .wp-site {
+    padding: 0;
+  }
+
+  /* Smaller icons, 14px apart */
+  .wp-toolbar {
+    gap: 0;
+    padding-right: 3px;
+  }
+
+  .wp-tool {
+    padding: 7px;
+  }
+
+  .wp-tool svg {
+    width: 14px;
+    height: 14px;
+  }
+}

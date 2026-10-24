@@ -2,6 +2,7 @@ import { CaretDown } from '@phosphor-icons/react';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { isWebsitePreviewPath } from '../config/websitePreviews';
 import '../styles/Header.css'
 
 const TextFXIcon = () => (
@@ -183,6 +184,9 @@ const Header = () => {
   const selectTheme = useCallback((next) => {
     if (next !== theme) toggleTheme();
   }, [theme, toggleTheme]);
+
+  // Website previews fill the top of the page; their frame has its own close button
+  if (isWebsitePreviewPath(location.pathname)) return null;
 
   return (
     <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>

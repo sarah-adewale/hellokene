@@ -129,6 +129,32 @@ const portfolioProjects = [
     imageUrl: '/images/agri-youth.png',
     mobileImageUrl: '/images/AT-mobile.webp',
     isWebsite: true,
+    // "Open website" goes to this in-site preview instead of a live site
+    previewUrl: '/agri-youth',
+    // Full-page screenshots in 2x WebP slices, top to bottom; `width` and
+    // each `height` are in CSS pixels
+    preview: {
+      desktop: {
+        width: 1440,
+        slices: [
+          { src: '/images/aywb-desktop-1.webp', height: 1906 },
+          { src: '/images/aywb-desktop-2.webp', height: 1906 },
+          { src: '/images/aywb-desktop-3.webp', height: 1906 },
+          { src: '/images/aywb-desktop-4.webp', height: 1904 },
+        ],
+      },
+      mobile: {
+        width: 390,
+        slices: [
+          { src: '/images/aywb-mobile-1.webp', height: 1804 },
+          { src: '/images/aywb-mobile-2.webp', height: 1804 },
+          { src: '/images/aywb-mobile-3.webp', height: 1804 },
+          { src: '/images/aywb-mobile-4.webp', height: 1804 },
+          { src: '/images/aywb-mobile-5.webp', height: 1804 },
+          { src: '/images/aywb-mobile-6.webp', height: 1804 },
+        ],
+      },
+    },
   },
   {
     id: 'african-technopreneurs',

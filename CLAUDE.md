@@ -25,12 +25,14 @@ api/portfolio/          Vercel serverless functions — the PRODUCTION API (Comm
 server/                 Express on :4000 — LOCAL DEV ONLY (.vercelignore excludes it)
   server.js → routes/api.js → controllers/portfolio.js → data.js (re-exports api/_data)
 client/src/
-  App.js                routes: / and /portfolio/:projectId (/portfolio redirects to /)
+  App.js                routes: /, /portfolio/:projectId (/portfolio redirects to /), and
+                        one per website preview (/agri-youth)
   context/ThemeContext.js    light/dark → localStorage + data-theme on <html>
   config/links.js       outbound URLs (email, LinkedIn, Medium, resume, Calendly), shared
                         by the hero and footer
   config/articles.js    Medium articles shown in ArticleStack
-  pages/                HomePage, CaseStudyPage, caseStudyConfig.js
+  config/websitePreviews.js   routes for website preview pages (see Data model)
+  pages/                HomePage, CaseStudyPage, caseStudyConfig.js, WebsitePreviewPage
   components/           Header, Footer, ProjectSection, ArticleStack, ImageModal,
                         ScrollToTop, and the case-study sections
   components/case-study/SectionRegistry.js   maps section name → component
@@ -79,6 +81,19 @@ activation email to Kene). Flags pick the homepage tab:
 composition (`ProjectShowcase` in `ProjectSection.jsx`): `screen` framed as a window over
 `background`, sized in `cqw` so it scales with the card. Use animated WebP rather than GIF
 for these (180by2's went from 20MB of GIF to 5.4MB).
+
+`previewUrl` + `preview: { desktop, mobile }` (Agri Youth) make a website card's "Open
+website" button open an in-site preview page (`WebsitePreviewPage`) instead of a live site:
+the full-page screenshots in a browser-like frame, scrollable, with a toolbar toggle between
+desktop and mobile and a close button (Esc also closes). Each view is `{ width, slices:
+[{ src, height }] }` — 2x WebP slices stacked top to bottom, sizes in CSS px. Figma exports
+of whole pages embed full-size photos (Agri Youth's were 66MB SVGs each), so render them
+to PNG with headless Chrome and slice to WebP; never ship the SVGs. To add one, also add
+its path to `client/src/config/websitePreviews.js`, which creates the route and hides the
+Header on it. The card passes its position and the project in router state, so the frame
+grows out of the card (`WebsitePreviewPage`'s layout effect); leaving the preview by any
+route reopens the homepage on the Websites tab at that card (`getPreviewReturn`, used by
+`ProjectSection` and `ScrollToTop`).
 
 `platforms: ["webapp","ios","android","extension","website","ar/vr"]` renders small
 platform icons in the case-study header (`Overview.jsx`).
@@ -129,6 +144,10 @@ fed `{ heading, cells }` data from each section file.
   tags, zoom labels) preserve sizes from a removed global
   `* { font-size: 62.2% }` rule. They render smaller than their parent's declared size on
   purpose; delete the rule to use the parent's size.
+- `html` has `scroll-behavior: smooth` (`Home.css`), so programmatic jumps must pass
+  `behavior: 'instant'`. `ScrollToTop` scrolls to the top in a layout effect (before the new
+  page paints) and sets `history.scrollRestoration = 'manual'`; the browser's own restore
+  would otherwise smooth-scroll after the app has placed the page.
 - Two image-sharpness fixes are already in place: a global `backface-visibility: hidden`
   and `image-rendering: crisp-edges` were removed from `Home.css` because they forced 1x
   rasterization on retina screens. Don't reintroduce either.

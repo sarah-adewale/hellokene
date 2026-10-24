@@ -7,6 +7,8 @@ import { ThemeProvider } from './context/ThemeContext';
 import './index.css';
 import './styles/custom.css';
 import CaseStudyPage from './pages/CaseStudyPage';
+import WebsitePreviewPage from './pages/WebsitePreviewPage';
+import { WEBSITE_PREVIEWS } from './config/websitePreviews';
 import ScrollToTop from './components/ScrollToTop';
 
 // import CaseStudyPage from './pages/CaseStudyPage';
@@ -27,6 +29,9 @@ function App() {
               {/* The Portfolio Refresh case study was removed */}
               <Route path="/portfolio/portfolio" element={<Navigate to="/" replace />} />
               <Route path="/portfolio/:projectId" element={<CaseStudyPage />} />
+              {WEBSITE_PREVIEWS.map(({ path, projectId }) => (
+                <Route key={path} path={path} element={<WebsitePreviewPage projectId={projectId} />} />
+              ))}
               {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
           </main>
