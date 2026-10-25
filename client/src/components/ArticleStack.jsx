@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { MEDIUM_ARTICLES, articleUrl } from '../config/articles';
+import { ARTICLES, articleUrl } from '../config/articles';
 import '../styles/ArticleStack.css';
 
 const ExternalArrow = () => (
@@ -29,7 +29,7 @@ const truncate = (text = '') => (
   text.length > TITLE_MAX ? `${text.slice(0, TITLE_MAX).trimEnd()}…` : text
 );
 
-const ArticleStack = ({ articles = MEDIUM_ARTICLES }) => {
+const ArticleStack = ({ articles = ARTICLES }) => {
   const [index, setIndex] = useState(0);
 
   const step = useCallback((delta) => (event) => {

@@ -8,10 +8,12 @@ import CS180Table from './CS180Table';
 // the cs180-shot--* rules); without it the whole page width shows.
 const CS180Shot = ({ src, alt, crop }) => (
   <div className={`cs180-shot${crop ? ` cs180-shot--${crop}` : ''}`}>
-    <div className="cs180-shot-window">
-      <span className="cs180-dots" aria-hidden="true"><span /><span /><span /></span>
-      <div className="cs180-shot-screen">
-        <img src={src} alt={alt} loading="lazy" decoding="async" />
+    <div className="cs180-shot-card">
+      <div className="cs180-shot-window">
+        <span className="cs180-dots" aria-hidden="true"><span /><span /><span /></span>
+        <div className="cs180-shot-screen">
+          <img src={src} alt={alt} loading="lazy" decoding="async" />
+        </div>
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import caseStudyConfig from './caseStudyConfig';
 import SectionRegistry from '../components/case-study/SectionRegistry';
+import LoadingSpinner from '../components/LoadingSpinner';
 import '../styles/CaseStudy.css';
 
 const CaseStudyPage = () => {
@@ -66,7 +67,11 @@ const CaseStudyPage = () => {
   };
   
   if (isLoading) {
-    return <div className="case-study-loading">Loading...</div>;
+    return (
+      <div className="case-study-loading">
+        <LoadingSpinner />
+      </div>
+    );
   }
   
   if (error || !caseStudy) {

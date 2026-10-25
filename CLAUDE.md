@@ -31,7 +31,7 @@ client/src/
   context/ThemeContext.js    light/dark → localStorage + data-theme on <html>
   config/links.js       outbound URLs (email, LinkedIn, Medium, resume, Calendly), shared
                         by the hero and footer
-  config/articles.js    Medium articles shown in ArticleStack
+  config/articles.js    articles (on Substack) shown in ArticleStack
   config/websitePreviews.js   routes for website preview pages (see Data model)
   pages/                HomePage, CaseStudyPage, caseStudyConfig.js, WebsitePreviewPage
   components/           Header, Footer, ProjectSection, ArticleStack, ImageModal,

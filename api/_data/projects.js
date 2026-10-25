@@ -177,11 +177,11 @@ const portfolioProjects = [
       mobile: {
         width: 390,
         slices: [
-          { src: '/images/at-mobile-1.webp', height: 1893 },
-          { src: '/images/at-mobile-2.webp', height: 1893 },
-          { src: '/images/at-mobile-3.webp', height: 1893 },
-          { src: '/images/at-mobile-4.webp', height: 1893 },
-          { src: '/images/at-mobile-5.webp', height: 1891 },
+          { src: '/images/at-mobile-1.webp', height: 1864 },
+          { src: '/images/at-mobile-2.webp', height: 1864 },
+          { src: '/images/at-mobile-3.webp', height: 1864 },
+          { src: '/images/at-mobile-4.webp', height: 1864 },
+          { src: '/images/at-mobile-5.webp', height: 1863 },
         ],
       },
     },

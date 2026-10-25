@@ -2302,6 +2302,23 @@
   color: var(--tertiary-text);
 }
 
+/* The joins from "The business" into "The opportunity", and from the big
+   question into "Our observations": 60px, like the space above headings
+   within a section. Each is the margin above + this section's top margin +
+   the 30px gap of .case-study-content (a flex column, so margins add up
+   rather than collapse). Doubled selectors so these win at every width. */
+.cs180-business .cs180-text:last-child {
+  margin-bottom: 0;
+}
+
+.cs180--compact.cs180-opportunity {
+  margin-top: 30px; /* 0 + 30 + 30 */
+}
+
+.cs180--compact.cs180-solution {
+  margin-top: 8px; /* 22 + 8 + 30 */
+}
+
 .cs180-solution .cs180-h {
   margin-bottom: 36px;
 }
@@ -2348,10 +2365,18 @@
 .cs180-shot {
   position: relative;
   aspect-ratio: 189 / 127;
+  container-type: inline-size;
+}
+
+/* The card is a child of the container, so its 4.2cqw is 4.2% of the card's
+   own width. On .cs180-shot itself it resolved against the page section
+   (an element can't query itself) and came out over twice as round. */
+.cs180-shot-card {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   border-radius: 4.2cqw;
   background: var(--card-bg);
-  container-type: inline-size;
 }
 
 .cs180-shot-window {

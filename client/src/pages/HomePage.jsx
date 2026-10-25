@@ -3,10 +3,11 @@ import '../styles/Home.css';
 import ProjectsSection from '../components/ProjectSection';
 import ArticleStack from '../components/ArticleStack';
 import { EMAIL_URL, LINKEDIN_URL, RESUME_URL, BOOK_A_CALL_URL } from '../config/links';
+import { useTheme } from '../context/ThemeContext';
 
 
-// Underlined references in the hero copy. An empty string means "no URL yet",
-// which renders the phrase as plain underlined text instead of a dead link.
+// Gradient-text references in the hero copy. An empty string means "no URL
+// yet", which renders the phrase in the copy's own colour instead of a dead link.
 const HERO_LINKS = {
   tradevu: 'https://www.tradevu.co',
   pivo: 'https://www.ycombinator.com/companies/pivo-technology-inc',
@@ -38,6 +39,7 @@ const HomePage = () => {
   const [activeTab, setActiveTab] = useState('bio');
   const [useTapChips, setUseTapChips] = useState(false);
   const [coverFlipped, setCoverFlipped] = useState(false);
+  const { theme } = useTheme();
 
   // Tap chips instead of keyboard shortcuts on phones and on touch screens
   // with no mouse or trackpad (an iPad without a keyboard is wider than a
@@ -105,19 +107,24 @@ const headingClass = useMemo(() => (
           <div className="hero-content">
             {activeTab === 'bio' && (
               <div className={headingClass}>
+                {/* .hero-br breaks reproduce the design's lines on wide screens;
+                    narrower screens wrap naturally */}
                 <h1 className="hero-lede">
                   Hello, I'm Kene.<br />
-                  I design and ship digital products for people and businesses.
+                  I design and ship digital products <br className="hero-br" />
+                  for people and businesses.
                 </h1>
                 <p>
-                  I've worked with teams across AI, fintech, e-commerce, and other
-                  industries, implementing research, strategy, and systems to ship
-                  delightful product experiences that drive revenue.
+                  I've worked with teams across AI, fintech, <br className="hero-br" />
+                  e-commerce, and other industries, implementing <br className="hero-br" />
+                  research, strategy, and systems to ship delightful <br className="hero-br" />
+                  product experiences that drive revenue.
                 </p>
                 <p>
                   I currently lead product &amp; design at{' '}
-                  <HeroLink href={HERO_LINKS.tradevu}>Tradevu</HeroLink>, building
-                  payments and lending infrastructure for businesses across borders.
+                  <HeroLink href={HERO_LINKS.tradevu}>Tradevu</HeroLink>, <br className="hero-br" />
+                  building payments and lending infrastructure for <br className="hero-br" />
+                  businesses across borders.
                 </p>
               </div>
             )}
@@ -249,7 +256,7 @@ const headingClass = useMemo(() => (
                   decoding="async"
                 />
                 <img 
-                  src="/images/profile-image.png" 
+                  src={theme === 'light' ? '/images/web-avatar-white.webp' : '/images/profile-image.png'}
                   alt="" 
                   aria-hidden="true"
                   className="profile-image-hover"

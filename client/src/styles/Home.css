@@ -222,6 +222,13 @@ html {
   margin-bottom: 0;
 }
 
+/* Design line breaks in the bio, only where the column is wide enough for
+   the longest line (543px at 24px; the column passes that at ~1382px) */
+.hero-br {
+  display: none;
+}
+
+
 /* Highlighted references inside the hero copy. Renders as a plain <span>
    until a URL is filled in on HERO_LINKS, so there are never dead links. */
 .hero-link {
@@ -278,6 +285,23 @@ a.hero-link:hover {
 @media (min-width: 1024px) {
   .hero-copy {
     font-size: 21px;
+  }
+}
+
+/* After the 1024px rule above, so it wins on wide screens */
+@media (min-width: 1400px) {
+  .hero-br {
+    display: inline;
+  }
+
+  .hero-copy {
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  .hero-copy p,
+  .hero-lede {
+    margin-bottom: 29px;
   }
 }
 

@@ -140,7 +140,7 @@ const Overview = ({ project }) => {
 
       {/* 180by2 overview. Styles are the cs180-* block in CaseStudy.css. */}
       {project.id === '180by2' && (
-        <section className="cs180">
+        <section className="cs180 cs180-business">
           <h2 className="cs180-h">Buying a VR headset isn't like buying headphones.</h2>
           <p className="cs180-text">We're often ready to assume customers already know what they're looking for when they visit an online store.</p>
           <p className="cs180-text">That assumption works when replacing a phone charger or buying a familiar product. It breaks down when someone is investing in a VR headset, a 360° camera, or equipment they've never owned before.</p>

@@ -364,7 +364,7 @@ const Challenge = ({ project }) => {
     {/* 180by2 problem section. Styles are the cs180-* block in CaseStudy.css;
         the team avatars reuse nutch's hover stack. */}
     {project.id === '180by2' && (
-      <section className="cs180 cs180--compact">
+      <section className="cs180 cs180--compact cs180-opportunity">
         <h2 className="cs180-h">The opportunity</h2>
         <p className="cs180-text">Three months of campaign data showed a clear pattern. Marketing was successfully bringing potential customers to the website, but relatively few completed a purchase. At the same time, support teams were receiving more pre-purchase questions about products, accessories, shipping and returns that the website should have answered itself.</p>
         <p className="cs180-text">With the festive season approaching and marketing activity set to increase, improving conversion became an immediate priority. Before investing further in acquisition, we needed to understand why existing visitors weren't becoming customers.</p>

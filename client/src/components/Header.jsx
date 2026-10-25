@@ -195,7 +195,7 @@ const Header = () => {
         <div className="logo-container">
           <Link to="/" className="logo-link">
             <img 
-              src="/images/new-logo-avatar.svg"
+              src="/images/kene-logo-new.webp"
               alt="Kene Logo" 
               className="kene-logo-img"
             />

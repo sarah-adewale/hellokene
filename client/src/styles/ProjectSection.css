@@ -404,19 +404,15 @@
     opacity: 1;
   }
 
-  /* The base marks are greyscale light-on-dark, so they need inverting to
-     read on a light background. The hover marks carry real brand colour, so
-     inverting those would corrupt them - light mode keeps the base instead. */
+  /* Both sets of marks are drawn light-on-dark, so light mode inverts them.
+     The colour marks also rotate their hue back 180deg, which flips light to
+     dark but keeps each brand colour (gold stays gold, green stays green). */
   [data-theme='light'] .brand-logo--base {
     filter: invert(1);
   }
 
   [data-theme='light'] .brand-logo--hover {
-    display: none;
-  }
-
-  [data-theme='light'] .brand-item:hover .brand-logo--base {
-    opacity: 1;
+    filter: invert(1) hue-rotate(180deg);
   }
 
   @media (max-width: 900px) {
@@ -430,10 +426,34 @@
     }
   }
 
-  @media (max-width: 560px) {
+  /* Phones: one logo per row across the page's normal side margins, at the
+     full width of its card. (The colour marks carry their own rounded
+     border, so the card adds none.) Touch screens get
+     this one state, no hover: the colour (desktop hover) mark, in both
+     themes. */
+  @media (max-width: 767px) {
+    .brands-grid {
+      gap: 24px;
+    }
+
     .brand-item {
       flex-basis: 100%;
-      min-height: 150px;
+      min-height: 0;
+      padding: 0;
+    }
+
+    .brand-logo-stack {
+      width: 100%;
+    }
+
+    .brand-logo--base,
+    .brand-item:hover .brand-logo--base {
+      opacity: 0;
+    }
+
+    .brand-logo--hover,
+    .brand-item:hover .brand-logo--hover {
+      opacity: 1;
     }
   }
 
@@ -826,3 +846,19 @@
       background-position: 0% 50%;
     }
   }
+
+/* iPad and small laptops: line the project section up with the hero's left
+   edge (Home.css .hero-section padding), instead of the fixed 150px indent */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .projects-section {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .projects-section {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+}
