@@ -1,12 +1,10 @@
 /* Theme-specific styles */
 [data-theme='light'] {
   --footer-bg-image: url('./light-net.png') no-repeat center center;
-  --footer-bg-image-mobile: url('./light-net-mobile.png') no-repeat center center;
 }
 
 [data-theme='dark'] {
   --footer-bg-image: url('./dark-net.png') no-repeat center center;
-  --footer-bg-image-mobile: url('./dark-net-mobile.png') no-repeat center center;
 }
 
 .footer-container {
@@ -217,15 +215,26 @@ a.footer-cta--secondary:hover {
     width: 100%;
   }
 
+  /* The web as in the mobile design: lines about 40px apart running the
+     full width, the first one level with the top of the buttons, so the
+     buttons sit on the web rather than on a panel. The art's first line is
+     115px down; at 700px wide (66%) that's 76px, hence buttons top - 76. */
   .footer-container::before {
     width: 100%;
-    background: var(--footer-bg-image-mobile);
+    background: var(--footer-bg-image);
+    background-size: 700px auto;
+    background-position: center 188px; /* buttons at 264px */
+    opacity: 1; /* as strong as the design's lines (desktop keeps 0.6) */
   }
 }
 
 @media (max-width: 480px) {
   .footer-heading {
     font-size: 24px;
+  }
+
+  .footer-container::before {
+    background-position: center 174px; /* smaller heading: buttons at 250px */
   }
 
   .footer-eyebrow {

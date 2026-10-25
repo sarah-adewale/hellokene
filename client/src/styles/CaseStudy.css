@@ -2185,6 +2185,8 @@
 .cs180--compact {
   padding-top: 0;
   margin-top: 60px;
+  /* Same left edge as the top section, which .case-study-overview indents */
+  padding-left: 15px;
 }
 
 .cs180--compact .cs180-text {
